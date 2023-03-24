@@ -1,0 +1,29 @@
+﻿
+<li class="nav-item">
+    <a href="@Url.Action("FormularioEmpleados","Home")" class="btn btn-primary">Agregar empleados</a>
+</li>
+
+<div class="col-sm-8"><h2>Empleados </h2></div>
+<table class="table table-condensed">
+    <tr>
+        <th>IdEmpleados</th>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>DNI</th>
+        <th>Domicilio</th>
+        <th>Nacimiento</th>
+        <th>Antiguedad</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td> @item.id_Empleados</td>
+            <td> @item.Nombres</td>
+            <td> @item.Apellidos</td>
+            <td> @item.DNI</td>
+            <td> @item.Domicilio</td>
+            <td> @item.Fecha_de_nacimiento</td>
+            <td> @item.Antiguedad</td>
+        </tr>
+    }
+</table>

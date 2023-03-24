@@ -1,0 +1,67 @@
+﻿<script>
+   var UrlGuardarLibro= '@Url.Action("guardarLibros", "Home")';
+</script>
+
+<script src="~/Scripts/js_Libros.js"></script>
+<div class="row">
+    <div class="col-md-3">
+        <Label>id_Libro</Label>
+        <input type="text" id="idLibr" name="idLibr" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>Nombre</Label>
+        <input type="text" id="Nomb" name="Nomb" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>Editorial</Label>
+        <input type="text" id="Edit" name="Edit" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>Autor</Label>
+        <input type="text" id="Aut" name="Aut" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>Genero</Label>
+        <input type="text" id="Gene" name="Gene" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>PaisOrigen</Label>
+        <input type="text" id="PaisO" name="PaisO" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>NoPaginas</Label>
+        <input type="text" id="NoPag" name="NoPag" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>FechaEdicion</Label>
+        <input type="text" id="FechaEdi" name="FechaEdi" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>Precio</Label>
+        <input type="text" id="Prec" name="Prec" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>id_TipoLibro</Label>
+        <select id="idTipoLi " name="idTipoLi" class="form-control" onchange="myFunction()" href="db.tbl_Tipos_Libros">
+            <option value="Pendiente">- - SELECCIONAR - -</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+
+
+
+        </select>
+        <script>
+            function myFunction() {
+                int.getElementById().innerHTML =
+                    (idTipoLi.selectedIndex.int + '</b>')
+            }
+        </script>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <a href="javascript:guardarLibros()" class="btn btn-success">Guardar</a>
+    </div>
+</div>
+

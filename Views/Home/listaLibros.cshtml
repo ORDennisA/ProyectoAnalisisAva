@@ -1,0 +1,34 @@
+﻿<li class="nav-item">
+    <a href="@Url.Action("FormularioLibros","Home")" class="btn btn-primary">Agregar libros</a>
+</li>
+
+<div class="col-sm-8"><h2>Libros </h2></div>
+<table class="table table-condensed">
+    <tr>
+        <th>id_Libro</th>
+        <th>Nombre</th>
+        <th>Editorial</th>
+        <th>Autor</th>
+        <th>Genero</th>
+        <th>PaisOrigen</th>
+        <th>NoPaginas</th>
+        <th>FechaEdicion</th>
+        <th>Precio</th>
+        <th>id_TipoLibro</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td> @item.id_Libro</td>
+            <td> @item.Nombre</td>
+            <td> @item.Editorial</td>
+            <td> @item.Autor</td>
+            <td> @item.Genero</td>
+            <td> @item.PaisOrigen</td>
+            <td> @item.NoPaginas</td>
+            <td> @item.FechaEdicion</td>
+            <td> @item.Precio</td>
+            <td> @item.id_TipoLibro</td>
+        </tr>
+    }
+</table>

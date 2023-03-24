@@ -1,0 +1,43 @@
+﻿<script>
+
+    var UrlGuardarEmpleado = "@Url.Action("guardarEmpleado","Home")"
+
+</script>
+
+<script src="~/Scripts/js_Empleados.js"></script>
+<div class="row">
+    <div class="col-md-3">
+        <Label>id Empleados</Label>
+        <input type="text" id="idEm" name="idEm" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>Nombres empleado</Label>
+        <input type="text" id="nom" name="nom" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>Apellidos empleado</Label>
+        <input type="text" id="apell" name="apell" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>DNI empleado</Label>
+        <input type="text" id="dni" name="dni" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>Domicilio</Label>
+        <input type="text" id="pre" name="pre" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>Fecha de nacimiento</Label>
+        <input type="text" id="can" name="can" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>Antiguedad</Label>
+        <input type="text" id="ant" name="ant" class="form-control" />
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <a href="javascript:guardarEmpleado()" class="btn btn-success">Guardar</a>
+    </div>
+</div>

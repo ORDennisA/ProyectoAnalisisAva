@@ -1,0 +1,25 @@
+﻿<li class="nav-item">
+    <a href="@Url.Action("FormularioChecadasEmpleados","Home")" class="btn btn-primary">Agregar checadas empleados</a>
+</li>
+
+<div class="col-sm-8"><h2>Checadas empleados </h2></div>
+<table class="table table-condensed">
+    <tr>
+        <th>IdChecadasEmpleados</th>
+        <th>Fecha</th>
+        <th>Entrada</th>
+        <th>Salida</th>
+        <th>IdEmpleados</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td> @item.id_Checadas_empleados</td>
+            <td> @item.Fecha</td>
+            <td> @item.Entrada</td>
+            <td> @item.Salida</td>
+            <td> @item.id_Empleados</td>
+        </tr>
+    }
+</table>

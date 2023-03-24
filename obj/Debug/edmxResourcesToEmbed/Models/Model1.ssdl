@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProyectoBibliotecaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tbl_Checadas_Empleados">
+    <Key>
+      <PropertyRef Name="id_Checadas_empleados" />
+    </Key>
+    <Property Name="id_Checadas_empleados" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fecha" Type="date" />
+    <Property Name="Entrada" Type="time" Precision="7" />
+    <Property Name="Salida" Type="time" Precision="7" />
+    <Property Name="id_Empleados" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_Empleados">
+    <Key>
+      <PropertyRef Name="id_Empleados" />
+    </Key>
+    <Property Name="id_Empleados" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombres" Type="varchar" MaxLength="120" />
+    <Property Name="Apellidos" Type="varchar" MaxLength="120" />
+    <Property Name="DNI" Type="varchar" MaxLength="120" />
+    <Property Name="Domicilio" Type="varchar" MaxLength="120" />
+    <Property Name="Fecha_de_nacimiento" Type="date" />
+    <Property Name="Antiguedad" Type="date" />
+  </EntityType>
+  <EntityType Name="tbl_Libros">
+    <Key>
+      <PropertyRef Name="id_Libro" />
+    </Key>
+    <Property Name="id_Libro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="120" />
+    <Property Name="Editorial" Type="varchar" MaxLength="120" />
+    <Property Name="Autor" Type="varchar" MaxLength="120" />
+    <Property Name="Genero" Type="varchar" MaxLength="120" />
+    <Property Name="PaisOrigen" Type="varchar" MaxLength="120" />
+    <Property Name="NoPaginas" Type="int" />
+    <Property Name="FechaEdicion" Type="date" />
+    <Property Name="Precio" Type="float" />
+    <Property Name="id_TipoLibro" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_Prestamos">
+    <Key>
+      <PropertyRef Name="id_Prestamo" />
+    </Key>
+    <Property Name="id_Prestamo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fecha_de_Salida" Type="date" />
+    <Property Name="Fecha_maxima_de_devolucion" Type="date" />
+    <Property Name="Fecha_de_devolucion" Type="date" />
+    <Property Name="id_Usuarios" Type="int" />
+    <Property Name="id_Tipos_de_prestamos" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_Prestamos_Libros">
+    <Key>
+      <PropertyRef Name="id_Prestamos_Libros" />
+    </Key>
+    <Property Name="id_Prestamos_Libros" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_Libro" Type="int" />
+    <Property Name="id_Prestamo" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_Tipos_de_prestamos">
+    <Key>
+      <PropertyRef Name="id_Tipos_de_prestamos" />
+    </Key>
+    <Property Name="id_Tipos_de_prestamos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="120" />
+  </EntityType>
+  <EntityType Name="tbl_Tipos_Libros">
+    <Key>
+      <PropertyRef Name="id_TipoLibro" />
+    </Key>
+    <Property Name="id_TipoLibro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Estante" Type="varchar" MaxLength="120" />
+    <Property Name="Tematica" Type="varchar" MaxLength="120" />
+  </EntityType>
+  <EntityType Name="tbl_Usuarios">
+    <Key>
+      <PropertyRef Name="id_Usuarios" />
+    </Key>
+    <Property Name="id_Usuarios" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombres" Type="varchar" MaxLength="120" />
+    <Property Name="Apellidos" Type="varchar" MaxLength="120" />
+    <Property Name="DNI" Type="varchar" MaxLength="120" />
+    <Property Name="Domicilio" Type="varchar" MaxLength="120" />
+    <Property Name="Fecha_de_nacimiento" Type="date" />
+  </EntityType>
+  <EntityType Name="tbl_Venta_Libros">
+    <Key>
+      <PropertyRef Name="id_Venta_Libros" />
+    </Key>
+    <Property Name="id_Venta_Libros" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_Libro" Type="int" />
+    <Property Name="id_Venta" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_Ventas">
+    <Key>
+      <PropertyRef Name="id_Venta" />
+    </Key>
+    <Property Name="id_Venta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Total" Type="float" />
+    <Property Name="Fecha" Type="date" />
+    <Property Name="Hora" Type="time" Precision="7" />
+    <Property Name="id_Empleados" Type="int" />
+  </EntityType>
+  <Association Name="FK__tbl_Checa__id_Em__2F10007B">
+    <End Role="tbl_Empleados" Type="Self.tbl_Empleados" Multiplicity="0..1" />
+    <End Role="tbl_Checadas_Empleados" Type="Self.tbl_Checadas_Empleados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Empleados">
+        <PropertyRef Name="id_Empleados" />
+      </Principal>
+      <Dependent Role="tbl_Checadas_Empleados">
+        <PropertyRef Name="id_Empleados" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Libro__id_Ti__38996AB5">
+    <End Role="tbl_Tipos_Libros" Type="Self.tbl_Tipos_Libros" Multiplicity="0..1" />
+    <End Role="tbl_Libros" Type="Self.tbl_Libros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Tipos_Libros">
+        <PropertyRef Name="id_TipoLibro" />
+      </Principal>
+      <Dependent Role="tbl_Libros">
+        <PropertyRef Name="id_TipoLibro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Prest__id_Li__4222D4EF">
+    <End Role="tbl_Libros" Type="Self.tbl_Libros" Multiplicity="0..1" />
+    <End Role="tbl_Prestamos_Libros" Type="Self.tbl_Prestamos_Libros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Libros">
+        <PropertyRef Name="id_Libro" />
+      </Principal>
+      <Dependent Role="tbl_Prestamos_Libros">
+        <PropertyRef Name="id_Libro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Prest__id_Pr__4316F928">
+    <End Role="tbl_Prestamos" Type="Self.tbl_Prestamos" Multiplicity="0..1" />
+    <End Role="tbl_Prestamos_Libros" Type="Self.tbl_Prestamos_Libros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Prestamos">
+        <PropertyRef Name="id_Prestamo" />
+      </Principal>
+      <Dependent Role="tbl_Prestamos_Libros">
+        <PropertyRef Name="id_Prestamo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Prest__id_Ti__32E0915F">
+    <End Role="tbl_Tipos_de_prestamos" Type="Self.tbl_Tipos_de_prestamos" Multiplicity="0..1" />
+    <End Role="tbl_Prestamos" Type="Self.tbl_Prestamos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Tipos_de_prestamos">
+        <PropertyRef Name="id_Tipos_de_prestamos" />
+      </Principal>
+      <Dependent Role="tbl_Prestamos">
+        <PropertyRef Name="id_Tipos_de_prestamos" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Prest__id_Us__31EC6D26">
+    <End Role="tbl_Usuarios" Type="Self.tbl_Usuarios" Multiplicity="0..1" />
+    <End Role="tbl_Prestamos" Type="Self.tbl_Prestamos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Usuarios">
+        <PropertyRef Name="id_Usuarios" />
+      </Principal>
+      <Dependent Role="tbl_Prestamos">
+        <PropertyRef Name="id_Usuarios" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Venta__id_Em__2C3393D0">
+    <End Role="tbl_Empleados" Type="Self.tbl_Empleados" Multiplicity="0..1" />
+    <End Role="tbl_Ventas" Type="Self.tbl_Ventas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Empleados">
+        <PropertyRef Name="id_Empleados" />
+      </Principal>
+      <Dependent Role="tbl_Ventas">
+        <PropertyRef Name="id_Empleados" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Venta__id_Li__3B75D760">
+    <End Role="tbl_Libros" Type="Self.tbl_Libros" Multiplicity="0..1" />
+    <End Role="tbl_Venta_Libros" Type="Self.tbl_Venta_Libros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Libros">
+        <PropertyRef Name="id_Libro" />
+      </Principal>
+      <Dependent Role="tbl_Venta_Libros">
+        <PropertyRef Name="id_Libro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Venta__id_Ve__3C69FB99">
+    <End Role="tbl_Ventas" Type="Self.tbl_Ventas" Multiplicity="0..1" />
+    <End Role="tbl_Venta_Libros" Type="Self.tbl_Venta_Libros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Ventas">
+        <PropertyRef Name="id_Venta" />
+      </Principal>
+      <Dependent Role="tbl_Venta_Libros">
+        <PropertyRef Name="id_Venta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ProyectoBibliotecaModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Checadas_Empleados" EntityType="Self.tbl_Checadas_Empleados" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Empleados" EntityType="Self.tbl_Empleados" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Libros" EntityType="Self.tbl_Libros" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Prestamos" EntityType="Self.tbl_Prestamos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Prestamos_Libros" EntityType="Self.tbl_Prestamos_Libros" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Tipos_de_prestamos" EntityType="Self.tbl_Tipos_de_prestamos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Tipos_Libros" EntityType="Self.tbl_Tipos_Libros" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Usuarios" EntityType="Self.tbl_Usuarios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Venta_Libros" EntityType="Self.tbl_Venta_Libros" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Ventas" EntityType="Self.tbl_Ventas" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tbl_Checa__id_Em__2F10007B" Association="Self.FK__tbl_Checa__id_Em__2F10007B">
+      <End Role="tbl_Empleados" EntitySet="tbl_Empleados" />
+      <End Role="tbl_Checadas_Empleados" EntitySet="tbl_Checadas_Empleados" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Libro__id_Ti__38996AB5" Association="Self.FK__tbl_Libro__id_Ti__38996AB5">
+      <End Role="tbl_Tipos_Libros" EntitySet="tbl_Tipos_Libros" />
+      <End Role="tbl_Libros" EntitySet="tbl_Libros" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Prest__id_Li__4222D4EF" Association="Self.FK__tbl_Prest__id_Li__4222D4EF">
+      <End Role="tbl_Libros" EntitySet="tbl_Libros" />
+      <End Role="tbl_Prestamos_Libros" EntitySet="tbl_Prestamos_Libros" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Prest__id_Pr__4316F928" Association="Self.FK__tbl_Prest__id_Pr__4316F928">
+      <End Role="tbl_Prestamos" EntitySet="tbl_Prestamos" />
+      <End Role="tbl_Prestamos_Libros" EntitySet="tbl_Prestamos_Libros" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Prest__id_Ti__32E0915F" Association="Self.FK__tbl_Prest__id_Ti__32E0915F">
+      <End Role="tbl_Tipos_de_prestamos" EntitySet="tbl_Tipos_de_prestamos" />
+      <End Role="tbl_Prestamos" EntitySet="tbl_Prestamos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Prest__id_Us__31EC6D26" Association="Self.FK__tbl_Prest__id_Us__31EC6D26">
+      <End Role="tbl_Usuarios" EntitySet="tbl_Usuarios" />
+      <End Role="tbl_Prestamos" EntitySet="tbl_Prestamos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Venta__id_Em__2C3393D0" Association="Self.FK__tbl_Venta__id_Em__2C3393D0">
+      <End Role="tbl_Empleados" EntitySet="tbl_Empleados" />
+      <End Role="tbl_Ventas" EntitySet="tbl_Ventas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Venta__id_Li__3B75D760" Association="Self.FK__tbl_Venta__id_Li__3B75D760">
+      <End Role="tbl_Libros" EntitySet="tbl_Libros" />
+      <End Role="tbl_Venta_Libros" EntitySet="tbl_Venta_Libros" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Venta__id_Ve__3C69FB99" Association="Self.FK__tbl_Venta__id_Ve__3C69FB99">
+      <End Role="tbl_Ventas" EntitySet="tbl_Ventas" />
+      <End Role="tbl_Venta_Libros" EntitySet="tbl_Venta_Libros" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

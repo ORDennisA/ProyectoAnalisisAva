@@ -1,0 +1,27 @@
+﻿<script>
+
+    var UrlGuardarTipoLibros = "@Url.Action("guardarTipoLibros", "Home")"
+
+</script>
+
+<script src="~/Scripts/js_TipoLibros.js"></script>
+<div class="row">
+    <div class="col-md-3">
+        <Label>id TiposLibros</Label>
+        <input type="text" id="idTl" name="idTl" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>Estante</Label>
+        <input type="text" id="Esta" name="Esta" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>Tematica</Label>
+        <input type="text" id="Tema" name="Tema" class="form-control" />
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <a href="javascript:guardarTipoLibros()" class="btn btn-success">Guardar</a>
+    </div>
+</div>

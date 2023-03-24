@@ -1,0 +1,33 @@
+﻿<script>
+    var UrlGuardarChecadas= '@Url.Action("guardarChecadas", "Home")';
+</script>
+
+<script src="~/Scripts/js_ChecadasEmp.js"></script>
+<div class="row">
+    <div class="col-md-3">
+        <Label>id Checadas</Label>
+        <input type="text" id="idCh" name="idCh" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>Fecha</Label>
+        <input type="text" id="fecha" name="fecha" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>Entrada empleados</Label>
+        <input type="text" id="entrada" name="entrada" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>Salida empleados</Label>
+        <input type="text" id="salida" name="salida" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>Id empleados</Label>
+        <input type="text" id="idEM" name="idEM" class="form-control" />
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <a href="javascript:guardarChecadas()" class="btn btn-success">Guardar</a>
+    </div>
+</div>
