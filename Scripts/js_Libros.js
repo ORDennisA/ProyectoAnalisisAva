@@ -5,7 +5,6 @@
         url: UrlGuardarLibro,
         async: true,
         data: {
-            id_Libro: document.getElementById("idLibr").value,
             Nombre: document.getElementById("Nomb").value,
             Editorial: document.getElementById("Edit").value,
             Autor: document.getElementById("Aut").value,
