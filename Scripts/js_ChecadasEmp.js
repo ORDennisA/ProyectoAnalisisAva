@@ -5,7 +5,6 @@
         url: UrlGuardarChecadas,
         async: true,
         data: {
-            Id: document.getElementById("idCh").value,
             Nombres: document.getElementById("fecha").value,
             Apellidos: document.getElementById("entrada").value,
             DNI: document.getElementById("salida").value,

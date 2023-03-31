@@ -5,7 +5,6 @@
         url: UrlGuardarEmpleado,
         async: true,
         data: {
-            IdEmpleado: document.getElementById("idEm").value,
             NombreEmpleado: document.getElementById("nom").value,
             ApellidosEmpleado: document.getElementById("apell").value,
             DNIempleado: document.getElementById("dni").value,

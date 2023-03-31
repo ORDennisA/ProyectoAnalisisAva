@@ -9,7 +9,7 @@ namespace MV_P1.Controllers
 {
     public class HomeController : Controller
     {
-        ProyectoBibliotecaEntities db = new ProyectoBibliotecaEntities();
+        BibliotecaEntities db = new BibliotecaEntities();
         public ActionResult Index()
         {
             return View();
@@ -35,6 +35,7 @@ namespace MV_P1.Controllers
         }
         public ActionResult FormularioLibros()
         {
+            ViewBag.TipoLibros = db.tbl_Tipos_Libros.ToList();
             return View();
         }
         public JsonResult guardarLibros(int id_Libro, string Nombre, string Editorial, string Autor, string Genero, string PaisOrigen,
@@ -117,6 +118,31 @@ namespace MV_P1.Controllers
             d.Estante = EstanteLibros;
             d.Tematica = TematicaLibros;
             db.tbl_Tipos_Libros.Add(d);
+            db.SaveChanges();
+            return Json("");
+        }
+
+        public ActionResult FormularioVentas() 
+        {
+            return View();
+        }
+
+        public ActionResult listaVentas()
+        {
+            var lst = db.tbl_Ventas.ToList();
+            return View(lst);
+        }
+
+        
+        public JsonResult guardarVentas(int Total, DateTime Fecha, TimeSpan Hora, int idEmpleado, int idVentaLibro) 
+        {
+            tbl_Ventas d = new tbl_Ventas();
+            d.Total = Total;
+            d.Fecha = Fecha;
+            d.Hora = Hora;
+            d.id_Empleados = idEmpleado;
+            d.id_Venta = idVentaLibro;
+            db.tbl_Ventas.Add(d);
             db.SaveChanges();
             return Json("");
         }
