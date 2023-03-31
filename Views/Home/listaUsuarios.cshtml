@@ -1,0 +1,26 @@
+﻿
+<li class="nav-item">
+    <a href="@Url.Action("FormularioUsuarios","Home")" class="btn btn-primary">Agregar Usuarios</a>
+</li>
+
+<div class="col-sm-8"><h2>Usuarios </h2></div>
+<table class="table table-condensed">
+    <tr>
+        <th>Id_Usuario</th>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>DNI</th>
+        <th>Domicilio</th>
+        <th>Fecha_De_nacimiento</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td> @item.id_Usuario</td>
+            <td> @item.Nombres</td>
+            <td> @item.Apellidos</td>
+            <td> @item.DNI</td>
+            <td> @item.Fecha_De_nacimiento</td>
+        </tr>
+    }
+</table>

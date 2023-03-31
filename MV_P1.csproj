@@ -286,6 +286,7 @@
     <Content Include="Scripts\js_Empleados.js" />
     <Content Include="Scripts\js_Libros.js" />
     <Content Include="Scripts\js_TipoLibros.js" />
+    <Content Include="Scripts\js_Usuarios.js" />
     <Content Include="Scripts\js_Ventas.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Template\dist\css\adminlte.css" />
@@ -2366,6 +2367,8 @@
     <Content Include="Views\Home\FormularioEmpleados.cshtml" />
     <Content Include="Views\Home\FormularioVentas.cshtml" />
     <Content Include="Views\Home\listaVentas.cshtml" />
+    <Content Include="Views\Home\FormularioUsuarios.cshtml" />
+    <Content Include="Views\Home\listaUsuarios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
