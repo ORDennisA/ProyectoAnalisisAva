@@ -1,0 +1,85 @@
+﻿<table class="table table-condensed">
+    <tr>
+        <th>IdEmpleados</th>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>DNI</th>
+        <th>Domicilio</th>
+        <th>Nacimiento</th>
+        <th>Antiguedad</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr id="row-@item.id_Empleados">
+            <td> @item.id_Empleados</td>
+            <td> @item.Nombres</td>
+            <td> @item.Apellidos</td>
+            <td> @item.DNI</td>
+            <td> @item.Domicilio</td>
+            <td> @item.Fecha_de_nacimiento</td>
+            <td> @item.Antiguedad</td>
+            <td>
+                <button type="button" class="btn btn-primary" onclick="editRow(@item.id_Empleados)">Editar</button>
+                <button type="button" class="btn btn-danger" onclick="deleteRow(@item.id_Empleados)">Eliminar</button>
+            </td>
+        </tr>
+    }
+</table>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div id="editEmpleadoModal" class="row">
+    <div class="modal-content">
+        <form>
+            <div class="col-md-3">
+                <Label>id Empleados</Label>
+                <input type="text" id="id_Empleados" name="id" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Nombres empleado</Label>
+                <input type="text" id="nom" name="nom" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Apellidos empleado</Label>
+                <input type="text" id="apell" name="apell" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>DNI empleado</Label>
+                <input type="text" id="dni" name="dni" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Domicilio</Label>
+                <input type="text" id="pre" name="pre" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Fecha de nacimiento</Label>
+                <input type="text" id="can" name="can" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Antiguedad</Label>
+                <input type="text" id="ant" name="ant" class="form-control" />
+            </div>
+
+            <input type="submit" value="Guardar cambios">
+        </form>
+    </div>
+</div>
+<script>
+
+    function deleteRow(id) {
+        // Realizar petición AJAX al controlador de Home para eliminar el empleado con el ID proporcionado
+        if (confirm('¿Estás seguro de que deseas eliminar este empleado?')) {
+            $.ajax({
+                url: '/Home/DeleteEmpleado',
+                type: 'POST',
+                data: { id: id },
+                success: function () {
+                    // Si la operación es exitosa, actualizar la tabla sin recargar la página
+                    $('#row-' + id).remove();
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // Si la operación falla, mostrar un mensaje de error
+                    alert('Error al eliminar el empleado.');
+                }
+            });
+        }
+    }
+</script>
