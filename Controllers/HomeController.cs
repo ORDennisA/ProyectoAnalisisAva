@@ -77,7 +77,7 @@ namespace MV_P1.Controllers
             db.SaveChanges();
             return Json("");
         }
-        public ActionResult listaEmpleados()
+         public ActionResult listaEmpleados()
         {
             var lst = db.tbl_Empleados.ToList();
             return View(lst);
@@ -86,11 +86,50 @@ namespace MV_P1.Controllers
         {
             return View();
         }
-        public JsonResult guardarEmpleado(int IdEmpleado, string NombreEmpleado, string ApellidosEmpleado, string DNIempleado,
+        public ActionResult EditarEmpleado()
+        {
+            var lst = db.tbl_Empleados.ToList();
+            return View(lst);
+        }
+        public ActionResult GetEmpleado(int id)
+        {
+            // Busca el empleado correspondiente en tu modelo de datos
+            tbl_Empleados empleado = db.tbl_Empleados.Find(id);
+
+            // Si el empleado no se encuentra, devuelve un error
+            if (empleado == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Crea un objeto anónimo con los datos del empleado y devuelve una respuesta JSON
+            var empleadoJson = new
+            {
+                id_Empleados = empleado.id_Empleados,
+                Nombres = empleado.Nombres,
+                Apellidos = empleado.Apellidos,
+                DNI = empleado.DNI,
+                Domicilio = empleado.Domicilio,
+                Fecha_de_nacimiento = empleado.Fecha_de_nacimiento,
+                Antiguedad = empleado.Antiguedad
+            };
+            return Json(empleadoJson, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult DeleteEmpleado(int id)
+        {
+            var empleado = db.tbl_Empleados.Find(id);
+            if (empleado == null)
+            {
+                return HttpNotFound();
+            }
+            db.tbl_Empleados.Remove(empleado);
+            db.SaveChanges();
+            return Json("");
+        }
+        public JsonResult guardarEmpleado(string NombreEmpleado, string ApellidosEmpleado, string DNIempleado,
             string DomicilioEmpleado, DateTime FechaDeNacimientoEmpleado, DateTime AntiguedadEmpleado)
         {
             tbl_Empleados a = new tbl_Empleados();
-            a.id_Empleados = IdEmpleado;
             a.Nombres = NombreEmpleado;
             a.Apellidos = ApellidosEmpleado;
             a.DNI = DNIempleado;
@@ -101,6 +140,7 @@ namespace MV_P1.Controllers
             db.SaveChanges();
             return Json("");
         }
+
 
         public ActionResult listaTiposLibros()
         {
