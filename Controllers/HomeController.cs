@@ -9,7 +9,7 @@ namespace MV_P1.Controllers
 {
     public class HomeController : Controller
     {
-        BibliotecaEntities db = new BibliotecaEntities();
+        ProyectoBibliotecaEntities db = new ProyectoBibliotecaEntities();
         public ActionResult Index()
         {
             return View();
@@ -198,7 +198,7 @@ namespace MV_P1.Controllers
             return View(lst);
         }
 
-        public JsonResult guardarUsuarios(string Nombres, string Apellidos, string DNI, string Domicilio, string Fecha_de_nacimento)
+        public JsonResult guardarUsuarios(string Nombres, string Apellidos, string DNI, string Domicilio, DateTime Fecha_de_nacimento)
         {
             tbl_Usuarios d = new tbl_Usuarios();
             d.Nombres = Nombres;

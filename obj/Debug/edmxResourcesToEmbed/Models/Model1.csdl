@@ -1,15 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="ProyectoBibliotecaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
+<Schema Namespace="BibliotecaEntities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="tbl_Checadas_Empleados">
     <Key>
       <PropertyRef Name="id_Checadas_empleados" />
@@ -19,7 +9,7 @@
     <Property Name="Entrada" Type="Time" Precision="7" />
     <Property Name="Salida" Type="Time" Precision="7" />
     <Property Name="id_Empleados" Type="Int32" />
-    <NavigationProperty Name="tbl_Empleados" Relationship="Self.FK__tbl_Checa__id_Em__2F10007B" FromRole="tbl_Checadas_Empleados" ToRole="tbl_Empleados" />
+    <NavigationProperty Name="tbl_Empleados" Relationship="Self.FK__tbl_Checa__id_Em__45F365D3" FromRole="tbl_Checadas_Empleados" ToRole="tbl_Empleados" />
   </EntityType>
   <EntityType Name="tbl_Empleados">
     <Key>
@@ -32,8 +22,8 @@
     <Property Name="Domicilio" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
     <Property Name="Fecha_de_nacimiento" Type="DateTime" Precision="0" />
     <Property Name="Antiguedad" Type="DateTime" Precision="0" />
-    <NavigationProperty Name="tbl_Checadas_Empleados" Relationship="Self.FK__tbl_Checa__id_Em__2F10007B" FromRole="tbl_Empleados" ToRole="tbl_Checadas_Empleados" />
-    <NavigationProperty Name="tbl_Ventas" Relationship="Self.FK__tbl_Venta__id_Em__2C3393D0" FromRole="tbl_Empleados" ToRole="tbl_Ventas" />
+    <NavigationProperty Name="tbl_Checadas_Empleados" Relationship="Self.FK__tbl_Checa__id_Em__45F365D3" FromRole="tbl_Empleados" ToRole="tbl_Checadas_Empleados" />
+    <NavigationProperty Name="tbl_Ventas" Relationship="Self.FK__tbl_Venta__id_Em__48CFD27E" FromRole="tbl_Empleados" ToRole="tbl_Ventas" />
   </EntityType>
   <EntityType Name="tbl_Libros">
     <Key>
@@ -49,9 +39,9 @@
     <Property Name="FechaEdicion" Type="DateTime" Precision="0" />
     <Property Name="Precio" Type="Double" />
     <Property Name="id_TipoLibro" Type="Int32" />
-    <NavigationProperty Name="tbl_Tipos_Libros" Relationship="Self.FK__tbl_Libro__id_Ti__38996AB5" FromRole="tbl_Libros" ToRole="tbl_Tipos_Libros" />
-    <NavigationProperty Name="tbl_Prestamos_Libros" Relationship="Self.FK__tbl_Prest__id_Li__4222D4EF" FromRole="tbl_Libros" ToRole="tbl_Prestamos_Libros" />
-    <NavigationProperty Name="tbl_Venta_Libros" Relationship="Self.FK__tbl_Venta__id_Li__3B75D760" FromRole="tbl_Libros" ToRole="tbl_Venta_Libros" />
+    <NavigationProperty Name="tbl_Tipos_Libros" Relationship="Self.FK__tbl_Libro__id_Ti__3F466844" FromRole="tbl_Libros" ToRole="tbl_Tipos_Libros" />
+    <NavigationProperty Name="tbl_Prestamos_Libros" Relationship="Self.FK__tbl_Prest__id_Li__4F7CD00D" FromRole="tbl_Libros" ToRole="tbl_Prestamos_Libros" />
+    <NavigationProperty Name="tbl_Venta_Libros" Relationship="Self.FK__tbl_Venta__id_Li__4BAC3F29" FromRole="tbl_Libros" ToRole="tbl_Venta_Libros" />
   </EntityType>
   <EntityType Name="tbl_Prestamos">
     <Key>
@@ -63,9 +53,9 @@
     <Property Name="Fecha_de_devolucion" Type="DateTime" Precision="0" />
     <Property Name="id_Usuarios" Type="Int32" />
     <Property Name="id_Tipos_de_prestamos" Type="Int32" />
-    <NavigationProperty Name="tbl_Prestamos_Libros" Relationship="Self.FK__tbl_Prest__id_Pr__4316F928" FromRole="tbl_Prestamos" ToRole="tbl_Prestamos_Libros" />
-    <NavigationProperty Name="tbl_Tipos_de_prestamos" Relationship="Self.FK__tbl_Prest__id_Ti__32E0915F" FromRole="tbl_Prestamos" ToRole="tbl_Tipos_de_prestamos" />
-    <NavigationProperty Name="tbl_Usuarios" Relationship="Self.FK__tbl_Prest__id_Us__31EC6D26" FromRole="tbl_Prestamos" ToRole="tbl_Usuarios" />
+    <NavigationProperty Name="tbl_Prestamos_Libros" Relationship="Self.FK__tbl_Prest__id_Pr__5070F446" FromRole="tbl_Prestamos" ToRole="tbl_Prestamos_Libros" />
+    <NavigationProperty Name="tbl_Tipos_de_prestamos" Relationship="Self.FK__tbl_Prest__id_Ti__4316F928" FromRole="tbl_Prestamos" ToRole="tbl_Tipos_de_prestamos" />
+    <NavigationProperty Name="tbl_Usuarios" Relationship="Self.FK__tbl_Prest__id_Us__4222D4EF" FromRole="tbl_Prestamos" ToRole="tbl_Usuarios" />
   </EntityType>
   <EntityType Name="tbl_Prestamos_Libros">
     <Key>
@@ -74,8 +64,8 @@
     <Property Name="id_Prestamos_Libros" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="id_Libro" Type="Int32" />
     <Property Name="id_Prestamo" Type="Int32" />
-    <NavigationProperty Name="tbl_Libros" Relationship="Self.FK__tbl_Prest__id_Li__4222D4EF" FromRole="tbl_Prestamos_Libros" ToRole="tbl_Libros" />
-    <NavigationProperty Name="tbl_Prestamos" Relationship="Self.FK__tbl_Prest__id_Pr__4316F928" FromRole="tbl_Prestamos_Libros" ToRole="tbl_Prestamos" />
+    <NavigationProperty Name="tbl_Libros" Relationship="Self.FK__tbl_Prest__id_Li__4F7CD00D" FromRole="tbl_Prestamos_Libros" ToRole="tbl_Libros" />
+    <NavigationProperty Name="tbl_Prestamos" Relationship="Self.FK__tbl_Prest__id_Pr__5070F446" FromRole="tbl_Prestamos_Libros" ToRole="tbl_Prestamos" />
   </EntityType>
   <EntityType Name="tbl_Tipos_de_prestamos">
     <Key>
@@ -83,7 +73,7 @@
     </Key>
     <Property Name="id_Tipos_de_prestamos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Descripcion" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="tbl_Prestamos" Relationship="Self.FK__tbl_Prest__id_Ti__32E0915F" FromRole="tbl_Tipos_de_prestamos" ToRole="tbl_Prestamos" />
+    <NavigationProperty Name="tbl_Prestamos" Relationship="Self.FK__tbl_Prest__id_Ti__4316F928" FromRole="tbl_Tipos_de_prestamos" ToRole="tbl_Prestamos" />
   </EntityType>
   <EntityType Name="tbl_Tipos_Libros">
     <Key>
@@ -92,7 +82,7 @@
     <Property Name="id_TipoLibro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Estante" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
     <Property Name="Tematica" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="tbl_Libros" Relationship="Self.FK__tbl_Libro__id_Ti__38996AB5" FromRole="tbl_Tipos_Libros" ToRole="tbl_Libros" />
+    <NavigationProperty Name="tbl_Libros" Relationship="Self.FK__tbl_Libro__id_Ti__3F466844" FromRole="tbl_Tipos_Libros" ToRole="tbl_Libros" />
   </EntityType>
   <EntityType Name="tbl_Usuarios">
     <Key>
@@ -104,7 +94,7 @@
     <Property Name="DNI" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
     <Property Name="Domicilio" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
     <Property Name="Fecha_de_nacimiento" Type="DateTime" Precision="0" />
-    <NavigationProperty Name="tbl_Prestamos" Relationship="Self.FK__tbl_Prest__id_Us__31EC6D26" FromRole="tbl_Usuarios" ToRole="tbl_Prestamos" />
+    <NavigationProperty Name="tbl_Prestamos" Relationship="Self.FK__tbl_Prest__id_Us__4222D4EF" FromRole="tbl_Usuarios" ToRole="tbl_Prestamos" />
   </EntityType>
   <EntityType Name="tbl_Venta_Libros">
     <Key>
@@ -113,8 +103,8 @@
     <Property Name="id_Venta_Libros" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="id_Libro" Type="Int32" />
     <Property Name="id_Venta" Type="Int32" />
-    <NavigationProperty Name="tbl_Libros" Relationship="Self.FK__tbl_Venta__id_Li__3B75D760" FromRole="tbl_Venta_Libros" ToRole="tbl_Libros" />
-    <NavigationProperty Name="tbl_Ventas" Relationship="Self.FK__tbl_Venta__id_Ve__3C69FB99" FromRole="tbl_Venta_Libros" ToRole="tbl_Ventas" />
+    <NavigationProperty Name="tbl_Libros" Relationship="Self.FK__tbl_Venta__id_Li__4BAC3F29" FromRole="tbl_Venta_Libros" ToRole="tbl_Libros" />
+    <NavigationProperty Name="tbl_Ventas" Relationship="Self.FK__tbl_Venta__id_Ve__4CA06362" FromRole="tbl_Venta_Libros" ToRole="tbl_Ventas" />
   </EntityType>
   <EntityType Name="tbl_Ventas">
     <Key>
@@ -125,10 +115,10 @@
     <Property Name="Fecha" Type="DateTime" Precision="0" />
     <Property Name="Hora" Type="Time" Precision="7" />
     <Property Name="id_Empleados" Type="Int32" />
-    <NavigationProperty Name="tbl_Empleados" Relationship="Self.FK__tbl_Venta__id_Em__2C3393D0" FromRole="tbl_Ventas" ToRole="tbl_Empleados" />
-    <NavigationProperty Name="tbl_Venta_Libros" Relationship="Self.FK__tbl_Venta__id_Ve__3C69FB99" FromRole="tbl_Ventas" ToRole="tbl_Venta_Libros" />
+    <NavigationProperty Name="tbl_Empleados" Relationship="Self.FK__tbl_Venta__id_Em__48CFD27E" FromRole="tbl_Ventas" ToRole="tbl_Empleados" />
+    <NavigationProperty Name="tbl_Venta_Libros" Relationship="Self.FK__tbl_Venta__id_Ve__4CA06362" FromRole="tbl_Ventas" ToRole="tbl_Venta_Libros" />
   </EntityType>
-  <Association Name="FK__tbl_Checa__id_Em__2F10007B">
+  <Association Name="FK__tbl_Checa__id_Em__45F365D3">
     <End Role="tbl_Empleados" Type="Self.tbl_Empleados" Multiplicity="0..1" />
     <End Role="tbl_Checadas_Empleados" Type="Self.tbl_Checadas_Empleados" Multiplicity="*" />
     <ReferentialConstraint>
@@ -140,7 +130,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tbl_Venta__id_Em__2C3393D0">
+  <Association Name="FK__tbl_Venta__id_Em__48CFD27E">
     <End Role="tbl_Empleados" Type="Self.tbl_Empleados" Multiplicity="0..1" />
     <End Role="tbl_Ventas" Type="Self.tbl_Ventas" Multiplicity="*" />
     <ReferentialConstraint>
@@ -152,7 +142,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tbl_Libro__id_Ti__38996AB5">
+  <Association Name="FK__tbl_Libro__id_Ti__3F466844">
     <End Role="tbl_Tipos_Libros" Type="Self.tbl_Tipos_Libros" Multiplicity="0..1" />
     <End Role="tbl_Libros" Type="Self.tbl_Libros" Multiplicity="*" />
     <ReferentialConstraint>
@@ -164,7 +154,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tbl_Prest__id_Li__4222D4EF">
+  <Association Name="FK__tbl_Prest__id_Li__4F7CD00D">
     <End Role="tbl_Libros" Type="Self.tbl_Libros" Multiplicity="0..1" />
     <End Role="tbl_Prestamos_Libros" Type="Self.tbl_Prestamos_Libros" Multiplicity="*" />
     <ReferentialConstraint>
@@ -176,7 +166,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tbl_Venta__id_Li__3B75D760">
+  <Association Name="FK__tbl_Venta__id_Li__4BAC3F29">
     <End Role="tbl_Libros" Type="Self.tbl_Libros" Multiplicity="0..1" />
     <End Role="tbl_Venta_Libros" Type="Self.tbl_Venta_Libros" Multiplicity="*" />
     <ReferentialConstraint>
@@ -188,7 +178,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tbl_Prest__id_Pr__4316F928">
+  <Association Name="FK__tbl_Prest__id_Pr__5070F446">
     <End Role="tbl_Prestamos" Type="Self.tbl_Prestamos" Multiplicity="0..1" />
     <End Role="tbl_Prestamos_Libros" Type="Self.tbl_Prestamos_Libros" Multiplicity="*" />
     <ReferentialConstraint>
@@ -200,7 +190,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tbl_Prest__id_Ti__32E0915F">
+  <Association Name="FK__tbl_Prest__id_Ti__4316F928">
     <End Role="tbl_Tipos_de_prestamos" Type="Self.tbl_Tipos_de_prestamos" Multiplicity="0..1" />
     <End Role="tbl_Prestamos" Type="Self.tbl_Prestamos" Multiplicity="*" />
     <ReferentialConstraint>
@@ -212,7 +202,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tbl_Prest__id_Us__31EC6D26">
+  <Association Name="FK__tbl_Prest__id_Us__4222D4EF">
     <End Role="tbl_Usuarios" Type="Self.tbl_Usuarios" Multiplicity="0..1" />
     <End Role="tbl_Prestamos" Type="Self.tbl_Prestamos" Multiplicity="*" />
     <ReferentialConstraint>
@@ -224,7 +214,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tbl_Venta__id_Ve__3C69FB99">
+  <Association Name="FK__tbl_Venta__id_Ve__4CA06362">
     <End Role="tbl_Ventas" Type="Self.tbl_Ventas" Multiplicity="0..1" />
     <End Role="tbl_Venta_Libros" Type="Self.tbl_Venta_Libros" Multiplicity="*" />
     <ReferentialConstraint>
@@ -237,7 +227,6 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="ProyectoBibliotecaEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="tbl_Checadas_Empleados" EntityType="Self.tbl_Checadas_Empleados" />
     <EntitySet Name="tbl_Empleados" EntityType="Self.tbl_Empleados" />
     <EntitySet Name="tbl_Libros" EntityType="Self.tbl_Libros" />
@@ -248,39 +237,39 @@
     <EntitySet Name="tbl_Usuarios" EntityType="Self.tbl_Usuarios" />
     <EntitySet Name="tbl_Venta_Libros" EntityType="Self.tbl_Venta_Libros" />
     <EntitySet Name="tbl_Ventas" EntityType="Self.tbl_Ventas" />
-    <AssociationSet Name="FK__tbl_Checa__id_Em__2F10007B" Association="Self.FK__tbl_Checa__id_Em__2F10007B">
+    <AssociationSet Name="FK__tbl_Checa__id_Em__45F365D3" Association="Self.FK__tbl_Checa__id_Em__45F365D3">
       <End Role="tbl_Empleados" EntitySet="tbl_Empleados" />
       <End Role="tbl_Checadas_Empleados" EntitySet="tbl_Checadas_Empleados" />
     </AssociationSet>
-    <AssociationSet Name="FK__tbl_Venta__id_Em__2C3393D0" Association="Self.FK__tbl_Venta__id_Em__2C3393D0">
+    <AssociationSet Name="FK__tbl_Venta__id_Em__48CFD27E" Association="Self.FK__tbl_Venta__id_Em__48CFD27E">
       <End Role="tbl_Empleados" EntitySet="tbl_Empleados" />
       <End Role="tbl_Ventas" EntitySet="tbl_Ventas" />
     </AssociationSet>
-    <AssociationSet Name="FK__tbl_Libro__id_Ti__38996AB5" Association="Self.FK__tbl_Libro__id_Ti__38996AB5">
+    <AssociationSet Name="FK__tbl_Libro__id_Ti__3F466844" Association="Self.FK__tbl_Libro__id_Ti__3F466844">
       <End Role="tbl_Tipos_Libros" EntitySet="tbl_Tipos_Libros" />
       <End Role="tbl_Libros" EntitySet="tbl_Libros" />
     </AssociationSet>
-    <AssociationSet Name="FK__tbl_Prest__id_Li__4222D4EF" Association="Self.FK__tbl_Prest__id_Li__4222D4EF">
+    <AssociationSet Name="FK__tbl_Prest__id_Li__4F7CD00D" Association="Self.FK__tbl_Prest__id_Li__4F7CD00D">
       <End Role="tbl_Libros" EntitySet="tbl_Libros" />
       <End Role="tbl_Prestamos_Libros" EntitySet="tbl_Prestamos_Libros" />
     </AssociationSet>
-    <AssociationSet Name="FK__tbl_Venta__id_Li__3B75D760" Association="Self.FK__tbl_Venta__id_Li__3B75D760">
+    <AssociationSet Name="FK__tbl_Venta__id_Li__4BAC3F29" Association="Self.FK__tbl_Venta__id_Li__4BAC3F29">
       <End Role="tbl_Libros" EntitySet="tbl_Libros" />
       <End Role="tbl_Venta_Libros" EntitySet="tbl_Venta_Libros" />
     </AssociationSet>
-    <AssociationSet Name="FK__tbl_Prest__id_Pr__4316F928" Association="Self.FK__tbl_Prest__id_Pr__4316F928">
+    <AssociationSet Name="FK__tbl_Prest__id_Pr__5070F446" Association="Self.FK__tbl_Prest__id_Pr__5070F446">
       <End Role="tbl_Prestamos" EntitySet="tbl_Prestamos" />
       <End Role="tbl_Prestamos_Libros" EntitySet="tbl_Prestamos_Libros" />
     </AssociationSet>
-    <AssociationSet Name="FK__tbl_Prest__id_Ti__32E0915F" Association="Self.FK__tbl_Prest__id_Ti__32E0915F">
+    <AssociationSet Name="FK__tbl_Prest__id_Ti__4316F928" Association="Self.FK__tbl_Prest__id_Ti__4316F928">
       <End Role="tbl_Tipos_de_prestamos" EntitySet="tbl_Tipos_de_prestamos" />
       <End Role="tbl_Prestamos" EntitySet="tbl_Prestamos" />
     </AssociationSet>
-    <AssociationSet Name="FK__tbl_Prest__id_Us__31EC6D26" Association="Self.FK__tbl_Prest__id_Us__31EC6D26">
+    <AssociationSet Name="FK__tbl_Prest__id_Us__4222D4EF" Association="Self.FK__tbl_Prest__id_Us__4222D4EF">
       <End Role="tbl_Usuarios" EntitySet="tbl_Usuarios" />
       <End Role="tbl_Prestamos" EntitySet="tbl_Prestamos" />
     </AssociationSet>
-    <AssociationSet Name="FK__tbl_Venta__id_Ve__3C69FB99" Association="Self.FK__tbl_Venta__id_Ve__3C69FB99">
+    <AssociationSet Name="FK__tbl_Venta__id_Ve__4CA06362" Association="Self.FK__tbl_Venta__id_Ve__4CA06362">
       <End Role="tbl_Ventas" EntitySet="tbl_Ventas" />
       <End Role="tbl_Venta_Libros" EntitySet="tbl_Venta_Libros" />
     </AssociationSet>

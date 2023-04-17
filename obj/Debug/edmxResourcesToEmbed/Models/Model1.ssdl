@@ -1,15 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="ProyectoBibliotecaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
-  </EntityType>
+<Schema Namespace="BibliotecaEntities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="tbl_Checadas_Empleados">
     <Key>
       <PropertyRef Name="id_Checadas_empleados" />
@@ -110,7 +100,7 @@
     <Property Name="Hora" Type="time" Precision="7" />
     <Property Name="id_Empleados" Type="int" />
   </EntityType>
-  <Association Name="FK__tbl_Checa__id_Em__2F10007B">
+  <Association Name="FK__tbl_Checa__id_Em__45F365D3">
     <End Role="tbl_Empleados" Type="Self.tbl_Empleados" Multiplicity="0..1" />
     <End Role="tbl_Checadas_Empleados" Type="Self.tbl_Checadas_Empleados" Multiplicity="*" />
     <ReferentialConstraint>
@@ -122,7 +112,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tbl_Libro__id_Ti__38996AB5">
+  <Association Name="FK__tbl_Libro__id_Ti__3F466844">
     <End Role="tbl_Tipos_Libros" Type="Self.tbl_Tipos_Libros" Multiplicity="0..1" />
     <End Role="tbl_Libros" Type="Self.tbl_Libros" Multiplicity="*" />
     <ReferentialConstraint>
@@ -134,7 +124,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tbl_Prest__id_Li__4222D4EF">
+  <Association Name="FK__tbl_Prest__id_Li__4F7CD00D">
     <End Role="tbl_Libros" Type="Self.tbl_Libros" Multiplicity="0..1" />
     <End Role="tbl_Prestamos_Libros" Type="Self.tbl_Prestamos_Libros" Multiplicity="*" />
     <ReferentialConstraint>
@@ -146,7 +136,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tbl_Prest__id_Pr__4316F928">
+  <Association Name="FK__tbl_Prest__id_Pr__5070F446">
     <End Role="tbl_Prestamos" Type="Self.tbl_Prestamos" Multiplicity="0..1" />
     <End Role="tbl_Prestamos_Libros" Type="Self.tbl_Prestamos_Libros" Multiplicity="*" />
     <ReferentialConstraint>
@@ -158,7 +148,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tbl_Prest__id_Ti__32E0915F">
+  <Association Name="FK__tbl_Prest__id_Ti__4316F928">
     <End Role="tbl_Tipos_de_prestamos" Type="Self.tbl_Tipos_de_prestamos" Multiplicity="0..1" />
     <End Role="tbl_Prestamos" Type="Self.tbl_Prestamos" Multiplicity="*" />
     <ReferentialConstraint>
@@ -170,7 +160,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tbl_Prest__id_Us__31EC6D26">
+  <Association Name="FK__tbl_Prest__id_Us__4222D4EF">
     <End Role="tbl_Usuarios" Type="Self.tbl_Usuarios" Multiplicity="0..1" />
     <End Role="tbl_Prestamos" Type="Self.tbl_Prestamos" Multiplicity="*" />
     <ReferentialConstraint>
@@ -182,7 +172,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tbl_Venta__id_Em__2C3393D0">
+  <Association Name="FK__tbl_Venta__id_Em__48CFD27E">
     <End Role="tbl_Empleados" Type="Self.tbl_Empleados" Multiplicity="0..1" />
     <End Role="tbl_Ventas" Type="Self.tbl_Ventas" Multiplicity="*" />
     <ReferentialConstraint>
@@ -194,7 +184,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tbl_Venta__id_Li__3B75D760">
+  <Association Name="FK__tbl_Venta__id_Li__4BAC3F29">
     <End Role="tbl_Libros" Type="Self.tbl_Libros" Multiplicity="0..1" />
     <End Role="tbl_Venta_Libros" Type="Self.tbl_Venta_Libros" Multiplicity="*" />
     <ReferentialConstraint>
@@ -206,7 +196,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tbl_Venta__id_Ve__3C69FB99">
+  <Association Name="FK__tbl_Venta__id_Ve__4CA06362">
     <End Role="tbl_Ventas" Type="Self.tbl_Ventas" Multiplicity="0..1" />
     <End Role="tbl_Venta_Libros" Type="Self.tbl_Venta_Libros" Multiplicity="*" />
     <ReferentialConstraint>
@@ -218,8 +208,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="ProyectoBibliotecaModelStoreContainer">
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+  <EntityContainer Name="BibliotecaEntitiesStoreContainer">
     <EntitySet Name="tbl_Checadas_Empleados" EntityType="Self.tbl_Checadas_Empleados" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Empleados" EntityType="Self.tbl_Empleados" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Libros" EntityType="Self.tbl_Libros" Schema="dbo" store:Type="Tables" />
@@ -230,39 +219,39 @@
     <EntitySet Name="tbl_Usuarios" EntityType="Self.tbl_Usuarios" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Venta_Libros" EntityType="Self.tbl_Venta_Libros" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Ventas" EntityType="Self.tbl_Ventas" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__tbl_Checa__id_Em__2F10007B" Association="Self.FK__tbl_Checa__id_Em__2F10007B">
+    <AssociationSet Name="FK__tbl_Checa__id_Em__45F365D3" Association="Self.FK__tbl_Checa__id_Em__45F365D3">
       <End Role="tbl_Empleados" EntitySet="tbl_Empleados" />
       <End Role="tbl_Checadas_Empleados" EntitySet="tbl_Checadas_Empleados" />
     </AssociationSet>
-    <AssociationSet Name="FK__tbl_Libro__id_Ti__38996AB5" Association="Self.FK__tbl_Libro__id_Ti__38996AB5">
+    <AssociationSet Name="FK__tbl_Libro__id_Ti__3F466844" Association="Self.FK__tbl_Libro__id_Ti__3F466844">
       <End Role="tbl_Tipos_Libros" EntitySet="tbl_Tipos_Libros" />
       <End Role="tbl_Libros" EntitySet="tbl_Libros" />
     </AssociationSet>
-    <AssociationSet Name="FK__tbl_Prest__id_Li__4222D4EF" Association="Self.FK__tbl_Prest__id_Li__4222D4EF">
+    <AssociationSet Name="FK__tbl_Prest__id_Li__4F7CD00D" Association="Self.FK__tbl_Prest__id_Li__4F7CD00D">
       <End Role="tbl_Libros" EntitySet="tbl_Libros" />
       <End Role="tbl_Prestamos_Libros" EntitySet="tbl_Prestamos_Libros" />
     </AssociationSet>
-    <AssociationSet Name="FK__tbl_Prest__id_Pr__4316F928" Association="Self.FK__tbl_Prest__id_Pr__4316F928">
+    <AssociationSet Name="FK__tbl_Prest__id_Pr__5070F446" Association="Self.FK__tbl_Prest__id_Pr__5070F446">
       <End Role="tbl_Prestamos" EntitySet="tbl_Prestamos" />
       <End Role="tbl_Prestamos_Libros" EntitySet="tbl_Prestamos_Libros" />
     </AssociationSet>
-    <AssociationSet Name="FK__tbl_Prest__id_Ti__32E0915F" Association="Self.FK__tbl_Prest__id_Ti__32E0915F">
+    <AssociationSet Name="FK__tbl_Prest__id_Ti__4316F928" Association="Self.FK__tbl_Prest__id_Ti__4316F928">
       <End Role="tbl_Tipos_de_prestamos" EntitySet="tbl_Tipos_de_prestamos" />
       <End Role="tbl_Prestamos" EntitySet="tbl_Prestamos" />
     </AssociationSet>
-    <AssociationSet Name="FK__tbl_Prest__id_Us__31EC6D26" Association="Self.FK__tbl_Prest__id_Us__31EC6D26">
+    <AssociationSet Name="FK__tbl_Prest__id_Us__4222D4EF" Association="Self.FK__tbl_Prest__id_Us__4222D4EF">
       <End Role="tbl_Usuarios" EntitySet="tbl_Usuarios" />
       <End Role="tbl_Prestamos" EntitySet="tbl_Prestamos" />
     </AssociationSet>
-    <AssociationSet Name="FK__tbl_Venta__id_Em__2C3393D0" Association="Self.FK__tbl_Venta__id_Em__2C3393D0">
+    <AssociationSet Name="FK__tbl_Venta__id_Em__48CFD27E" Association="Self.FK__tbl_Venta__id_Em__48CFD27E">
       <End Role="tbl_Empleados" EntitySet="tbl_Empleados" />
       <End Role="tbl_Ventas" EntitySet="tbl_Ventas" />
     </AssociationSet>
-    <AssociationSet Name="FK__tbl_Venta__id_Li__3B75D760" Association="Self.FK__tbl_Venta__id_Li__3B75D760">
+    <AssociationSet Name="FK__tbl_Venta__id_Li__4BAC3F29" Association="Self.FK__tbl_Venta__id_Li__4BAC3F29">
       <End Role="tbl_Libros" EntitySet="tbl_Libros" />
       <End Role="tbl_Venta_Libros" EntitySet="tbl_Venta_Libros" />
     </AssociationSet>
-    <AssociationSet Name="FK__tbl_Venta__id_Ve__3C69FB99" Association="Self.FK__tbl_Venta__id_Ve__3C69FB99">
+    <AssociationSet Name="FK__tbl_Venta__id_Ve__4CA06362" Association="Self.FK__tbl_Venta__id_Ve__4CA06362">
       <End Role="tbl_Ventas" EntitySet="tbl_Ventas" />
       <End Role="tbl_Venta_Libros" EntitySet="tbl_Venta_Libros" />
     </AssociationSet>
