@@ -115,6 +115,26 @@ namespace MV_P1.Controllers
             };
             return Json(empleadoJson, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult SaveEditedEmpleado(int id, string NombreEmpleado, string ApellidosEmpleado, string DNIempleado,
+            string DomicilioEmpleado, DateTime FechaDeNacimientoEmpleado, DateTime AntiguedadEmpleado)
+        {
+            if (id != null)
+            {
+                tbl_Empleados emp = db.tbl_Empleados.Find(id);
+
+                emp.Nombres = NombreEmpleado;
+                emp.Apellidos = ApellidosEmpleado;
+                emp.DNI = DNIempleado;
+                emp.Domicilio = DomicilioEmpleado;
+                emp.Fecha_de_nacimiento = FechaDeNacimientoEmpleado;
+                emp.Antiguedad = AntiguedadEmpleado;
+
+                db.SaveChanges();
+            }
+            return Json("");
+        }
+
         public ActionResult DeleteEmpleado(int id)
         {
             var empleado = db.tbl_Empleados.Find(id);
