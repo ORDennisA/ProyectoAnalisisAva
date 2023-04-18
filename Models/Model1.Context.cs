@@ -25,7 +25,6 @@ namespace MV_P1.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<tbl_Checadas_Empleados> tbl_Checadas_Empleados { get; set; }
         public virtual DbSet<tbl_Empleados> tbl_Empleados { get; set; }
         public virtual DbSet<tbl_Libros> tbl_Libros { get; set; }

@@ -4,27 +4,26 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9f19f70274e343a9bcf659697669fc0b" Name="Diagram1">
-        <EntityTypeShape EntityType="ProyectoBibliotecaModel.sysdiagram" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBibliotecaModel.tbl_Checadas_Empleados" Width="1.5" PointX="8" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBibliotecaModel.tbl_Empleados" Width="1.5" PointX="5.75" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBibliotecaModel.tbl_Libros" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBibliotecaModel.tbl_Prestamos" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBibliotecaModel.tbl_Prestamos_Libros" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBibliotecaModel.tbl_Tipos_de_prestamos" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBibliotecaModel.tbl_Tipos_Libros" Width="1.5" PointX="0.75" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBibliotecaModel.tbl_Usuarios" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBibliotecaModel.tbl_Venta_Libros" Width="1.5" PointX="10.25" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoBibliotecaModel.tbl_Ventas" Width="1.5" PointX="8" PointY="8" IsExpanded="true" />
-        <AssociationConnector Association="ProyectoBibliotecaModel.FK__tbl_Checa__id_Em__2F10007B" ManuallyRouted="false" />
-        <AssociationConnector Association="ProyectoBibliotecaModel.FK__tbl_Venta__id_Em__2C3393D0" ManuallyRouted="false" />
-        <AssociationConnector Association="ProyectoBibliotecaModel.FK__tbl_Libro__id_Ti__38996AB5" ManuallyRouted="false" />
-        <AssociationConnector Association="ProyectoBibliotecaModel.FK__tbl_Prest__id_Li__4222D4EF" ManuallyRouted="false" />
-        <AssociationConnector Association="ProyectoBibliotecaModel.FK__tbl_Venta__id_Li__3B75D760" ManuallyRouted="false" />
-        <AssociationConnector Association="ProyectoBibliotecaModel.FK__tbl_Prest__id_Pr__4316F928" ManuallyRouted="false" />
-        <AssociationConnector Association="ProyectoBibliotecaModel.FK__tbl_Prest__id_Ti__32E0915F" ManuallyRouted="false" />
-        <AssociationConnector Association="ProyectoBibliotecaModel.FK__tbl_Prest__id_Us__31EC6D26" ManuallyRouted="false" />
-        <AssociationConnector Association="ProyectoBibliotecaModel.FK__tbl_Venta__id_Ve__3C69FB99" ManuallyRouted="false" />
+      <Diagram DiagramId="1b8c703e7d744c0abd6cbe2342106f04" Name="Diagram1">
+        <EntityTypeShape EntityType="BibliotecaEntities.tbl_Checadas_Empleados" Width="1.5" PointX="8" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BibliotecaEntities.tbl_Empleados" Width="1.5" PointX="5.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BibliotecaEntities.tbl_Libros" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BibliotecaEntities.tbl_Prestamos" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="BibliotecaEntities.tbl_Prestamos_Libros" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BibliotecaEntities.tbl_Tipos_de_prestamos" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BibliotecaEntities.tbl_Tipos_Libros" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BibliotecaEntities.tbl_Usuarios" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BibliotecaEntities.tbl_Venta_Libros" Width="1.5" PointX="10.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="BibliotecaEntities.tbl_Ventas" Width="1.5" PointX="8" PointY="8" IsExpanded="true" />
+        <AssociationConnector Association="BibliotecaEntities.FK__tbl_Checa__id_Em__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="BibliotecaEntities.FK__tbl_Venta__id_Em__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="BibliotecaEntities.FK__tbl_Libro__id_Ti__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="BibliotecaEntities.FK__tbl_Prest__id_Li__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="BibliotecaEntities.FK__tbl_Venta__id_Li__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="BibliotecaEntities.FK__tbl_Prest__id_Pr__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="BibliotecaEntities.FK__tbl_Prest__id_Ti__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="BibliotecaEntities.FK__tbl_Prest__id_Us__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="BibliotecaEntities.FK__tbl_Venta__id_Ve__4CA06362" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

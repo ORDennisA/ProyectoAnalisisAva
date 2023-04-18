@@ -1,19 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ProyectoBibliotecaModelStoreContainer" CdmEntityContainer="ProyectoBibliotecaEntities">
-    <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="ProyectoBibliotecaModel.sysdiagram">
-        <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
+  <EntityContainerMapping StorageEntityContainer="BibliotecaEntitiesStoreContainer" CdmEntityContainer="ProyectoBibliotecaEntities">
     <EntitySetMapping Name="tbl_Checadas_Empleados">
-      <EntityTypeMapping TypeName="ProyectoBibliotecaModel.tbl_Checadas_Empleados">
+      <EntityTypeMapping TypeName="BibliotecaEntities.tbl_Checadas_Empleados">
         <MappingFragment StoreEntitySet="tbl_Checadas_Empleados">
           <ScalarProperty Name="id_Checadas_empleados" ColumnName="id_Checadas_empleados" />
           <ScalarProperty Name="Fecha" ColumnName="Fecha" />
@@ -24,7 +13,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tbl_Empleados">
-      <EntityTypeMapping TypeName="ProyectoBibliotecaModel.tbl_Empleados">
+      <EntityTypeMapping TypeName="BibliotecaEntities.tbl_Empleados">
         <MappingFragment StoreEntitySet="tbl_Empleados">
           <ScalarProperty Name="id_Empleados" ColumnName="id_Empleados" />
           <ScalarProperty Name="Nombres" ColumnName="Nombres" />
@@ -37,7 +26,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tbl_Libros">
-      <EntityTypeMapping TypeName="ProyectoBibliotecaModel.tbl_Libros">
+      <EntityTypeMapping TypeName="BibliotecaEntities.tbl_Libros">
         <MappingFragment StoreEntitySet="tbl_Libros">
           <ScalarProperty Name="id_Libro" ColumnName="id_Libro" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -53,7 +42,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tbl_Prestamos">
-      <EntityTypeMapping TypeName="ProyectoBibliotecaModel.tbl_Prestamos">
+      <EntityTypeMapping TypeName="BibliotecaEntities.tbl_Prestamos">
         <MappingFragment StoreEntitySet="tbl_Prestamos">
           <ScalarProperty Name="id_Prestamo" ColumnName="id_Prestamo" />
           <ScalarProperty Name="Fecha_de_Salida" ColumnName="Fecha_de_Salida" />
@@ -65,7 +54,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tbl_Prestamos_Libros">
-      <EntityTypeMapping TypeName="ProyectoBibliotecaModel.tbl_Prestamos_Libros">
+      <EntityTypeMapping TypeName="BibliotecaEntities.tbl_Prestamos_Libros">
         <MappingFragment StoreEntitySet="tbl_Prestamos_Libros">
           <ScalarProperty Name="id_Prestamos_Libros" ColumnName="id_Prestamos_Libros" />
           <ScalarProperty Name="id_Libro" ColumnName="id_Libro" />
@@ -74,7 +63,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tbl_Tipos_de_prestamos">
-      <EntityTypeMapping TypeName="ProyectoBibliotecaModel.tbl_Tipos_de_prestamos">
+      <EntityTypeMapping TypeName="BibliotecaEntities.tbl_Tipos_de_prestamos">
         <MappingFragment StoreEntitySet="tbl_Tipos_de_prestamos">
           <ScalarProperty Name="id_Tipos_de_prestamos" ColumnName="id_Tipos_de_prestamos" />
           <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
@@ -82,7 +71,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tbl_Tipos_Libros">
-      <EntityTypeMapping TypeName="ProyectoBibliotecaModel.tbl_Tipos_Libros">
+      <EntityTypeMapping TypeName="BibliotecaEntities.tbl_Tipos_Libros">
         <MappingFragment StoreEntitySet="tbl_Tipos_Libros">
           <ScalarProperty Name="id_TipoLibro" ColumnName="id_TipoLibro" />
           <ScalarProperty Name="Estante" ColumnName="Estante" />
@@ -91,7 +80,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tbl_Usuarios">
-      <EntityTypeMapping TypeName="ProyectoBibliotecaModel.tbl_Usuarios">
+      <EntityTypeMapping TypeName="BibliotecaEntities.tbl_Usuarios">
         <MappingFragment StoreEntitySet="tbl_Usuarios">
           <ScalarProperty Name="id_Usuarios" ColumnName="id_Usuarios" />
           <ScalarProperty Name="Nombres" ColumnName="Nombres" />
@@ -103,7 +92,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tbl_Venta_Libros">
-      <EntityTypeMapping TypeName="ProyectoBibliotecaModel.tbl_Venta_Libros">
+      <EntityTypeMapping TypeName="BibliotecaEntities.tbl_Venta_Libros">
         <MappingFragment StoreEntitySet="tbl_Venta_Libros">
           <ScalarProperty Name="id_Venta_Libros" ColumnName="id_Venta_Libros" />
           <ScalarProperty Name="id_Libro" ColumnName="id_Libro" />
@@ -112,7 +101,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="tbl_Ventas">
-      <EntityTypeMapping TypeName="ProyectoBibliotecaModel.tbl_Ventas">
+      <EntityTypeMapping TypeName="BibliotecaEntities.tbl_Ventas">
         <MappingFragment StoreEntitySet="tbl_Ventas">
           <ScalarProperty Name="id_Venta" ColumnName="id_Venta" />
           <ScalarProperty Name="Total" ColumnName="Total" />

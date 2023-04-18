@@ -19,7 +19,7 @@
             <td> @item.Fecha_de_nacimiento</td>
             <td> @item.Antiguedad</td>
             <td>
-                <button type="button" class="btn btn-primary" onclick="editRow(@item.id_Empleados)">Editar</button>
+                <button type="button" class="btn btn-primary" onclick="prepareEditRow(@item.id_Empleados)">Editar</button>
                 <button type="button" class="btn btn-danger" onclick="deleteRow(@item.id_Empleados)">Eliminar</button>
             </td>
         </tr>
@@ -51,14 +51,14 @@
             </div>
             <div class="col-md-3">
                 <Label>Fecha de nacimiento</Label>
-                <input type="text" id="can" name="can" class="form-control" />
+                <input type="date" id="can" name="can" class="form-control" />
             </div>
             <div class="col-md-3">
                 <Label>Antiguedad</Label>
-                <input type="text" id="ant" name="ant" class="form-control" />
+                <input type="date" id="ant" name="ant" class="form-control" />
             </div>
 
-            <input type="submit" value="Guardar cambios">
+            <input type="button" onclick="editRow()" value="Guardar cambios">
         </form>
     </div>
 </div>
@@ -81,5 +81,63 @@
                 }
             });
         }
+    }
+
+    function prepareEditRow(id) {
+        // Get employee data using id from selected row
+        $.ajax({
+            url: '/Home/GetEmpleado',
+            type: 'GET',
+            data: { id: id },
+            // if successful, function in controller returns a json data object
+            // Then fill this data to the edit form, to be edited
+            success: function (data, status) {
+                document.getElementById('id_Empleados').value = data.id_Empleados;
+                document.getElementById('nom').value = data.Nombres;
+                document.getElementById('apell').value = data.Apellidos;
+                document.getElementById('dni').value = data.DNI;
+                document.getElementById('pre').value = data.Domicilio;
+                document.getElementById('can').value = data.Fecha_de_nacimiento; 
+                document.getElementById('ant').value = data.Antiguedad;
+            },
+            error: function () {
+                alert('Error al preparar datos de empleado para editarse.');
+            }
+        });
+    }
+
+    function editRow() {
+        $.ajax({
+            url: '/Home/SaveEditedEmpleado',
+            type: 'POST',
+            async: true,
+            data: {
+                id: document.getElementById('id_Empleados').value,
+                NombreEmpleado: document.getElementById("nom").value,
+                ApellidosEmpleado: document.getElementById("apell").value,
+                DNIempleado: document.getElementById("dni").value,
+                DomicilioEmpleado: document.getElementById("pre").value,
+                FechaDeNacimientoEmpleado: document.getElementById("can").value,
+                AntiguedadEmpleado: document.getElementById("ant").value
+            },
+            success: function () {
+                alert('Edicion exitosa');
+            },
+            error: function () {
+                alert('Error al editar empleado');
+            }
+        });
+
+        limpiarFormulario();
+    }
+
+    function limpiarFormulario() {
+        document.getElementById("id_Empleados").value = "";
+        document.getElementById("nom").value = "";
+        document.getElementById("apell").value = "";
+        document.getElementById("dni").value = "";
+        document.getElementById("pre").value = "";
+        document.getElementById("can").value = "";
+        document.getElementById("ant").value = "";
     }
 </script>

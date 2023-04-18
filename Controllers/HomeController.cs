@@ -9,7 +9,7 @@ namespace MV_P1.Controllers
 {
     public class HomeController : Controller
     {
-        BibliotecaEntities db = new BibliotecaEntities();
+        ProyectoBibliotecaEntities db = new ProyectoBibliotecaEntities();
         public ActionResult Index()
         {
             return View();
@@ -115,6 +115,26 @@ namespace MV_P1.Controllers
             };
             return Json(empleadoJson, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult SaveEditedEmpleado(int id, string NombreEmpleado, string ApellidosEmpleado, string DNIempleado,
+            string DomicilioEmpleado, DateTime FechaDeNacimientoEmpleado, DateTime AntiguedadEmpleado)
+        {
+            if (id != null)
+            {
+                tbl_Empleados emp = db.tbl_Empleados.Find(id);
+
+                emp.Nombres = NombreEmpleado;
+                emp.Apellidos = ApellidosEmpleado;
+                emp.DNI = DNIempleado;
+                emp.Domicilio = DomicilioEmpleado;
+                emp.Fecha_de_nacimiento = FechaDeNacimientoEmpleado;
+                emp.Antiguedad = AntiguedadEmpleado;
+
+                db.SaveChanges();
+            }
+            return Json("");
+        }
+
         public ActionResult DeleteEmpleado(int id)
         {
             var empleado = db.tbl_Empleados.Find(id);
@@ -198,7 +218,7 @@ namespace MV_P1.Controllers
             return View(lst);
         }
 
-        public JsonResult guardarUsuarios(string Nombres, string Apellidos, string DNI, string Domicilio, string Fecha_de_nacimento)
+        public JsonResult guardarUsuarios(string Nombres, string Apellidos, string DNI, string Domicilio, DateTime Fecha_de_nacimento)
         {
             tbl_Usuarios d = new tbl_Usuarios();
             d.Nombres = Nombres;
