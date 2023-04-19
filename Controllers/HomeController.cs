@@ -9,6 +9,8 @@ namespace MV_P1.Controllers
 {
     public class HomeController : Controller
     {
+        // DEFAULT
+
         ProyectoBibliotecaEntities db = new ProyectoBibliotecaEntities();
         public ActionResult Index()
         {
@@ -28,6 +30,10 @@ namespace MV_P1.Controllers
 
             return View();
         }
+
+
+        // LIBROS
+
         public ActionResult listaLibros()
         {
             var lst = db.tbl_Libros.ToList();
@@ -38,6 +44,12 @@ namespace MV_P1.Controllers
             ViewBag.TipoLibros = db.tbl_Tipos_Libros.ToList();
             return View();
         }
+        public ActionResult EditarLibros()
+        {
+            var lst = db.tbl_Libros.ToList();
+            return View(lst);
+        }
+
         public JsonResult guardarLibros(int id_Libro, string Nombre, string Editorial, string Autor, string Genero, string PaisOrigen,
             int NoPaginas, DateTime FechaEdicion, float Precio, int id_TipoLibro)
         {
@@ -56,6 +68,10 @@ namespace MV_P1.Controllers
             db.SaveChanges();
             return Json("");
         }
+
+
+        // CHECADAS EMPLEADOS
+
         public ActionResult listaChecadasEmpleados()
         {
             var lst = db.tbl_Checadas_Empleados.ToList();
@@ -77,6 +93,10 @@ namespace MV_P1.Controllers
             db.SaveChanges();
             return Json("");
         }
+
+
+        // EMPLEADOS
+
          public ActionResult listaEmpleados()
         {
             var lst = db.tbl_Empleados.ToList();
@@ -162,6 +182,8 @@ namespace MV_P1.Controllers
         }
 
 
+        // TIPOS LIBROS
+
         public ActionResult listaTiposLibros()
         {
             var lst = db.tbl_Tipos_Libros.ToList();
@@ -181,6 +203,9 @@ namespace MV_P1.Controllers
             db.SaveChanges();
             return Json("");
         }
+
+
+        // VENTAS
 
         public ActionResult FormularioVentas() 
         {
@@ -206,6 +231,9 @@ namespace MV_P1.Controllers
             db.SaveChanges();
             return Json("");
         }
+
+
+        // USUARIOS
 
         public ActionResult FormularioUsuarios()
         {
