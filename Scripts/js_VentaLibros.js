@@ -1,13 +1,11 @@
-﻿function guardarTipoLibros() {
+﻿function guardarVentaLibros() {
 
     $.ajax({
         type: "POST",
-        url: UrlGuardarTipoLibros,
+        url: UrlGuardarVentaLibros,
         async: true,
         data: {
-            EstanteLibros: document.getElementById("Esta").value,
-            TematicaLibros: document.getElementById("Tema").value,
-
+            idLibro: document.getElementById("idLibro").value,
         },
         success: function (data) {
             alert("Registro exitoso");

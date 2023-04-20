@@ -9,7 +9,8 @@
             Apellidos: document.getElementById("Apellidos").value,
             DNI: document.getElementById("DNI").value,
             Domicilio: document.getElementById("Domicilio").value,
-            },
+            Fechadenacimiento: document.getElementById("Fechadenacimiento").value,
+        },
         success: function (data) {
             alert("Registro exitoso");
         },
