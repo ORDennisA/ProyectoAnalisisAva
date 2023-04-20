@@ -2,7 +2,7 @@
 
     $.ajax({
         type: "POST",
-        url: UrlGuardarLibro,
+        url: UrlGuardarLibros,
         async: true,
         data: {
             Nombre: document.getElementById("Nomb").value,
@@ -13,7 +13,7 @@
             NoPaginas: document.getElementById("NoPag").value,
             FechaEdicion: document.getElementById("FechaEdi").value,
             Precio: document.getElementById("Prec").value,
-            id_TipoLibro: document.getElementById("idTipoLi").value
+            id_TipoLibro: document.getElementById("idTL").value
         },
         success: function (data) {
             alert("Registro exitoso");

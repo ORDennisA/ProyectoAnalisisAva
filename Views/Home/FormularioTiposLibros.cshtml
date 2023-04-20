@@ -6,20 +6,22 @@
 
 <script src="~/Scripts/js_TipoLibros.js"></script>
 <div class="row">
+    <!--
     <div class="col-md-3">
         <div class="col-md-3">
             <Label>Tipo Libro</Label>
 
             <select class="form-control" id="idTipoLibro" name="idTipoLibro">
                 <option value="sel">Seleccionar</option>
-                @foreach (var item in ViewBag.TipoLibros)
+                //foreach (var item in Model)
                 {
-                    <option value="@item.id_TipoLibro">@item.Tematica</option>
+                    <option value="//item.id_TipoLibro">//item.Tematica</option>
 
                 }
             </select>
         </div>
     </div>
+    -->
     <div class="col-md-3">
         <Label>Estante</Label>
         <input type="text" id="Esta" name="Esta" class="form-control" />

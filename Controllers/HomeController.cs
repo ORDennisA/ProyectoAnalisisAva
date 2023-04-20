@@ -50,11 +50,11 @@ namespace MV_P1.Controllers
             return View(lst);
         }
 
-        public JsonResult guardarLibros(int id_Libro, string Nombre, string Editorial, string Autor, string Genero, string PaisOrigen,
+        public JsonResult guardarLibros(/* int id_Libro, */ string Nombre, string Editorial, string Autor, string Genero, string PaisOrigen,
             int NoPaginas, DateTime FechaEdicion, float Precio, int id_TipoLibro)
         {
             tbl_Libros c = new tbl_Libros();
-            c.id_Libro = id_Libro;
+            // c.id_Libro = id_Libro;
             c.Nombre = Nombre;
             c.Editorial = Editorial;
             c.Autor = Autor;
@@ -193,10 +193,10 @@ namespace MV_P1.Controllers
         {
             return View();
         }
-        public JsonResult guardarTipoLibros(int IdTiposLibros, string EstanteLibros, string TematicaLibros)
+        public JsonResult guardarTipoLibros(/* int IdTiposLibros, */ string EstanteLibros, string TematicaLibros)
         {
             tbl_Tipos_Libros d = new tbl_Tipos_Libros();
-            d.id_TipoLibro = IdTiposLibros;
+            // d.id_TipoLibro = IdTiposLibros;
             d.Estante = EstanteLibros;
             d.Tematica = TematicaLibros;
             db.tbl_Tipos_Libros.Add(d);
