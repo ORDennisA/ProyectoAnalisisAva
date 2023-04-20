@@ -1,4 +1,4 @@
-﻿using MV_P1.Models;
+using MV_P1.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -86,6 +86,53 @@ namespace MV_P1.Controllers
         {
             return View();
         }
+        public ActionResult DeleteEmpleado(int id)
+        {
+            var empleado = db.tbl_Empleados.Find(id);
+            if (empleado == null)
+            {
+                return HttpNotFound();
+            }
+            db.tbl_Empleados.Remove(empleado);
+            db.SaveChanges();
+            return Json("");
+        }
+
+        public ActionResult DeleteVenta(int id)
+        {
+            var venta = db.tbl_Ventas.Find(id);
+            if (venta == null)
+            {
+                return HttpNotFound();
+            }
+            db.tbl_Ventas.Remove(venta);
+            db.SaveChanges();
+            return Json("");
+        }
+
+        public ActionResult DeleteUsuario(int id)
+        {
+            var usuario = db.tbl_Usuarios.Find(id);
+            if (usuario == null)
+            {
+                return HttpNotFound();
+            }
+            db.tbl_Usuarios.Remove(usuario);
+            db.SaveChanges();
+            return Json("");
+        }
+
+        public ActionResult DeleteVentaLibros(int id)
+        {
+            var ventaL = db.tbl_Venta_Libros.Find(id);
+            if (ventaL == null)
+            {
+                return HttpNotFound();
+            }
+            db.tbl_Venta_Libros.Remove(ventaL);
+            db.SaveChanges();
+            return Json("");
+        }
         public JsonResult guardarEmpleado(int IdEmpleado, string NombreEmpleado, string ApellidosEmpleado, string DNIempleado,
             string DomicilioEmpleado, DateTime FechaDeNacimientoEmpleado, DateTime AntiguedadEmpleado)
         {
@@ -158,15 +205,33 @@ namespace MV_P1.Controllers
             return View(lst);
         }
 
-        public JsonResult guardarUsuarios(string Nombres, string Apellidos, string DNI, string Domicilio, DateTime Fecha_de_nacimento)
+        public JsonResult guardarUsuarios(string Nombres, string Apellidos, string DNI, string Domicilio, DateTime Fecha_de_nacimiento)
         {
             tbl_Usuarios d = new tbl_Usuarios();
             d.Nombres = Nombres;
             d.Apellidos = Apellidos;
             d.DNI = DNI;
             d.Domicilio = Domicilio;
-            d.Fecha_de_nacimiento = Fecha_de_nacimento;
+            d.Fecha_de_nacimiento = Fecha_de_nacimiento;
             db.tbl_Usuarios.Add(d);
+            db.SaveChanges();
+            return Json("");
+        }
+
+        public ActionResult FormularioVentaLibros()
+        {
+            return View();
+        }
+        public ActionResult listaVentaLibros()
+        {
+            var lst = db.tbl_Venta_Libros.ToList();
+            return View(lst);
+        }
+        public JsonResult guardarVentaLibros(int idLibros)
+        {
+            tbl_Venta_Libros d = new tbl_Venta_Libros();
+            d.id_Libro = idLibros;
+            db.tbl_Venta_Libros.Add(d);
             db.SaveChanges();
             return Json("");
         }
