@@ -1,0 +1,16 @@
+﻿<li class="nav-item">
+    <a href="@Url.Action("FormularioVentaLibros","Home")" class="btn btn-primary">Agregar venta de libros</a>
+</li>
+
+<div class="col-sm-8"><h2>Venta de libros </h2></div>
+<table class="table table-condensed">
+    <tr>
+        <th>Id_Libro</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td> @item.id_Libro</td>
+        </tr>
+    }
+</table>

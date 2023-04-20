@@ -1,0 +1,78 @@
+﻿<table class="table table-condensed">
+    <tr>
+        <th>IdVentas</th>
+        <th>Total</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>IdEmpleados</th>
+        <th>IdVentaLibros</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr id="row-@item.id_Ventas">
+            <td> @item.id_Ventas</td>
+            <td> @item.Total</td>
+            <td> @item.Fecha</td>
+            <td> @item.Hora</td>
+            <td> @item.id_Empleados</td>
+            <td> @item.id_Venta_Libros</td>
+            <td>
+                <button type="button" class="btn btn-primary" onclick="editRow(@item.id_Ventas)">Editar</button>
+                <button type="button" class="btn btn-danger" onclick="deleteRow(@item.id_Ventas)">Eliminar</button>
+            </td>
+        </tr>
+    }
+</table>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div id="editVentaModal" class="row">
+    <div class="modal-content">
+        <form>
+            <div class="col-md-3">
+                <Label>id Venta</Label>
+                <input type="text" id="id_Venta" name="id" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Total</Label>
+                <input type="text" id="Total" name="Total" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Fecha</Label>
+                <input type="text" id="Fecha" name="Fecha" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Hora</Label>
+                <input type="text" id="Hora" name="Hora" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>id empleados</Label>
+                <input type="text" id="id_Empleados" name="id_Empleado" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>id Venta Libros</Label>
+                <input type="text" id="id_Venta_Libros" name="id_Venta_Libros" class="form-control" />
+            </div>
+
+            <input type="submit" value="Guardar cambios">
+        </form>
+    </div>
+</div>
+<script>
+    function deleteRow(id) {
+        // Realizar petición AJAX al controlador de Home para eliminar el empleado con el ID proporcionado
+        if (confirm('¿Estás seguro de que deseas eliminar esta Venta?')) {
+            $.ajax({
+                url: '/Home/DeleteVenta',
+                type: 'POST',
+                data: { id: id },
+                success: function () {
+                    // Si la operación es exitosa, actualizar la tabla sin recargar la página
+                    $('#row-' + id).remove();
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // Si la operación falla, mostrar un mensaje de error
+                    alert('Error al eliminar el empleado.');
+                }
+            });
+        }
+    }
+</script>

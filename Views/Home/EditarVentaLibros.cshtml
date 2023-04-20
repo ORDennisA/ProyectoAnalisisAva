@@ -1,0 +1,44 @@
+﻿<table class="table table-condensed">
+    <tr>
+        <th>id_Libro</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td> @item.id_Libro</td>
+        </tr>
+    }
+</table>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div id="editVentaModal" class="row">
+    <div class="modal-content">
+        <form>
+            <div class="col-md-3">
+                <Label>id Libro</Label>
+                <input type="text" id="id_Libro" name="id" class="form-control" />
+            </div>
+
+            <input type="submit" value="Guardar cambios">
+        </form>
+    </div>
+</div>
+<script>
+    function deleteRow(id) {
+        // Realizar petición AJAX al controlador de Home para eliminar el empleado con el ID proporcionado
+        if (confirm('¿Estás seguro de que deseas eliminar esta Venta de libros?')) {
+            $.ajax({
+                url: '/Home/DeleteVentaLibros',
+                type: 'POST',
+                data: { id: id },
+                success: function () {
+                    // Si la operación es exitosa, actualizar la tabla sin recargar la página
+                    $('#row-' + id).remove();
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // Si la operación falla, mostrar un mensaje de error
+                    alert('Error al eliminar el empleado.');
+                }
+            });
+        }
+    }
+</script>

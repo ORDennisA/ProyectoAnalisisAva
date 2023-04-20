@@ -1,0 +1,75 @@
+﻿<table class="table table-condensed">
+    <tr>
+        <th>Id_Usuarios</th>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>DNI</th>
+        <th>Domicilio</th>
+        <th>Fecha_de_nacimiento</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td> @item.id_Usuarios</td>
+            <td> @item.Nombres</td>
+            <td> @item.Apellidos</td>
+            <td> @item.DNI</td>
+            <td> @item.Domicilio</td>
+            <td> @item.Fecha_de_nacimiento</td>
+        </tr>
+    }
+</table>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div id="editVentaModal" class="row">
+    <div class="modal-content">
+        <form>
+            <div class="col-md-3">
+                <Label>id Usuario</Label>
+                <input type="text" id="id_Usuario" name="id" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Nombres</Label>
+                <input type="text" id="Nombres" name="Nombres" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Apellidos</Label>
+                <input type="text" id="Apellidos" name="Apellidos" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>DNI</Label>
+                <input type="text" id="DNI" name="DNI" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Domicilio</Label>
+                <input type="text" id="Domicilio" name="Domicilio" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Fecha de Nacimiento</Label>
+                <input type="text" id="Fecha_de_nacimiento" name="Fecha_de_nacimiento" class="form-control" />
+            </div>
+
+            <input type="submit" value="Guardar cambios">
+        </form>
+    </div>
+</div>
+<script>
+    function deleteRow(id) {
+        // Realizar petición AJAX al controlador de Home para eliminar el empleado con el ID proporcionado
+        if (confirm('¿Estás seguro de que deseas eliminar este Usuario?')) {
+            $.ajax({
+                url: '/Home/DeleteUsuario',
+                type: 'POST',
+                data: { id: id },
+                success: function () {
+                    // Si la operación es exitosa, actualizar la tabla sin recargar la página
+                    $('#row-' + id).remove();
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // Si la operación falla, mostrar un mensaje de error
+                    alert('Error al eliminar el empleado.');
+                }
+            });
+        }
+    }
+</script>
+
