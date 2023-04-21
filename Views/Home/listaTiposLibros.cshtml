@@ -1,23 +1,25 @@
-﻿<li class="nav-item">
-    <a href="@Url.Action("FormularioTiposLibros","Home")" class="btn btn-primary">Agregar Tipo de libros</a>
-</li>
-<li class="nav-item">
-    <a href="@Url.Action("EditarTiposLibros","Home")" class="btn btn-danger">Borrar/Editar</a>
-</li>
+﻿<div class="container">
+    <div class="col-sm-8"><h2 class="display-4 animate__animated animate__slow animate__fadeInLeft"><i class="bi bi-journal-bookmark-fill"></i> Tipos de libros </h2></div>
 
-<div class="col-sm-8"><h2>Tipos de libros </h2></div>
-<table class="table table-condensed">
-    <tr>
-        <th>IdTiposLibros</th>
-        <th>Estante</th>
-        <th>Tematica</th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td> @item.id_TipoLibro</td>
-            <td> @item.Estante</td>
-            <td> @item.Tematica</td>
-        </tr>
-    }
-</table>
+    <div class="table-responsive animate__animated animate__backInDown animate__slow">
+        <table class="table table-condensed">
+            <tr>
+                <th class="h6 animate__delay-2s animate__animated animate__fadeIn">  Id Tipos de libros</th>
+                <th class="h6 animate__delay-2ss animate__animated animate__fadeIn"> Estante</th>
+                <th class="h6 animate__delay-3s animate__animated animate__fadeIn">  Temática</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+<tr>
+    <td> @item.id_TipoLibro</td>
+    <td> @item.Estante</td>
+    <td> @item.Tematica</td>
+</tr>}
+        </table>
+    </div>
+    <div class=" animate__animated animate__flash animate__delay-7s ">
+        <a href="@Url.Action("FormularioTiposLibros","Home")" class="animar-boton btn btn-primary float-right animate__animated animate__slow animate__fadeInBottomRight"><span class="texto-boton">Agregar Tipo de libros</span></a>
+    </div>
+
+
+</div>
