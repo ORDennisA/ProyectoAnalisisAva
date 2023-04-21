@@ -274,6 +274,53 @@ namespace MV_P1.Controllers
             return Json("");
         }
 
+        public ActionResult DeleteTipoLibro(int id)
+        {
+            var tipo = db.tbl_Tipos_Libros.Find(id);
+            if (tipo == null)
+            {
+                return HttpNotFound();
+            }
+            db.tbl_Tipos_Libros.Remove(tipo);
+            db.SaveChanges();
+            return Json("");
+        }
+
+        public ActionResult GetTipoLibro(int id)
+        {
+            // Busca el empleado correspondiente en tu modelo de datos
+            tbl_Tipos_Libros tipo = db.tbl_Tipos_Libros.Find(id);
+
+            // Si el empleado no se encuentra, devuelve un error
+            if (tipo == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Crea un objeto anónimo con los datos del empleado y devuelve una respuesta JSON
+            var TipoLibroJson = new
+            {
+                id_TipoLibro = tipo.id_TipoLibro,
+                Estante = tipo.Estante,
+                Tematica = tipo.Tematica
+            };
+            return Json(TipoLibroJson, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult SaveEditedTipoLibro(int IdTiposLibros, string EstanteLibros, string TematicaLibros)
+        {
+            if (IdTiposLibros != null)
+            {
+                tbl_Tipos_Libros tipo = db.tbl_Tipos_Libros.Find(IdTiposLibros);
+
+                tipo.id_TipoLibro = IdTiposLibros;
+                tipo.Estante = EstanteLibros;
+                tipo.Tematica = TematicaLibros;
+
+                db.SaveChanges();
+            }
+            return Json("");
+        }
 
         // VENTAS
 
