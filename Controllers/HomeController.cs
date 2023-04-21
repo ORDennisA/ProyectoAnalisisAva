@@ -86,6 +86,50 @@ namespace MV_P1.Controllers
         {
             return View();
         }
+        public ActionResult GetEmpleado(int id)
+        {
+            // Busca el empleado correspondiente en tu modelo de datos
+            tbl_Empleados empleado = db.tbl_Empleados.Find(id);
+
+            // Si el empleado no se encuentra, devuelve un error
+            if (empleado == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Crea un objeto anónimo con los datos del empleado y devuelve una respuesta JSON
+            var empleadoJson = new
+            {
+                id_Empleados = empleado.id_Empleados,
+                Nombres = empleado.Nombres,
+                Apellidos = empleado.Apellidos,
+                DNI = empleado.DNI,
+                Domicilio = empleado.Domicilio,
+                Fecha_de_nacimiento = empleado.Fecha_de_nacimiento,
+                Antiguedad = empleado.Antiguedad
+            };
+            return Json(empleadoJson, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult SaveEditedEmpleado(int id, string NombreEmpleado, string ApellidosEmpleado, string DNIempleado,
+            string DomicilioEmpleado, DateTime FechaDeNacimientoEmpleado, DateTime AntiguedadEmpleado)
+        {
+            if (id != null)
+            {
+                tbl_Empleados emp = db.tbl_Empleados.Find(id);
+
+                emp.Nombres = NombreEmpleado;
+                emp.Apellidos = ApellidosEmpleado;
+                emp.DNI = DNIempleado;
+                emp.Domicilio = DomicilioEmpleado;
+                emp.Fecha_de_nacimiento = FechaDeNacimientoEmpleado;
+                emp.Antiguedad = AntiguedadEmpleado;
+
+                db.SaveChanges();
+            }
+            return Json("");
+        }
+
         public ActionResult DeleteEmpleado(int id)
         {
             var empleado = db.tbl_Empleados.Find(id);
@@ -97,6 +141,48 @@ namespace MV_P1.Controllers
             db.SaveChanges();
             return Json("");
         }
+
+        public ActionResult GetVenta(int id)
+        {
+            // Busca la venta correspondiente en tu modelo de datos
+            tbl_Ventas venta = db.tbl_Ventas.Find(id);
+
+            // Si la venta no se encuentra, devuelve un error
+            if (venta == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Crea un objeto anónimo con los datos de la venta y devuelve una respuesta JSON
+            var ventaJson = new
+            {
+                id_Venta = venta.id_Venta,
+                Total = venta.Total,
+                Fecha = venta.Fecha,
+                Hora = venta.Hora,
+                id_Empleado = venta.id_Empleados//,
+                //id_VentaLibros = venta.id_Venta_Libros
+            };
+            return Json(ventaJson, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult SaveEditedVenta(int id, int Total, DateTime Fecha, TimeSpan Hora, int idEmpleado, int idVentaLibro)
+        {
+            if (id != null)
+            {
+                tbl_Ventas emp = db.tbl_Ventas.Find(id);
+
+                emp.Total = Total;
+                emp.Fecha = Fecha;
+                emp.Hora = Hora;
+                emp.id_Empleados = idEmpleado;
+                emp.id_Venta = idVentaLibro;
+
+                db.SaveChanges();
+            }
+            return Json("");
+        }
+
 
         public ActionResult DeleteVenta(int id)
         {
@@ -110,6 +196,46 @@ namespace MV_P1.Controllers
             return Json("");
         }
 
+        public ActionResult GetUsuario(int id)
+        {
+            // Busca al usuario correspondiente en tu modelo de datos
+            tbl_Usuarios venta = db.tbl_Usuarios.Find(id);
+
+            // Si el usuario no se encuentra, devuelve un error
+            if (venta == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Crea un objeto anónimo con los datos de la venta y devuelve una respuesta JSON
+            var usuarioJson = new
+            {
+                id__Usuarios = venta.id_Usuarios,
+                Nombres = venta.Nombres,
+                Apellidos = venta.Apellidos,
+                DNI = venta.DNI,
+                Domicilio = venta.Domicilio,
+                Fecha_de_Nacimiento = venta.Fecha_de_nacimiento
+            };
+            return Json(usuarioJson, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult SaveEditedUsuario(int id, string Nombres, string Apellidos, string DNI, string Domicilio, DateTime Fecha_de_nacimiento)
+        {
+            if (id != null)
+            {
+                tbl_Usuarios emp = db.tbl_Usuarios.Find(id);
+
+                emp.Nombres = Nombres;
+                emp.Apellidos = Apellidos;
+                emp.DNI = DNI;
+                emp.Domicilio = Domicilio;
+                emp.Fecha_de_nacimiento = Fecha_de_nacimiento;
+
+                db.SaveChanges();
+            }
+            return Json("");
+        }
         public ActionResult DeleteUsuario(int id)
         {
             var usuario = db.tbl_Usuarios.Find(id);
@@ -122,6 +248,38 @@ namespace MV_P1.Controllers
             return Json("");
         }
 
+        public ActionResult GetVentaLibro(int id)
+        {
+            // Busca al usuario correspondiente en tu modelo de datos
+            tbl_Venta_Libros vl = db.tbl_Venta_Libros.Find(id);
+
+            // Si el usuario no se encuentra, devuelve un error
+            if (vl == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Crea un objeto anónimo con los datos de la venta y devuelve una respuesta JSON
+            var vlJson = new
+            {
+                id__Venta_Libros = vl.id_Venta_Libros,
+                id_Libro = vl.id_Libro
+            };
+            return Json(vlJson, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult SaveEditedVL(int id, int idLibros)
+        {
+            if (id != null)
+            {
+                tbl_Venta_Libros emp = db.tbl_Venta_Libros.Find(id);
+
+                emp.id_Libro = idLibros;
+
+                db.SaveChanges();
+            }
+            return Json("");
+        }
         public ActionResult DeleteVentaLibros(int id)
         {
             var ventaL = db.tbl_Venta_Libros.Find(id);
