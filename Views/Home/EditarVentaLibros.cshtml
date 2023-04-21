@@ -1,4 +1,4 @@
-﻿<table class="table table-condensed">
+<table class="table table-condensed">
     <tr>
         <th>id_Libro</th>
     </tr>
@@ -36,9 +36,49 @@
                 },
                 error: function (xhr, textStatus, errorThrown) {
                     // Si la operación falla, mostrar un mensaje de error
-                    alert('Error al eliminar el empleado.');
+                    alert('Error al eliminar la venta.');
                 }
             });
         }
     }
+    function prepareEditRow(id) {
+        // Get employee data using id from selected row
+        $.ajax({
+            url: '/Home/GetVentaLibro',
+            type: 'GET',
+            data: { id: id },
+            // if successful, function in controller returns a json data object
+            // Then fill this data to the edit form, to be edited
+            success: function (data, status) {
+                document.getElementById('id_Venta_Libros').value = data.id_Venta_Libros;
+                document.getElementById('id_Libros').value = data.id_Libros;
+            },
+            error: function () {
+                alert('Error al preparar datos de ventas para editarse.');
+            }
+        });
+    }
+    function editRow() {
+        $.ajax({
+            url: '/Home/SaveEditedEmpleado',
+            type: 'POST',
+            async: true,
+            data: {
+                id: document.getElementById('id_Venta_Libros').value,
+                id_Libros: document.getElementById("id_Libros").value
+            },
+            success: function () {
+                alert('Edicion exitosa');
+            },
+            error: function () {
+                alert('Error al editar venta');
+            }
+        });
+        limpiarFormulario();
+    }
+    function limpiarFormulario() {
+        document.getElementById("id_Venta_Libros").value = "";
+        document.getElementById("id_Libros").value = "";
+    }
 </script>
+
