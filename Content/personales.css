@@ -1,0 +1,50 @@
+﻿.animar-boton {
+    position: relative;
+    overflow: hidden;
+}
+
+    .animar-boton .texto-boton {
+        z-index: 1;
+    }
+
+    .animar-boton::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 0;
+        height: 0;
+        background-color: white;
+        border-radius: 50%;
+        opacity: 0;
+        transition: all 0.3s ease-out;
+        z-index: -1;
+    }
+
+    .animar-boton:hover {
+        color: black; /* Cambiar el color del texto a negro */
+    }
+
+        .animar-boton:hover::before {
+            width: 200%;
+            height: 200%;
+            opacity: .5;
+        }
+
+
+.fullscreen {
+    height: 100vh;
+    width: 100%;
+    background-color: #ccc; /* Puedes cambiar el color de fondo a lo que desees */
+}
+
+.miDiv {
+    background-color: black;
+    color: black; /* Puedes cambiar el color del texto si lo deseas */
+}
+
+.fade-on-scroll {
+    transition: opacity 0.5s ease-in-out;
+}
+
