@@ -1,16 +1,15 @@
-﻿
-<table class="table table-condensed">
+﻿<table class="table table-condensed">
     <tr>
-        <th class="h6 animate__delay-2s animate__animated animate__fadeIn">  id_Libro</th>
-        <th class="h6 animate__delay-2ss animate__animated animate__fadeIn"> Nombre</th>
-        <th class="h6 animate__delay-3s animate__animated animate__fadeIn">  Editorial</th>
-        <th class="h6 animate__delay-3ss animate__animated animate__fadeIn"> Autor</th>
-        <th class="h6 animate__delay-4s animate__animated animate__fadeIn">  Genero</th>
-        <th class="h6 animate__delay-4ss animate__animated animate__fadeIn"> PaisOrigen</th>
-        <th class="h6 animate__delay-5s animate__animated animate__fadeIn">  NoPaginas</th>
-        <th class="h6 animate__delay-5ss animate__animated animate__fadeIn">  FechaEdicion</th>
-        <th class="h6 animate__delay-6s animate__animated animate__fadeIn"> Precio</th>
-        <th class="h6 animate__delay-6ss animate__animated animate__fadeIn">  id_TipoLibro</th>
+        <th>id_Libro</th>
+        <th>Nombre</th>
+        <th>Editorial</th>
+        <th>Autor</th>
+        <th>Genero</th>
+        <th>PaisOrigen</th>
+        <th>NoPaginas</th>
+        <th>FechaEdicion</th>
+        <th>Precio</th>
+        <th>id_TipoLibro</th>
     </tr>
     @foreach (var item in Model)
     {
@@ -33,85 +32,54 @@
     }
 </table>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div id="editLibrosModal" class="row">
+    <div class="modal-content">
+        <form>
+            <div class="col-md-3">
+                <Label>id_Libro</Label>
+                <input type="text" id="id_Libro" name="id_Libro" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Nombre</Label>
+                <input type="text" id="Nomb" name="Nomb" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Editorial</Label>
+                <input type="text" id="Edit" name="Edit" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Autor</Label>
+                <input type="text" id="Aut" name="Aut" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Genero</Label>
+                <input type="text" id="Gene" name="Gene" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Pais de origen</Label>
+                <input type="text" id="PaisO" name="PaisO" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Numero de paginas</Label>
+                <input type="text" id="NoPag" name="NoPag" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Fecha de edicion</Label>
+                <input type="date" id="FechaEdi" name="FechaEdi" class="form-control" required />
+            </div>
+            <div class="col-md-3">
+                <Label>Precio</Label>
+                <input type="text" id="Prec" name="Prec" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>id_TipoLibro</Label>
+                <input type="text" id="idTL" name="idTL" class="form-control" />
+            </div>
 
-
-<div class="container animate__delay-7s animate__animated animate__fadeInRight">
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label h6"><i class="bi bi-person-check"></i> ID Libro </label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="id_Libro" name="id_Libro" placeholder="ID Libro">
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label h6"><i class="bi bi-person-check"></i> Nombre </label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="Nomb" name="Nomb" placeholder="Nombre">
-        </div>
-    </div>
-    <div class="form-group row">
-
-        <label class="col-sm-2 col-form-label"><i class="bi bi-bank"></i> Editorial</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="Edit" name="Edit" placeholder="Editorial">
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label"><i class="bi bi-bookmark-dash"></i> Autor</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="Aut" name="Aut" placeholder="Autor">
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label"><i class="bi bi-bookmark-plus"></i> Género</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="Gene" name="Gene" placeholder="Género">
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label"><i class="bi bi-globe-americas"></i> Pais de Origen</label>
-        <div class="col-sm-10">
-            <input class="form-control" type="text" id="PaisO" name="PaisO" placeholder="Pais de Origen" />
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label"><i class="bi bi-card-list"></i> No de Paginas</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="NoPag" name="NoPag" placeholder="No de Paginas">
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label"><i class="bi bi-clock-fill"></i> Fecha de Edicion</label>
-        <div class="col-sm-10">
-            <input type="date" class="form-control" id="FechaEdi" name="FechaEdi" placeholder="Fecha de Edicion">
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label"><i class="bi bi-currency-exchange"></i> Precio</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="Prec" name="Prec" placeholder="Precio">
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label"><i class="bi bi-card-heading"></i> ID Tipo de Libro</label>
-        <div class="col-sm-10">
-            <select id="idTL" name="idTL" class="form-control">
-                <option value="Pendiente">SELECCIONAR</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-            </select>
-        </div>
+            <input type="button" onclick="editRow()" value="Guardar cambios">
+        </form>
     </div>
 </div>
-
-<div class="container">
-    <div class="row float-right">
-        <div>
-            <input class=" animate__delay-6s animar-boton btn btn-primary float-right animate__animated animate__slow animate__fadeInBottomRight" type="button" onclick="editRow()" value="Guardar cambios">
-        </div>
-    </div>
-</div>
-
-
 <script>
 
     function deleteRow(id) {

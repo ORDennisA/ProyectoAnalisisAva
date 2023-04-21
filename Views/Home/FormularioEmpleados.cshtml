@@ -5,52 +5,35 @@
 </script>
 
 <script src="~/Scripts/js_Empleados.js"></script>
-
-<br />
-<div class="container">
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label h6"><i class="bi bi-person-check"></i> Empleado</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="nom" name="nom" placeholder="Empleado">
-        </div>
+<div class="row">
+    <div class="col-md-3">
+        <Label>Nombres empleado</Label>
+        <input type="text" id="nom" name="nom" class="form-control" />
     </div>
-    <div class="form-group row">
-
-        <label class="col-sm-2 col-form-label"><i class="bi bi-person-lines-fill"></i> Apellidos Empleado</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="apell" name="apell" placeholder="Apellidos Empleado">
-        </div>
+    <div class="col-md-3">
+        <Label>Apellidos empleado</Label>
+        <input type="text" id="apell" name="apell" class="form-control" />
     </div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label"><i class="bi bi-person-vcard-fill"></i> DNI Empleado</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="dni" name="dni" placeholder="DNI Empleado">
-        </div>
+    <div class="col-md-3">
+        <Label>DNI empleado</Label>
+        <input type="text" id="dni" name="dni" class="form-control" />
     </div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label"><i class="bi bi-pin-map"></i> Domicilio</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="pre" name="pre" placeholder="Domicilio">
-        </div>
+    <div class="col-md-3">
+        <Label>Domicilio</Label>
+        <input type="text" id="pre" name="pre" class="form-control" />
     </div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label"><i class="bi bi-calendar-date"></i> Fecha de nacimiento</label>
-        <div class="col-sm-10">
-            <input class="form-control" type="date"  id="can" name="can" placeholder="Fecha de nacimiento" />
-        </div>
+    <div class="col-md-3">
+        <Label>Fecha de nacimiento</Label>
+        <input type="date" id="can" name="can" class="form-control" />
     </div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label"><i class="bi bi-clock-fill"></i> Antiguedad</label>
-        <div class="col-sm-10">
-            <input type="date" class="form-control" id="ant" name="ant" placeholder="Antiguedad">
-        </div>
+    <div class="col-md-3">
+        <Label>Antiguedad</Label>
+        <input type="date" id="ant" name="ant" class="form-control" />
     </div>
 </div>
-
-
 <br />
 <div class="row">
     <div class="col-md-2">
-        <a href="javascript:guardarEmpleado()" class="animar-boton btn btn-primary float-right animate__animated animate__slow animate__fadeInBottomRight">Guardar</a>
+        <a href="javascript:guardarEmpleado()" class="btn btn-success">Guardar</a>
     </div>
 </div>

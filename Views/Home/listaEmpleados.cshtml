@@ -1,25 +1,24 @@
 
+<li class="nav-item">
+    <a href="@Url.Action("FormularioEmpleados","Home")" class="btn btn-primary">Agregar empleados</a>
+</li>
+<li class="nav-item">
+    <a href="@Url.Action("EditarEmpleado","Home")" class="btn btn-danger">Borrar/Editar</a>
+</li>
 
-<div class="container">
-
-
-
-    <div class="col-sm-8"><h2 class="display-4 animate__animated animate__slow animate__fadeInLeft"><i class="bi bi-person-circle"></i> Empleados </h2></div>
-
-    <div class="table-responsive animate__animated animate__backInDown animate__slow">
-        <table class="table table-condensed">
-            <tr>
-                <th class="h6 animate__delay-2s animate__animated animate__fadeIn"> <i class="bi bi-fingerprint"></i> Número de empleado</th>
-                <th class="h6 animate__delay-2ss animate__animated animate__fadeIn"><i class="bi bi-person-check"></i> Nombres</th>
-                <th class="h6 animate__delay-3s animate__animated animate__fadeIn"> <i class="bi bi-person-lines-fill"></i> Apellidos</th>
-                <th class="h6 animate__delay-3ss animate__animated animate__fadeIn"><i class="bi bi-person-vcard-fill"></i> DNI</th>
-                <th class="h6 animate__delay-4s animate__animated animate__fadeIn"> <i class="bi bi-pin-map"></i> Domicilio</th>
-                <th class="h6 animate__delay-4ss animate__animated animate__fadeIn"><i class="bi bi-calendar-date"></i> Nacimiento</th>
-                <th class="h6 animate__delay-5s animate__animated animate__fadeIn"> <i class="bi bi-clock-fill"></i> Antiguedad</th>
-                <th class="h6 animate__delay-5s animate__animated animate__fadeIn"> <i class="bi bi-pencil-square"></i> Editar </th>
-            </tr>
-            @foreach (var item in Model)
-            {
+<div class="col-sm-8"><h2>Empleados </h2></div>
+<table class="table table-condensed">
+    <tr>
+        <th>IdEmpleados</th>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>DNI</th>
+        <th>Domicilio</th>
+        <th>Nacimiento</th>
+        <th>Antiguedad</th>
+    </tr>
+    @foreach (var item in Model)
+    {
         <tr>
             <td> @item.id_Empleados</td>
             <td> @item.Nombres</td>
@@ -28,13 +27,6 @@
             <td> @item.Domicilio</td>
             <td> @item.Fecha_de_nacimiento</td>
             <td> @item.Antiguedad</td>
-            <td> <a href="@Url.Action("EditarEmpleado","Home")" class="btn btn-danger">Borrar/Editar</a> </td>
         </tr>
-            }
-        </table>
-    </div>
-
-    <div class=" animate__animated animate__flash animate__delay-6s ">
-        <a href="@Url.Action("FormularioEmpleados","Home")" class="animar-boton btn btn-primary float-right animate__animated animate__slow animate__fadeInBottomRight"><span class="texto-boton">Agregar empleados</span></a>
-    </div>
-</div>
+    }
+</table>

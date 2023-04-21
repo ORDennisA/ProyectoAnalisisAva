@@ -1,33 +1,27 @@
-﻿<div class="container">
+﻿
+<li class="nav-item">
+    <a href="@Url.Action("FormularioVentas","Home")" class="btn btn-primary">Agregar ventas</a>
+</li>
 
-    <div class="col-sm-8"><h2 class="display-4 animate__animated animate__slow animate__fadeInLeft"><i class="bi bi-receipt"></i> Ventas </h2></div>
-
-    <div class="table-responsive animate__animated animate__backInDown animate__slow">
-        <table class="table table-condensed">
-            <tr>
-                <th class="h6 animate__delay-2s animate__animated animate__fadeIn"> ID de Venta</th>
-                <th class="h6 animate__delay-2ss animate__animated animate__fadeIn"> Total</th>
-                <th class="h6 animate__delay-3s animate__animated animate__fadeIn"> Fecha</th>
-                <th class="h6 animate__delay-3ss animate__animated animate__fadeIn"> Hora</th>
-                <th class="h6 animate__delay-4s animate__animated animate__fadeIn"> ID de Empleado</th>
-                <th class="h6 animate__delay-4ss animate__animated animate__fadeIn"> ID de Venta Libros</th>
-            </tr>
-            @foreach (var item in Model)
-            {
-<tr>
-    <td> @item.id_Venta</td>
-    <td> @item.Total</td>
-    <td> @item.Fecha</td>
-    <td> @item.Hora</td>
-    <td> @item.id_Empleado</td>
-    <td> @item.id_Venta_Libros</td>
-</tr>
-}
-        </table>
-    </div>
-    <div class=" animate__animated animate__flash animate__delay-7s ">
-        <a href="@Url.Action("FormularioVentas","Home")" class="animar-boton btn btn-primary float-right animate__animated animate__slow animate__fadeInBottomRight"><span class="texto-boton">Agregar ventas</span></a>
-    </div>
-
-
-</div>
+<div class="col-sm-8"><h2>Ventas </h2></div>
+<table class="table table-condensed">
+    <tr>
+        <th>Id_Venta</th>
+        <th>Total</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>id_Empleado</th>
+        <th>id_Venta_Libros</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td> @item.id_Venta</td>
+            <td> @item.Total</td>
+            <td> @item.Fecha</td>
+            <td> @item.Hora</td>
+            <td> @item.id_Empleado</td>
+            <td> @item.id_Venta_Libros</td>
+        </tr>
+    }
+</table>

@@ -1,8 +1,8 @@
 ﻿<table class="table table-condensed">
     <tr>
-        <th class="h6 animate__delay-2s animate__animated animate__fadeIn">  id_TipoLibro</th>
-        <th class="h6 animate__delay-2ss animate__animated animate__fadeIn"> Estante</th>
-        <th class="h6 animate__delay-3s animate__animated animate__fadeIn">  Tematica</th>
+        <th>id_TipoLibro</th>
+        <th>Estante</th>
+        <th>Tematica</th>
     </tr>
 
     @foreach (var item in Model)
@@ -19,39 +19,25 @@
 
 </table>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
-<div class="container animate__delay-3ss animate__animated animate__fadeInRight">
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label h6"><i class="bi bi-bookshelf"></i> ID Tipo de Libro</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="id_TipoLibro" name="id" placeholder="ID Tipo de Libro">
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label h6"><i class="bi bi-bookshelf"></i> Estante</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="Esta" name="Esta" placeholder="Estante">
-        </div>
-    </div>
-    <div class="form-group row">
-
-        <label class="col-sm-2 col-form-label"><i class="bi bi-bookmarks-fill"></i> Temática</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="Tema" name="Tema" placeholder="Temática">
-        </div>
+<div id="editTiposLibrosModal" class="row">
+    <div class="modal-content">
+        <form>
+            <div class="col-md-3">
+                <Label>id_TipoLibro</Label>
+                <input type="text" id="id_TipoLibro" name="id" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Estante</Label>
+                <input type="text" id="Esta" name="Esta" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Tematica</Label>
+                <input type="text" id="Tema" name="Tema" class="form-control" />
+            </div>
+            <input type="button" onclick="editRow()" value="Guardar cambios">
+        </form>
     </div>
 </div>
-
-<div class="container">
-    <div class="row float-right">
-        <div>
-            <input class=" animate__delay-6s animar-boton btn btn-primary float-right animate__animated animate__slow animate__fadeInBottomRight" type="button" onclick="editRow()" value="Guardar cambios">
-        </div>
-    </div>
-</div>
-
-
 <script>
 
     function deleteRow(id) {
