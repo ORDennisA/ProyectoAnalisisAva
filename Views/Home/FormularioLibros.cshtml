@@ -1,5 +1,5 @@
 ﻿<script>
-   var UrlGuardarLibro= '@Url.Action("guardarLibros", "Home")';
+   var UrlGuardarLibros = '@Url.Action("guardarLibros", "Home")';
 </script>
 
 <script src="~/Scripts/js_Libros.js"></script>
@@ -30,7 +30,7 @@
     </div>
     <div class="col-md-3">
         <Label>FechaEdicion</Label>
-        <input type="text" id="FechaEdi" name="FechaEdi" class="form-control" />
+        <input type="date" id="FechaEdi" name="FechaEdi" class="form-control" />
     </div>
     <div class="col-md-3">
         <Label>Precio</Label>
@@ -38,20 +38,11 @@
     </div>
     <div class="col-md-3">
         <Label>id_TipoLibro</Label>
-        <select id="idTipoLi " name="idTipoLi" class="form-control" onchange="myFunction()" href="db.tbl_Tipos_Libros">
+        <select id="idTL" name="idTL" class="form-control">
             <option value="Pendiente">- - SELECCIONAR - -</option>
             <option value="1">1</option>
             <option value="2">2</option>
-
-
-
         </select>
-        <script>
-            function myFunction() {
-                int.getElementById().innerHTML =
-                    (idTipoLi.selectedIndex.int + '</b>')
-            }
-        </script>
     </div>
 </div>
 <br />
@@ -60,4 +51,13 @@
         <a href="javascript:guardarLibros()" class="btn btn-success">Guardar</a>
     </div>
 </div>
+
+<!-- 
+    <script>
+        function myFunction() {
+            document.getElementById("idTipoLi").innerHTML =
+                (idTipoLi.selectedIndex.value + '</b>')
+        }
+    </script>
+-->
 

@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 namespace MV_P1.Controllers
 {
     public class HomeController : Controller
     {
+        // DEFAULT
+
         ProyectoBibliotecaEntities db = new ProyectoBibliotecaEntities();
         public ActionResult Index()
         {
@@ -28,6 +31,10 @@ namespace MV_P1.Controllers
 
             return View();
         }
+
+
+        // LIBROS
+
         public ActionResult listaLibros()
         {
             var lst = db.tbl_Libros.ToList();
@@ -38,11 +45,17 @@ namespace MV_P1.Controllers
             ViewBag.TipoLibros = db.tbl_Tipos_Libros.ToList();
             return View();
         }
-        public JsonResult guardarLibros(int id_Libro, string Nombre, string Editorial, string Autor, string Genero, string PaisOrigen,
+        public ActionResult EditarLibros()
+        {
+            var lst = db.tbl_Libros.ToList();
+            return View(lst);
+        }
+
+        public JsonResult guardarLibros(/* int id_Libro, */ string Nombre, string Editorial, string Autor, string Genero, string PaisOrigen,
             int NoPaginas, DateTime FechaEdicion, float Precio, int id_TipoLibro)
         {
             tbl_Libros c = new tbl_Libros();
-            c.id_Libro = id_Libro;
+            // c.id_Libro = id_Libro;
             c.Nombre = Nombre;
             c.Editorial = Editorial;
             c.Autor = Autor;
@@ -56,6 +69,73 @@ namespace MV_P1.Controllers
             db.SaveChanges();
             return Json("");
         }
+
+        public ActionResult DeleteLibro(int id)
+        {
+            var libro = db.tbl_Libros.Find(id);
+            if (libro == null)
+            {
+                return HttpNotFound();
+            }
+            db.tbl_Libros.Remove(libro);
+            db.SaveChanges();
+            return Json("");
+        }
+
+        public ActionResult GetLibro(int id)
+        {
+            // Busca el libro correspondiente en tu modelo de datos
+            tbl_Libros libro = db.tbl_Libros.Find(id);
+
+            // Si el libro no se encuentra, devuelve un error
+            if (libro == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Crea un objeto anónimo con los datos del libro y devuelve una respuesta JSON
+            var libroJSON = new
+            {
+                id_Libro = libro.id_Libro,
+                Nombre = libro.Nombre,
+                Editorial = libro.Editorial,
+                Autor = libro.Autor,
+                Genero = libro.Genero,
+                PaisOrigen = libro.PaisOrigen,
+                NoPaginas = libro.NoPaginas,
+                FechaEdicion = libro.FechaEdicion,
+                Precio = libro.Precio,
+                id_TipoLibro = libro.id_TipoLibro
+            };
+            return Json(libroJSON, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult SaveEditedLibro(int id_Libro, string Nombre, string Editorial, string Autor, string Genero, string PaisOrigen,
+            int NoPaginas, DateTime FechaEdicion, float Precio, int id_TipoLibro)
+        {
+            if (id_Libro != null)
+            {
+                tbl_Libros libro = db.tbl_Libros.Find(id_Libro);
+
+                libro.id_Libro = id_Libro;
+                libro.Nombre = Nombre;
+                libro.Editorial = Editorial;
+                libro.Autor = Autor;
+                libro.Genero = Genero;
+                libro.PaisOrigen = PaisOrigen;
+                libro.NoPaginas = NoPaginas;
+                libro.FechaEdicion = FechaEdicion;
+                libro.Precio = Precio;
+                libro.id_TipoLibro = id_TipoLibro;
+
+                db.SaveChanges();
+            }
+            return Json("");
+        }
+
+
+        // CHECADAS EMPLEADOS
+
         public ActionResult listaChecadasEmpleados()
         {
             var lst = db.tbl_Checadas_Empleados.ToList();
@@ -77,6 +157,10 @@ namespace MV_P1.Controllers
             db.SaveChanges();
             return Json("");
         }
+
+
+        // EMPLEADOS
+
          public ActionResult listaEmpleados()
         {
             var lst = db.tbl_Empleados.ToList();
@@ -146,6 +230,7 @@ namespace MV_P1.Controllers
             db.SaveChanges();
             return Json("");
         }
+
         public JsonResult guardarEmpleado(string NombreEmpleado, string ApellidosEmpleado, string DNIempleado,
             string DomicilioEmpleado, DateTime FechaDeNacimientoEmpleado, DateTime AntiguedadEmpleado)
         {
@@ -162,6 +247,8 @@ namespace MV_P1.Controllers
         }
 
 
+        // TIPOS LIBROS
+
         public ActionResult listaTiposLibros()
         {
             var lst = db.tbl_Tipos_Libros.ToList();
@@ -171,16 +258,71 @@ namespace MV_P1.Controllers
         {
             return View();
         }
-        public JsonResult guardarTipoLibros(int IdTiposLibros, string EstanteLibros, string TematicaLibros)
+        public ActionResult EditarTiposLibros()
+        {
+            var lst = db.tbl_Tipos_Libros.ToList();
+            return View(lst);
+        }
+        public JsonResult guardarTipoLibros(/* int IdTiposLibros, */ string EstanteLibros, string TematicaLibros)
         {
             tbl_Tipos_Libros d = new tbl_Tipos_Libros();
-            d.id_TipoLibro = IdTiposLibros;
+            // d.id_TipoLibro = IdTiposLibros;
             d.Estante = EstanteLibros;
             d.Tematica = TematicaLibros;
             db.tbl_Tipos_Libros.Add(d);
             db.SaveChanges();
             return Json("");
         }
+
+        public ActionResult DeleteTipoLibro(int id)
+        {
+            var tipo = db.tbl_Tipos_Libros.Find(id);
+            if (tipo == null)
+            {
+                return HttpNotFound();
+            }
+            db.tbl_Tipos_Libros.Remove(tipo);
+            db.SaveChanges();
+            return Json("");
+        }
+
+        public ActionResult GetTipoLibro(int id)
+        {
+            // Busca el empleado correspondiente en tu modelo de datos
+            tbl_Tipos_Libros tipo = db.tbl_Tipos_Libros.Find(id);
+
+            // Si el empleado no se encuentra, devuelve un error
+            if (tipo == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Crea un objeto anónimo con los datos del empleado y devuelve una respuesta JSON
+            var TipoLibroJson = new
+            {
+                id_TipoLibro = tipo.id_TipoLibro,
+                Estante = tipo.Estante,
+                Tematica = tipo.Tematica
+            };
+            return Json(TipoLibroJson, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult SaveEditedTipoLibro(int IdTiposLibros, string EstanteLibros, string TematicaLibros)
+        {
+            if (IdTiposLibros != null)
+            {
+                tbl_Tipos_Libros tipo = db.tbl_Tipos_Libros.Find(IdTiposLibros);
+
+                tipo.id_TipoLibro = IdTiposLibros;
+                tipo.Estante = EstanteLibros;
+                tipo.Tematica = TematicaLibros;
+
+                db.SaveChanges();
+            }
+            return Json("");
+        }
+
+        // VENTAS
 
         public ActionResult FormularioVentas() 
         {
@@ -206,6 +348,9 @@ namespace MV_P1.Controllers
             db.SaveChanges();
             return Json("");
         }
+
+
+        // USUARIOS
 
         public ActionResult FormularioUsuarios()
         {

@@ -16,4 +16,11 @@
             alert("error");
         }
     });
+
+    limpiarFormulario();
+}
+
+function limpiarFormulario() {
+    document.getElementById("Esta").value = "";
+    document.getElementById("Tema").value = "";
 }

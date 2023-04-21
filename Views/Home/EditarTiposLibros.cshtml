@@ -1,0 +1,107 @@
+﻿<table class="table table-condensed">
+    <tr>
+        <th>id_TipoLibro</th>
+        <th>Estante</th>
+        <th>Tematica</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr id="row-@item.id_TipoLibro">
+            <td> @item.Estante</td>
+            <td> @item.Tematica</td>
+            <td>
+                <button type="button" class="btn btn-primary" onclick="prepareEditRow(@item.id_TipoLibro)">Editar</button>
+                <button type="button" class="btn btn-danger" onclick="deleteRow(@item.id_TipoLibro)">Eliminar</button>
+            </td>
+        </tr>
+    }
+
+</table>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div id="editTiposLibrosModal" class="row">
+    <div class="modal-content">
+        <form>
+            <div class="col-md-3">
+                <Label>id_TipoLibro</Label>
+                <input type="text" id="id_TipoLibro" name="id" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Estante</Label>
+                <input type="text" id="Esta" name="Esta" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Tematica</Label>
+                <input type="text" id="Tema" name="Tema" class="form-control" />
+            </div>
+            <input type="button" onclick="editRow()" value="Guardar cambios">
+        </form>
+    </div>
+</div>
+<script>
+
+    function deleteRow(id) {
+        // Realizar petición AJAX al controlador de Home para eliminar el empleado con el ID proporcionado
+        if (confirm('¿Estás seguro de que deseas eliminar este tipo de libro?')) {
+            $.ajax({
+                url: '/Home/DeleteTipoLibro',
+                type: 'POST',
+                data: { id: id },
+                success: function () {
+                    // Si la operación es exitosa, actualizar la tabla sin recargar la página
+                    $('#row-' + id).remove();
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // Si la operación falla, mostrar un mensaje de error
+                    alert('Error al eliminar tipo de libro.');
+                }
+            });
+        }
+    }
+
+    function prepareEditRow(id) {
+        // Get book type data using id from selected row
+        $.ajax({
+            url: '/Home/GetTipoLibro',
+            type: 'GET',
+            data: { id: id },
+            // if successful, function in controller returns a json data object
+            // Then fill this data to the edit form, to be edited
+            success: function (data, status) {
+                document.getElementById("id_TipoLibro").value = data.id_TipoLibro;
+                document.getElementById("Esta").value = data.Estante;
+                document.getElementById("Tema").value = data.Tematica;
+            },
+            error: function () {
+                alert('Error al preparar datos de tipo de libro para editarse.');
+            }
+        });
+    }
+
+    function editRow() {
+        $.ajax({
+            url: '/Home/SaveEditedTipoLibro',
+            type: 'POST',
+            async: true,
+            data: {
+                IdTiposLibros: document.getElementById("id_TipoLibro").value,
+                EstanteLibros: document.getElementById("Esta").value,
+                TematicaLibros: document.getElementById("Tema").value
+            },
+            success: function () {
+                alert('Edicion exitosa');
+            },
+            error: function () {
+                alert('Error al editar tipo de libro');
+            }
+        });
+
+        limpiarFormulario();
+    }
+
+    function limpiarFormulario() {
+        document.getElementById("id_TipoLibro").value = "";
+        document.getElementById("Esta").value = "";
+        document.getElementById("Tema").value = "";
+    }
+</script>
