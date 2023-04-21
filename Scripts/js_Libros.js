@@ -19,7 +19,21 @@
             alert("Registro exitoso");
         },
         error: function (xhr, status, error) {
-            alert("error");
+            alert(error);
         }
     });
+
+    limpiarFormulario();
+}
+
+function limpiarFormulario() {
+    document.getElementById("Nomb").value = "";
+    document.getElementById("Edit").value = "";
+    document.getElementById("Aut").value = "";
+    document.getElementById("Gene").value = "";
+    document.getElementById("PaisO").value = "";
+    document.getElementById("NoPag").value = "";
+    document.getElementById("FechaEdi").value = "";
+    document.getElementById("Prec").value = "";
+    document.getElementById("idTL").value = "";
 }

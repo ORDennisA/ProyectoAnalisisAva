@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 namespace MV_P1.Controllers
 {
@@ -66,6 +67,69 @@ namespace MV_P1.Controllers
             c.id_TipoLibro = id_TipoLibro;
             db.tbl_Libros.Add(c);
             db.SaveChanges();
+            return Json("");
+        }
+
+        public ActionResult DeleteLibro(int id)
+        {
+            var libro = db.tbl_Libros.Find(id);
+            if (libro == null)
+            {
+                return HttpNotFound();
+            }
+            db.tbl_Libros.Remove(libro);
+            db.SaveChanges();
+            return Json("");
+        }
+
+        public ActionResult GetLibro(int id)
+        {
+            // Busca el libro correspondiente en tu modelo de datos
+            tbl_Libros libro = db.tbl_Libros.Find(id);
+
+            // Si el libro no se encuentra, devuelve un error
+            if (libro == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Crea un objeto anónimo con los datos del libro y devuelve una respuesta JSON
+            var libroJSON = new
+            {
+                id_Libro = libro.id_Libro,
+                Nombre = libro.Nombre,
+                Editorial = libro.Editorial,
+                Autor = libro.Autor,
+                Genero = libro.Genero,
+                PaisOrigen = libro.PaisOrigen,
+                NoPaginas = libro.NoPaginas,
+                FechaEdicion = libro.FechaEdicion,
+                Precio = libro.Precio,
+                id_TipoLibro = libro.id_TipoLibro
+            };
+            return Json(libroJSON, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult SaveEditedLibro(int id_Libro, string Nombre, string Editorial, string Autor, string Genero, string PaisOrigen,
+            int NoPaginas, DateTime FechaEdicion, float Precio, int id_TipoLibro)
+        {
+            if (id_Libro != null)
+            {
+                tbl_Libros libro = db.tbl_Libros.Find(id_Libro);
+
+                libro.id_Libro = id_Libro;
+                libro.Nombre = Nombre;
+                libro.Editorial = Editorial;
+                libro.Autor = Autor;
+                libro.Genero = Genero;
+                libro.PaisOrigen = PaisOrigen;
+                libro.NoPaginas = NoPaginas;
+                libro.FechaEdicion = FechaEdicion;
+                libro.Precio = Precio;
+                libro.id_TipoLibro = id_TipoLibro;
+
+                db.SaveChanges();
+            }
             return Json("");
         }
 
@@ -166,6 +230,7 @@ namespace MV_P1.Controllers
             db.SaveChanges();
             return Json("");
         }
+
         public JsonResult guardarEmpleado(string NombreEmpleado, string ApellidosEmpleado, string DNIempleado,
             string DomicilioEmpleado, DateTime FechaDeNacimientoEmpleado, DateTime AntiguedadEmpleado)
         {
