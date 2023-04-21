@@ -1,4 +1,4 @@
-﻿<table class="table table-condensed">
+<table class="table table-condensed">
     <tr>
         <th>IdVentas</th>
         <th>Total</th>
@@ -70,9 +70,61 @@
                 },
                 error: function (xhr, textStatus, errorThrown) {
                     // Si la operación falla, mostrar un mensaje de error
-                    alert('Error al eliminar el empleado.');
+                    alert('Error al eliminar la venta.');
                 }
             });
         }
+    }
+
+    function prepareEditRow(id) {
+        // Get employee data using id from selected row
+        $.ajax({
+            url: '/Home/GetVenta',
+            type: 'GET',
+            data: { id: id },
+            // if successful, function in controller returns a json data object
+            // Then fill this data to the edit form, to be edited
+            success: function (data, status) {
+                document.getElementById('id_Venta').value = data.id_Venta;
+                document.getElementById('total').value = data.Total;
+                document.getElementById('fecha').value = data.Fecha;
+                document.getElementById('hora').value = data.Hora;
+                document.getElementById('id_emp').value = data.id_Empleados;
+                //document.getElementById('id_V_L').value = data.id_Venta_Libros;
+            },
+            error: function () {
+                alert('Error al preparar datos de ventas para editarse.');
+            }
+        });
+    }
+    function editRow() {
+        $.ajax({
+            url: '/Home/SaveEditedEmpleado',
+            type: 'POST',
+            async: true,
+            data: {
+                id: document.getElementById('id_Venta').value,
+                Total: document.getElementById("total").value,
+                Fecha: document.getElementById("fecha").value,
+                Hora: document.getElementById("hora").value,
+                idEmpleados: document.getElementById("id_Empleados").value //,
+                //idVentaLibros: document.getElementById("id_Venta_Libros").value
+            },
+            success: function () {
+                alert('Edicion exitosa');
+            },
+            error: function () {
+                alert('Error al editar la venta');
+            }
+        });
+        limpiarFormulario();
+    }
+    function limpiarFormulario() {
+        document.getElementById("id_Venta").value = "";
+        document.getElementById("total").value = "";
+        document.getElementById("fecha").value = "";
+        document.getElementById("hora").value = "";
+        document.getElementById("id_emp").value = "";
+        //document.getElementById("id_Venta_Libros").value = "";
     }
 </script>
