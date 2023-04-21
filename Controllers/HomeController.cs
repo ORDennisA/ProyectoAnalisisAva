@@ -145,10 +145,15 @@ namespace MV_P1.Controllers
         {
             return View();
         }
-        public JsonResult guardarChecadas(int id_Checadas_empleados, DateTime Fecha, TimeSpan Entrada, TimeSpan Salida, int id_Empleados)
+        public ActionResult EditarChecadasEmpleados()
+        {
+            var lst = db.tbl_Checadas_Empleados.ToList();
+            return View(lst);
+        }
+        public JsonResult guardarChecadas(/* int id_Checadas_empleados, */ DateTime Fecha, TimeSpan Entrada, TimeSpan Salida, int id_Empleados)
         {
             tbl_Checadas_Empleados b = new tbl_Checadas_Empleados();
-            b.id_Checadas_empleados = id_Checadas_empleados;
+            // b.id_Checadas_empleados = id_Checadas_empleados;
             b.Fecha = Fecha;
             b.Entrada = Entrada;
             b.Salida = Salida;
@@ -158,10 +163,61 @@ namespace MV_P1.Controllers
             return Json("");
         }
 
+        public ActionResult DeleteChecadaEmpleado(int id)
+        {
+            var checada = db.tbl_Checadas_Empleados.Find(id);
+            if (checada == null)
+            {
+                return HttpNotFound();
+            }
+            db.tbl_Checadas_Empleados.Remove(checada);
+            db.SaveChanges();
+            return Json("");
+        }
+
+        public ActionResult GetChecadaEmpleado(int id)
+        {
+            // Busca el empleado correspondiente en tu modelo de datos
+            tbl_Checadas_Empleados checada = db.tbl_Checadas_Empleados.Find(id);
+
+            // Si el empleado no se encuentra, devuelve un error
+            if (checada == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Crea un objeto anónimo con los datos del empleado y devuelve una respuesta JSON
+            var checadaJson = new
+            {
+                id_Checadas_empleados = checada.id_Checadas_empleados,
+                Fecha = checada.Fecha,
+                Entrada = checada.Entrada,
+                Salida = checada.Salida,
+                id_Empleados = checada.id_Empleados
+            };
+            return Json(checadaJson, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult SaveEditedChecada(int id_Checadas_empleados, DateTime Fecha, TimeSpan Entrada, TimeSpan Salida, int id_Empleados)
+        {
+            if (id_Checadas_empleados != null)
+            {
+                tbl_Checadas_Empleados checada = db.tbl_Checadas_Empleados.Find(id_Checadas_empleados);
+
+                checada.id_Checadas_empleados = id_Checadas_empleados;
+                checada.Fecha = Fecha;
+                checada.Entrada = Entrada;
+                checada.Salida = Salida;
+                checada.id_Empleados = id_Empleados;
+
+                db.SaveChanges();
+            }
+            return Json("");
+        }
+
 
         // EMPLEADOS
 
-         public ActionResult listaEmpleados()
+        public ActionResult listaEmpleados()
         {
             var lst = db.tbl_Empleados.ToList();
             return View(lst);
