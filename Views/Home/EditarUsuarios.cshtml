@@ -1,4 +1,4 @@
-﻿<table class="table table-condensed">
+<table class="table table-condensed">
     <tr>
         <th>Id_Usuarios</th>
         <th>Nombres</th>
@@ -66,10 +66,60 @@
                 },
                 error: function (xhr, textStatus, errorThrown) {
                     // Si la operación falla, mostrar un mensaje de error
-                    alert('Error al eliminar el empleado.');
+                    alert('Error al eliminar al usuario.');
                 }
             });
         }
     }
+    function prepareEditRow(id) {
+        // Get employee data using id from selected row
+        $.ajax({
+            url: '/Home/GetUsuario',
+            type: 'GET',
+            data: { id: id },
+            // if successful, function in controller returns a json data object
+            // Then fill this data to the edit form, to be edited
+            success: function (data, status) {
+                document.getElementById('id_Usuarios').value = data.id_Usuarios;
+                document.getElementById('nombres').value = data.Nombres;
+                document.getElementById('apellidos').value = data.Apellidos;
+                document.getElementById('dni').value = data.DNI;
+                document.getElementById('domicilio').value = data.Domicilio;
+                document.getElementById('fechadenacimiento').value = data.Fecha_de_nacimiento;
+            },
+            error: function () {
+                alert('Error al preparar datos de usuario para editarse.');
+            }
+        });
+    }
+    function editRow() {
+        $.ajax({
+            url: '/Home/SaveEditedEmpleado',
+            type: 'POST',
+            async: true,
+            data: {
+                id: document.getElementById('id_Usuarios').value,
+                Nombres: document.getElementById("nombres").value,
+                Apellidos: document.getElementById("apellidos").value,
+                Hora: document.getElementById("dni").value,
+                Domicilio: document.getElementById("domicilio").value ,
+                Fecha_de_nacimiento: document.getElementById("fechadenacimiento").value
+            },
+            success: function () {
+                alert('Edicion exitosa');
+            },
+            error: function () {
+                alert('Error al editar usuario');
+            }
+        });
+        limpiarFormulario();
+    }
+    function limpiarFormulario() {
+        document.getElementById("id_Usuarios").value = "";
+        document.getElementById("nombres").value = "";
+        document.getElementById("apellidos").value = "";
+        document.getElementById("dni").value = "";
+        document.getElementById("domicilio").value = "";
+        document.getElementById("fechadenacimiento").value = "";
+    }
 </script>
-
