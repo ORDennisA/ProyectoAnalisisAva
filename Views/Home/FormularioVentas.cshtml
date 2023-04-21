@@ -1,6 +1,4 @@
-﻿@model IEnumerable<MV_P1.Models.tbl_Ventas>
-
-<script>
+﻿<script>
 
     var UrlGuardarVentas = "@Url.Action("guardarVentas", "Home")"
 
@@ -8,25 +6,25 @@
 
 <script src="~/Scripts/js_Ventas.js"></script>
 <div class="row">
+    <!--<div class="col-md-3">
+        <Label>idVentaLibro</Label>
+        <input type="text" id="idVentaLibro" name="idVentaLibro" class="form-control" />
+    </div>-->
     <div class="col-md-3">
         <Label>Total</Label>
         <input type="text" id="Total" name="Total" class="form-control" />
     </div>
     <div class="col-md-3">
         <Label>Fecha</Label>
-        <input type="text" id="Fecha" name="Fecha" class="form-control" />
+        <input type="date" id="Fecha" name="Fecha" class="form-control" />
     </div>
     <div class="col-md-3">
         <Label>Hora</Label>
-        <input type="text" id="Hora" name="Hora" class="form-control" />
+        <input type="time" id="Hora" name="Hora" class="form-control" />
     </div>
     <div class="col-md-3">
         <Label>idEmpleado</Label>
         <input type="text" id="idEmpleado" name="idEmpleado" class="form-control" />
-    </div>
-    <div class="col-md-3">
-        <Label>idLibro</Label>
-        <input type="text" id="idLibro" name="idVentaLibro" class="form-control" />
     </div>
 </div>
 <br />

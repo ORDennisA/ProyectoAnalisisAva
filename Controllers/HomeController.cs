@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
@@ -391,17 +392,77 @@ namespace MV_P1.Controllers
             return View(lst);
         }
 
+        public ActionResult EditarVentas()
+        {
+            var lst = db.tbl_Ventas.ToList();
+            return View(lst);
+        }
         
-        public JsonResult guardarVentas(int Total, DateTime Fecha, TimeSpan Hora, int idEmpleado, int idVentaLibro) 
+        public JsonResult guardarVentas(/* int idVentaLibro,*/ int Total, DateTime Fecha, TimeSpan Hora, int idEmpleado) 
         {
             tbl_Ventas d = new tbl_Ventas();
+
+            // d.id_Venta = idVentaLibro;
             d.Total = Total;
             d.Fecha = Fecha;
             d.Hora = Hora;
             d.id_Empleados = idEmpleado;
-            d.id_Venta = idVentaLibro;
+
             db.tbl_Ventas.Add(d);
             db.SaveChanges();
+            
+            return Json("");
+        }
+
+        public ActionResult DeleteVenta(int id)
+        {
+            var venta = db.tbl_Ventas.Find(id);
+            if (venta == null)
+            {
+                return HttpNotFound();
+            }
+            db.tbl_Ventas.Remove(venta);
+            db.SaveChanges();
+            return Json("");
+        }
+
+        public ActionResult GetVenta(int id)
+        {
+            // Busca el empleado correspondiente en tu modelo de datos
+            tbl_Ventas venta = db.tbl_Ventas.Find(id);
+
+            // Si el empleado no se encuentra, devuelve un error
+            if (venta == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Crea un objeto anónimo con los datos del empleado y devuelve una respuesta JSON
+            var ventaJson = new
+            {
+                id_Venta = venta.id_Venta,
+                Total = venta.Total,
+                Fecha = venta.Fecha,
+                Hora = venta.Hora,
+                id_Empleados = venta.id_Empleados
+            };
+            return Json(ventaJson, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult SaveEditedVenta(int idVenta, int Total, DateTime Fecha, TimeSpan Hora, int idEmpleado)
+        {
+            if (idVenta != null)
+            {
+                tbl_Ventas venta = db.tbl_Ventas.Find(idVenta);
+
+                venta.id_Venta = idVenta;
+                venta.Total = Total;
+                venta.Fecha = Fecha;
+                venta.Hora = Hora;
+                venta.id_Empleados = idEmpleado;
+
+                db.SaveChanges();
+            }
             return Json("");
         }
 
