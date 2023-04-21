@@ -1,0 +1,119 @@
+﻿<table class="table table-condensed">
+    <tr>
+        <th>id_TipoLibro</th>
+        <th>Estante</th>
+        <th>Tematica</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr id="row-@item.id_TipoLibro">
+            <td> @item.Estante</td>
+            <td> @item.Tematica</td>
+            <td>
+                <button type="button" class="btn btn-primary" onclick="prepareEditRow(@item.id_TipoLibro)">Editar</button>
+                <button type="button" class="btn btn-danger" onclick="deleteRow(@item.id_TipoLibro)">Eliminar</button>
+            </td>
+        </tr>
+    }
+
+</table>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div id="editTiposLibrosModal" class="row">
+    <div class="modal-content">
+        <form>
+            <div class="col-md-3">
+                <Label>id_TipoLibro</Label>
+                <input type="text" id="id_TipoLibro" name="id" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Estante</Label>
+                <input type="text" id="Esta" name="Esta" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Tematica</Label>
+                <input type="text" id="Tema" name="Tema" class="form-control" />
+            </div>
+            <input type="button" onclick="editRow()" value="Guardar cambios">
+        </form>
+    </div>
+</div>
+<script>
+
+    function deleteRow(id) {
+        // Realizar petición AJAX al controlador de Home para eliminar el empleado con el ID proporcionado
+        if (confirm('¿Estás seguro de que deseas eliminar este empleado?')) {
+            $.ajax({
+                url: '/Home/DeleteEmpleado',
+                type: 'POST',
+                data: { id: id },
+                success: function () {
+                    // Si la operación es exitosa, actualizar la tabla sin recargar la página
+                    $('#row-' + id).remove();
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // Si la operación falla, mostrar un mensaje de error
+                    alert('Error al eliminar el empleado.');
+                }
+            });
+        }
+    }
+
+    function prepareEditRow(id) {
+        // Get employee data using id from selected row
+        $.ajax({
+            url: '/Home/GetEmpleado',
+            type: 'GET',
+            data: { id: id },
+            // if successful, function in controller returns a json data object
+            // Then fill this data to the edit form, to be edited
+            success: function (data, status) {
+                document.getElementById('id_Empleados').value = data.id_Empleados;
+                document.getElementById('nom').value = data.Nombres;
+                document.getElementById('apell').value = data.Apellidos;
+                document.getElementById('dni').value = data.DNI;
+                document.getElementById('pre').value = data.Domicilio;
+                document.getElementById('can').value = data.Fecha_de_nacimiento; 
+                document.getElementById('ant').value = data.Antiguedad;
+            },
+            error: function () {
+                alert('Error al preparar datos de empleado para editarse.');
+            }
+        });
+    }
+
+    function editRow() {
+        $.ajax({
+            url: '/Home/SaveEditedEmpleado',
+            type: 'POST',
+            async: true,
+            data: {
+                id: document.getElementById('id_Empleados').value,
+                NombreEmpleado: document.getElementById("nom").value,
+                ApellidosEmpleado: document.getElementById("apell").value,
+                DNIempleado: document.getElementById("dni").value,
+                DomicilioEmpleado: document.getElementById("pre").value,
+                FechaDeNacimientoEmpleado: document.getElementById("can").value,
+                AntiguedadEmpleado: document.getElementById("ant").value
+            },
+            success: function () {
+                alert('Edicion exitosa');
+            },
+            error: function () {
+                alert('Error al editar empleado');
+            }
+        });
+
+        limpiarFormulario();
+    }
+
+    function limpiarFormulario() {
+        document.getElementById("id_Empleados").value = "";
+        document.getElementById("nom").value = "";
+        document.getElementById("apell").value = "";
+        document.getElementById("dni").value = "";
+        document.getElementById("pre").value = "";
+        document.getElementById("can").value = "";
+        document.getElementById("ant").value = "";
+    }
+</script>

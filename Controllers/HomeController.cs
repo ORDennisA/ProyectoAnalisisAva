@@ -258,6 +258,11 @@ namespace MV_P1.Controllers
         {
             return View();
         }
+        public ActionResult EditarTiposLibros()
+        {
+            var lst = db.tbl_Tipos_Libros.ToList();
+            return View(lst);
+        }
         public JsonResult guardarTipoLibros(/* int IdTiposLibros, */ string EstanteLibros, string TematicaLibros)
         {
             tbl_Tipos_Libros d = new tbl_Tipos_Libros();
