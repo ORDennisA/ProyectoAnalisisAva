@@ -483,13 +483,16 @@ namespace MV_P1.Controllers
         public JsonResult guardarUsuarios(string Nombres, string Apellidos, string DNI, string Domicilio, DateTime Fecha_de_nacimento)
         {
             tbl_Usuarios d = new tbl_Usuarios();
+
             d.Nombres = Nombres;
             d.Apellidos = Apellidos;
             d.DNI = DNI;
             d.Domicilio = Domicilio;
             d.Fecha_de_nacimiento = Fecha_de_nacimento;
+
             db.tbl_Usuarios.Add(d);
             db.SaveChanges();
+
             return Json("");
         }
     }

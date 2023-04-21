@@ -9,7 +9,8 @@
             Apellidos: document.getElementById("Apellidos").value,
             DNI: document.getElementById("DNI").value,
             Domicilio: document.getElementById("Domicilio").value,
-            },
+            Fecha_de_nacimiento: document.getElementById("Fecha_de_nacimiento").value
+        },
         success: function (data) {
             alert("Registro exitoso");
         },
@@ -17,4 +18,6 @@
             alert("error");
         }
     });
+
+    console.log(document.getElementById("Fecha_de_nacimiento").value);
 }
