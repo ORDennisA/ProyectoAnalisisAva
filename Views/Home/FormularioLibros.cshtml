@@ -3,48 +3,70 @@
 </script>
 
 <script src="~/Scripts/js_Libros.js"></script>
-<div class="row">
-    <div class="col-md-3">
-        <Label>Nombre</Label>
-        <input type="text" id="Nomb" name="Nomb" class="form-control" />
+<br />
+<div class="container">
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label h6"><i class="bi bi-person-check"></i> Nombre </label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="Nomb" name="Nomb" placeholder="Nombre">
+        </div>
     </div>
-    <div class="col-md-3">
-        <Label>Editorial</Label>
-        <input type="text" id="Edit" name="Edit" class="form-control" />
+    <div class="form-group row">
+
+        <label class="col-sm-2 col-form-label"><i class="bi bi-bank"></i> Editorial</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="Edit" name="Edit" placeholder="Editorial">
+        </div>
     </div>
-    <div class="col-md-3">
-        <Label>Autor</Label>
-        <input type="text" id="Aut" name="Aut" class="form-control" />
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label"><i class="bi bi-bookmark-dash"></i> Autor</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="Aut" name="Aut" placeholder="Autor">
+        </div>
     </div>
-    <div class="col-md-3">
-        <Label>Genero</Label>
-        <input type="text" id="Gene" name="Gene" class="form-control" />
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label"><i class="bi bi-bookmark-plus"></i> Género</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="Gene" name="Gene" placeholder="Género">
+        </div>
     </div>
-    <div class="col-md-3">
-        <Label>PaisOrigen</Label>
-        <input type="text" id="PaisO" name="PaisO" class="form-control" />
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label"><i class="bi bi-globe-americas"></i> Pais de Origen</label>
+        <div class="col-sm-10">
+            <input class="form-control" type="text" id="PaisO" name="PaisO" placeholder="Pais de Origen" />
+        </div>
     </div>
-    <div class="col-md-3">
-        <Label>NoPaginas</Label>
-        <input type="text" id="NoPag" name="NoPag" class="form-control" />
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label"><i class="bi bi-card-list"></i> No de Paginas</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="NoPag" name="NoPag" placeholder="No de Paginas">
+        </div>
     </div>
-    <div class="col-md-3">
-        <Label>FechaEdicion</Label>
-        <input type="date" id="FechaEdi" name="FechaEdi" class="form-control" />
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label"><i class="bi bi-clock-fill"></i> Fecha de Edicion</label>
+        <div class="col-sm-10">
+            <input type="date" class="form-control" id="FechaEdi" name="FechaEdi" placeholder="Fecha de Edicion">
+        </div>
     </div>
-    <div class="col-md-3">
-        <Label>Precio</Label>
-        <input type="text" id="Prec" name="Prec" class="form-control" />
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label"><i class="bi bi-currency-exchange"></i> Precio</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="Prec" name="Prec" placeholder="Precio">
+        </div>
     </div>
-    <div class="col-md-3">
-        <Label>id_TipoLibro</Label>
-        <select id="idTL" name="idTL" class="form-control">
-            <option value="Pendiente">- - SELECCIONAR - -</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-        </select>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label"><i class="bi bi-card-heading"></i> ID Tipo de Libro</label>
+        <div class="col-sm-10">
+            <select id="idTL" name="idTL" class="form-control">
+                <option value="Pendiente">SELECCIONAR</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+        </div>
     </div>
 </div>
+
+
 <br />
 <div class="row">
     <div class="col-md-2">
