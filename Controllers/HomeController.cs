@@ -1,6 +1,7 @@
 ﻿using MV_P1.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Security.Policy;
 using System.Web;
@@ -480,17 +481,17 @@ namespace MV_P1.Controllers
             return View(lst);
         }
 
-        public JsonResult guardarUsuarios(string Nombres, string Apellidos, string DNI, string Domicilio, DateTime Fecha_de_nacimento)
+        public JsonResult guardarUsuarios(string Nombres, string Apellidos, string DNI, string Domicilio, DateTime FechaNacimiento)
         {
-            tbl_Usuarios d = new tbl_Usuarios();
+            tbl_Usuarios user = new tbl_Usuarios();
 
-            d.Nombres = Nombres;
-            d.Apellidos = Apellidos;
-            d.DNI = DNI;
-            d.Domicilio = Domicilio;
-            d.Fecha_de_nacimiento = Fecha_de_nacimento;
+            user.Nombres = Nombres;
+            user.Apellidos = Apellidos;
+            user.DNI = DNI;
+            user.Domicilio = Domicilio;
+            user.Fecha_de_nacimiento = FechaNacimiento;
 
-            db.tbl_Usuarios.Add(d);
+            db.tbl_Usuarios.Add(user);
             db.SaveChanges();
 
             return Json("");
