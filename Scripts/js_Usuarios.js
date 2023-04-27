@@ -19,5 +19,15 @@
         }
     });
 
-    console.log(document.getElementById("FechaNac").value);
+    limpiarFormulario();
+    // console.log(document.getElementById("FechaNac").value);
+}
+
+function limpiarFormulario() {
+    document.getElementById("Nombres").value = "";
+    document.getElementById("Apellidos").value = "";
+    document.getElementById("DNI").value = "";
+    document.getElementById("Domicilio").value = "";
+    document.getElementById("FechaNac").value = "";
+
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.Linq;
+using System.Security.Cryptography.Xml;
 using System.Security.Policy;
 using System.Web;
 using System.Web.Mvc;
@@ -481,6 +482,12 @@ namespace MV_P1.Controllers
             return View(lst);
         }
 
+        public ActionResult EditarUsuarios()
+        {
+            var lst = db.tbl_Usuarios.ToList();
+            return View(lst);
+        }
+
         public JsonResult guardarUsuarios(string Nombres, string Apellidos, string DNI, string Domicilio, DateTime FechaNacimiento)
         {
             tbl_Usuarios user = new tbl_Usuarios();
@@ -495,6 +502,42 @@ namespace MV_P1.Controllers
             db.SaveChanges();
 
             return Json("");
+        }
+
+        public ActionResult DeleteUsuarios(int id)
+        {
+            var user = db.tbl_Usuarios.Find(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            db.tbl_Usuarios.Remove(user);
+            db.SaveChanges();
+            return Json("");
+        }
+
+        public ActionResult GetUsuarios(int id)
+        {
+            // Busca el usuario correspondiente en tu modelo de datos
+            tbl_Usuarios user = db.tbl_Usuarios.Find(id);
+
+            // Si el usuario no se encuentra, devuelve un error
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Crea un objeto anónimo con los datos del usuario y devuelve una respuesta JSON
+            var userJson = new
+            {
+                id_Usuarios = user.id_Usuarios,
+                Nombres = user.Nombres,
+                Apellidos = user.Apellidos,
+                DNI = user.DNI,
+                Domicilio = user.Domicilio,
+                FechaNac = user.Fecha_de_nacimiento
+            };
+            return Json(userJson, JsonRequestBehavior.AllowGet);
         }
     }
 }

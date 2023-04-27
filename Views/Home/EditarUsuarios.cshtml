@@ -1,0 +1,135 @@
+﻿<table class="table table-condensed">
+    <tr>
+        <th>Id_Usuarios</th>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>DNI</th>
+        <th>Domicilio</th>
+        <th>Fecha_De_nacimiento</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr id="row-@item.id_Usuarios">
+            <td> @item.id_Usuarios</td>
+            <td> @item.Nombres</td>
+            <td> @item.Apellidos</td>
+            <td> @item.DNI</td>
+            <td> @item.Domicilio</td>
+            <td> @item.Fecha_de_nacimiento</td>
+            <td>
+                <button type="button" class="btn btn-primary" onclick="prepareEditRow(@item.id_Usuarios)">Editar</button>
+                <button type="button" class="btn btn-danger" onclick="deleteRow(@item.id_Usuarios)">Eliminar</button>
+            </td>
+        </tr>
+    }
+
+</table>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div id="editVentasModal" class="row">
+    <div class="modal-content">
+        <form>
+            <div class="col-md-3">
+                <Label>id_Usuarios</Label>
+                <input type="text" id="id_Usuarios" name="id_Usuarios" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Nombres</Label>
+                <input type="text" id="Nombres" name="Nombres" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Apellidos</Label>
+                <input type="text" id="Apellidos" name="Apellidos" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>DNI</Label>
+                <input type="text" id="DNI" name="DNI" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Domicilio</Label>
+                <input type="text" id="Domicilio" name="Domicilio" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Fecha_de_nacimiento</Label>
+                <input type="date" id="FechaNac" name="FechaNac" class="form-control" />
+            </div>
+            <input type="button" onclick="editRow()" value="Guardar cambios">
+        </form>
+    </div>
+</div>
+<script>
+
+    function deleteRow(id) {
+        // Realizar petición AJAX al controlador de Home para eliminar el usuario con el ID proporcionado
+        if (confirm('¿Estás seguro de que deseas eliminar este usuario?')) {
+            $.ajax({
+                url: '/Home/DeleteUsuarios',
+                type: 'POST',
+                data: { id: id },
+                success: function () {
+                    // Si la operación es exitosa, actualizar la tabla sin recargar la página
+                    $('#row-' + id).remove();
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // Si la operación falla, mostrar un mensaje de error
+                    alert('Error al eliminar usuario.');
+                }
+            });
+        }
+    }
+
+    function prepareEditRow(id) {
+        // Get user data using id from selected row
+        $.ajax({
+            url: '/Home/GetUsuarios',
+            type: 'GET',
+            data: { id: id },
+            // if successful, function in controller returns a json data object
+            // Then fill this data to the edit form, to be edited
+            success: function (data, status) {
+                document.getElementById("id_Usuarios").value = data.id_Usuarios;
+                document.getElementById("Nombres").value = data.Nombres;
+                document.getElementById("Apellidos").value = data.Apellidos;
+                document.getElementById("DNI").value = data.DNI;
+                document.getElementById("Domicilio").value = data.Domicilio;
+                document.getElementById("FechaNac").value = data.FechaNac;
+            },
+            error: function () {
+                alert('Error al preparar datos de usuario para editarse.');
+            }
+        });
+    }
+
+    // This is due by Friday. Work on it Caleb!
+
+    function editRow() {
+        $.ajax({
+            url: '/Home/SaveEditedVenta',
+            type: 'POST',
+            async: true,
+            data: {
+                idVenta: document.getElementById("idVenta").value,
+                Total: document.getElementById("Total").value,
+                Fecha: document.getElementById("Fecha").value,
+                Hora: document.getElementById("Hora").value,
+                idEmpleado: document.getElementById("idEmpleado").value
+            },
+            success: function () {
+                alert('Edicion exitosa');
+            },
+            error: function () {
+                alert('Error al editar venta');
+            }
+        });
+
+        limpiarFormulario();
+    }
+
+    function limpiarFormulario() {
+        document.getElementById("idVenta").value = "";
+        document.getElementById("Total").value = "";
+        document.getElementById("Fecha").value = "";
+        document.getElementById("Hora").value = "";
+        document.getElementById("idEmpleado").value = "";
+    }
+</script>
