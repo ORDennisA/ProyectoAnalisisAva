@@ -3,15 +3,18 @@
     <a href="@Url.Action("FormularioVentas","Home")" class="btn btn-primary">Agregar ventas</a>
 </li>
 
+<li class="nav-item">
+    <a href="@Url.Action("EditarVentas","Home")" class="btn btn-danger">Borrar/Editar</a>
+</li>
+
 <div class="col-sm-8"><h2>Ventas </h2></div>
 <table class="table table-condensed">
     <tr>
-        <th>Id_Venta</th>
+        <th>id_Venta</th>
         <th>Total</th>
         <th>Fecha</th>
         <th>Hora</th>
         <th>id_Empleado</th>
-        <th>id_Venta_Libros</th>
     </tr>
     @foreach (var item in Model)
     {
@@ -20,8 +23,7 @@
             <td> @item.Total</td>
             <td> @item.Fecha</td>
             <td> @item.Hora</td>
-            <td> @item.id_Empleado</td>
-            <td> @item.id_Venta_Libros</td>
+            <td> @item.id_Empleados</td>
         </tr>
     }
 </table>

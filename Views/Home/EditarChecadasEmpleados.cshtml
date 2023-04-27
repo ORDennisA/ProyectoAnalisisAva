@@ -1,0 +1,124 @@
+﻿<table class="table table-condensed">
+    <tr>
+        <th>IdChecadasEmpleados</th>
+        <th>Fecha</th>
+        <th>Entrada</th>
+        <th>Salida</th>
+        <th>IdEmpleados</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr id="row-@item.id_Checadas_empleados">
+            <td> @item.id_Checadas_empleados</td>
+            <td> @item.Fecha</td>
+            <td> @item.Entrada</td>
+            <td> @item.Salida</td>
+            <td> @item.id_Empleados</td>
+            <td>
+                <button type="button" class="btn btn-primary" onclick="prepareEditRow(@item.id_Checadas_empleados)">Editar</button>
+                <button type="button" class="btn btn-danger" onclick="deleteRow(@item.id_Checadas_empleados)">Eliminar</button>
+            </td>
+        </tr>
+    }
+</table>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div id="editChecadasEmpleadosModal" class="row">
+    <div class="modal-content">
+        <form>
+            <div class="col-md-3">
+                <Label>id_Checada_empleado</Label>
+                <input type="text" id="idCE" name="idCE" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Fecha</Label>
+                <input type="date" id="fecha" name="fecha" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Entrada empleados</Label>
+                <input type="time" id="entrada" name="entrada" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Salida empleados</Label>
+                <input type="time" id="salida" name="salida" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Id empleados</Label>
+                <input type="text" id="idEM" name="idEM" class="form-control" />
+            </div>
+            <input type="button" onclick="editRow()" value="Guardar cambios">
+        </form>
+    </div>
+</div>
+<script>
+
+    function deleteRow(id) {
+        // Realizar petición AJAX al controlador de Home para eliminar la checada con el ID proporcionado
+        if (confirm('¿Estás seguro de que deseas eliminar este empleado?')) {
+            $.ajax({
+                url: '/Home/DeleteChecadaEmpleado',
+                type: 'POST',
+                data: { id: id },
+                success: function () {
+                    // Si la operación es exitosa, actualizar la tabla sin recargar la página
+                    $('#row-' + id).remove();
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // Si la operación falla, mostrar un mensaje de error
+                    alert('Error al eliminar el empleado.');
+                }
+            });
+        }
+    }
+
+    function prepareEditRow(id) {
+        // Get check-in data using id from selected row
+        $.ajax({
+            url: '/Home/GetChecadaEmpleado',
+            type: 'GET',
+            data: { id: id },
+            // if successful, function in controller returns a json data object
+            // Then fill this data to the edit form, to be edited
+            success: function (data, status) {
+                document.getElementById("idCE").value = data.id_Checadas_empleados,
+                document.getElementById("fecha").value = data.Fecha,
+                document.getElementById("entrada").value = data.Entrada,
+                document.getElementById("salida").value = data.Salida,
+                document.getElementById("idEM").value = data.id_Empleados
+            },
+            error: function () {
+                alert('Error al preparar datos de checada para editarse.');
+            }
+        });
+    }
+
+    function editRow() {
+        $.ajax({
+            url: '/Home/SaveEditedChecada',
+            type: 'POST',
+            async: true,
+            data: {
+                id_Checadas_empleados: document.getElementById("idCE").value,
+                Fecha: document.getElementById("fecha").value,
+                Entrada: document.getElementById("entrada").value,
+                Salida: document.getElementById("salida").value,
+                id_Empleados: document.getElementById("idEM").value
+            },
+            success: function () {
+                alert('Edicion exitosa');
+            },
+            error: function () {
+                alert('Error al editar empleado');
+            }
+        });
+
+        limpiarFormulario();
+    }
+
+    function limpiarFormulario() {
+        document.getElementById("idCE").value = "";
+        document.getElementById("fecha").value = "";
+        document.getElementById("entrada").value = "";
+        document.getElementById("salida").value = "";
+        document.getElementById("idEM").value = "";
+    }
+</script>

@@ -1,36 +1,35 @@
-﻿
-    <script>
+﻿<script>
 
-    var UrlGuardarVentas = "@Url.Action("guardarUsuarios", "Home")"
+    var UrlGuardarUsuarios = "@Url.Action("guardarUsuarios", "Home")"
 
-    </script>
+</script>
 
-    <script src="~/Scripts/js_Ventas.js"></script>
-    <div class="row">
-        <div class="col-md-3">
-            <Label>Nombres</Label>
-            <input type="text" id="Nombres" name="Nombres" class="form-control" />
-        </div>
-        <div class="col-md-3">
-            <Label>Apellidos</Label>
-            <input type="text" id="Apellidos" name="Apellidos" class="form-control" />
-        </div>
-        <div class="col-md-3">
-            <Label>DNI</Label>
-            <input type="text" id="DNI" name="DNI" class="form-control" />
-        </div>
-        <div class="col-md-3">
-            <Label>Domicilio</Label>
-            <input type="text" id="Domicilio" name="Domicilio" class="form-control" />
-        </div>
-        <div class="col-md-3">
-            <Label>Fecha de nacimiento</Label>
-            <input type="text" id="Fecha_de_nacimiento" name="Fecha_de_nacimiento" class="form-control" />
-        </div>
+<script src="~/Scripts/js_Usuarios.js"></script>
+<div class="row">
+    <div class="col-md-3">
+        <Label>Nombres</Label>
+        <input type="text" id="Nombres" name="Nombres" class="form-control" />
     </div>
-    <br />
-    <div class="row">
-        <div class="col-md-2">
-            <a href="javascript:guardarUsuarios()" class="btn btn-success">Guardar</a>
-        </div>
+    <div class="col-md-3">
+        <Label>Apellidos</Label>
+        <input type="text" id="Apellidos" name="Apellidos" class="form-control" />
     </div>
+    <div class="col-md-3">
+        <Label>DNI</Label>
+        <input type="text" id="DNI" name="DNI" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>Domicilio</Label>
+        <input type="text" id="Domicilio" name="Domicilio" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>Fecha de nacimiento</Label>
+        <input type="date" id="FechaNac" name="FechaNac" class="form-control" />
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <a href="javascript:guardarUsuarios()" class="btn btn-success">Guardar</a>
+    </div>
+</div>

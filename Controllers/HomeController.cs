@@ -1,7 +1,9 @@
 ﻿using MV_P1.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
+using System.Security.Policy;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
@@ -145,10 +147,15 @@ namespace MV_P1.Controllers
         {
             return View();
         }
-        public JsonResult guardarChecadas(int id_Checadas_empleados, DateTime Fecha, TimeSpan Entrada, TimeSpan Salida, int id_Empleados)
+        public ActionResult EditarChecadasEmpleados()
+        {
+            var lst = db.tbl_Checadas_Empleados.ToList();
+            return View(lst);
+        }
+        public JsonResult guardarChecadas(/* int id_Checadas_empleados, */ DateTime Fecha, TimeSpan Entrada, TimeSpan Salida, int id_Empleados)
         {
             tbl_Checadas_Empleados b = new tbl_Checadas_Empleados();
-            b.id_Checadas_empleados = id_Checadas_empleados;
+            // b.id_Checadas_empleados = id_Checadas_empleados;
             b.Fecha = Fecha;
             b.Entrada = Entrada;
             b.Salida = Salida;
@@ -158,10 +165,61 @@ namespace MV_P1.Controllers
             return Json("");
         }
 
+        public ActionResult DeleteChecadaEmpleado(int id)
+        {
+            var checada = db.tbl_Checadas_Empleados.Find(id);
+            if (checada == null)
+            {
+                return HttpNotFound();
+            }
+            db.tbl_Checadas_Empleados.Remove(checada);
+            db.SaveChanges();
+            return Json("");
+        }
+
+        public ActionResult GetChecadaEmpleado(int id)
+        {
+            // Busca el empleado correspondiente en tu modelo de datos
+            tbl_Checadas_Empleados checada = db.tbl_Checadas_Empleados.Find(id);
+
+            // Si el empleado no se encuentra, devuelve un error
+            if (checada == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Crea un objeto anónimo con los datos del empleado y devuelve una respuesta JSON
+            var checadaJson = new
+            {
+                id_Checadas_empleados = checada.id_Checadas_empleados,
+                Fecha = checada.Fecha,
+                Entrada = checada.Entrada,
+                Salida = checada.Salida,
+                id_Empleados = checada.id_Empleados
+            };
+            return Json(checadaJson, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult SaveEditedChecada(int id_Checadas_empleados, DateTime Fecha, TimeSpan Entrada, TimeSpan Salida, int id_Empleados)
+        {
+            if (id_Checadas_empleados != null)
+            {
+                tbl_Checadas_Empleados checada = db.tbl_Checadas_Empleados.Find(id_Checadas_empleados);
+
+                checada.id_Checadas_empleados = id_Checadas_empleados;
+                checada.Fecha = Fecha;
+                checada.Entrada = Entrada;
+                checada.Salida = Salida;
+                checada.id_Empleados = id_Empleados;
+
+                db.SaveChanges();
+            }
+            return Json("");
+        }
+
 
         // EMPLEADOS
 
-         public ActionResult listaEmpleados()
+        public ActionResult listaEmpleados()
         {
             var lst = db.tbl_Empleados.ToList();
             return View(lst);
@@ -335,17 +393,77 @@ namespace MV_P1.Controllers
             return View(lst);
         }
 
+        public ActionResult EditarVentas()
+        {
+            var lst = db.tbl_Ventas.ToList();
+            return View(lst);
+        }
         
-        public JsonResult guardarVentas(int Total, DateTime Fecha, TimeSpan Hora, int idEmpleado, int idVentaLibro) 
+        public JsonResult guardarVentas(/* int idVentaLibro,*/ int Total, DateTime Fecha, TimeSpan Hora, int idEmpleado) 
         {
             tbl_Ventas d = new tbl_Ventas();
+
+            // d.id_Venta = idVentaLibro;
             d.Total = Total;
             d.Fecha = Fecha;
             d.Hora = Hora;
             d.id_Empleados = idEmpleado;
-            d.id_Venta = idVentaLibro;
+
             db.tbl_Ventas.Add(d);
             db.SaveChanges();
+            
+            return Json("");
+        }
+
+        public ActionResult DeleteVenta(int id)
+        {
+            var venta = db.tbl_Ventas.Find(id);
+            if (venta == null)
+            {
+                return HttpNotFound();
+            }
+            db.tbl_Ventas.Remove(venta);
+            db.SaveChanges();
+            return Json("");
+        }
+
+        public ActionResult GetVenta(int id)
+        {
+            // Busca el empleado correspondiente en tu modelo de datos
+            tbl_Ventas venta = db.tbl_Ventas.Find(id);
+
+            // Si el empleado no se encuentra, devuelve un error
+            if (venta == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Crea un objeto anónimo con los datos del empleado y devuelve una respuesta JSON
+            var ventaJson = new
+            {
+                id_Venta = venta.id_Venta,
+                Total = venta.Total,
+                Fecha = venta.Fecha,
+                Hora = venta.Hora,
+                id_Empleados = venta.id_Empleados
+            };
+            return Json(ventaJson, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult SaveEditedVenta(int idVenta, int Total, DateTime Fecha, TimeSpan Hora, int idEmpleado)
+        {
+            if (idVenta != null)
+            {
+                tbl_Ventas venta = db.tbl_Ventas.Find(idVenta);
+
+                venta.id_Venta = idVenta;
+                venta.Total = Total;
+                venta.Fecha = Fecha;
+                venta.Hora = Hora;
+                venta.id_Empleados = idEmpleado;
+
+                db.SaveChanges();
+            }
             return Json("");
         }
 
@@ -363,16 +481,19 @@ namespace MV_P1.Controllers
             return View(lst);
         }
 
-        public JsonResult guardarUsuarios(string Nombres, string Apellidos, string DNI, string Domicilio, DateTime Fecha_de_nacimento)
+        public JsonResult guardarUsuarios(string Nombres, string Apellidos, string DNI, string Domicilio, DateTime FechaNacimiento)
         {
-            tbl_Usuarios d = new tbl_Usuarios();
-            d.Nombres = Nombres;
-            d.Apellidos = Apellidos;
-            d.DNI = DNI;
-            d.Domicilio = Domicilio;
-            d.Fecha_de_nacimiento = Fecha_de_nacimento;
-            db.tbl_Usuarios.Add(d);
+            tbl_Usuarios user = new tbl_Usuarios();
+
+            user.Nombres = Nombres;
+            user.Apellidos = Apellidos;
+            user.DNI = DNI;
+            user.Domicilio = Domicilio;
+            user.Fecha_de_nacimiento = FechaNacimiento;
+
+            db.tbl_Usuarios.Add(user);
             db.SaveChanges();
+
             return Json("");
         }
     }

@@ -5,16 +5,25 @@
         url: UrlGuardarChecadas,
         async: true,
         data: {
-            Nombres: document.getElementById("fecha").value,
-            Apellidos: document.getElementById("entrada").value,
-            DNI: document.getElementById("salida").value,
-            Domicilio: document.getElementById("idEM").value,
+            Fecha: document.getElementById("fecha").value,
+            Entrada: document.getElementById("entrada").value,
+            Salida: document.getElementById("salida").value,
+            id_Empleados: document.getElementById("idEM").value
         },
         success: function (data) {
             alert("Registro exitoso");
         },
         error: function (xhr, status, error) {
-            alert("error");
+            alert(error);
         }
     });
+
+    limpiarFormulario();
 }
+
+function limpiarFormulario() {
+    document.getElementById("fecha").value = "";
+    document.getElementById("entrada").value = "";
+    document.getElementById("salida").value = "";
+    document.getElementById("idEM").value = "";
+} 

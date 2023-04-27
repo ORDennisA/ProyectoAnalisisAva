@@ -1,0 +1,126 @@
+﻿<table class="table table-condensed">
+    <tr>
+        <th>id_Venta</th>
+        <th>Total</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>id_Empleado</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr id="row-@item.id_Venta">
+            <td> @item.id_Venta</td>
+            <td> @item.Total</td>
+            <td> @item.Fecha</td>
+            <td> @item.Hora</td>
+            <td> @item.id_Empleados</td>
+            <td>
+                <button type="button" class="btn btn-primary" onclick="prepareEditRow(@item.id_Venta)">Editar</button>
+                <button type="button" class="btn btn-danger" onclick="deleteRow(@item.id_Venta)">Eliminar</button>
+            </td>
+        </tr>
+    }
+
+</table>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div id="editVentasModal" class="row">
+    <div class="modal-content">
+        <form>
+            <div class="col-md-3">
+                <Label>id_Venta</Label>
+                <input type="text" id="idVenta" name="idVenta" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Total</Label>
+                <input type="text" id="Total" name="Total" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Fecha</Label>
+                <input type="date" id="Fecha" name="Fecha" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Hora</Label>
+                <input type="time" id="Hora" name="Hora" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>id_Empleado</Label>
+                <input type="text" id="idEmpleado" name="idEmpleado" class="form-control" />
+            </div>
+            <input type="button" onclick="editRow()" value="Guardar cambios">
+        </form>
+    </div>
+</div>
+<script>
+
+    function deleteRow(id) {
+        // Realizar petición AJAX al controlador de Home para eliminar la venta con el ID proporcionado
+        if (confirm('¿Estás seguro de que deseas eliminar esta venta?')) {
+            $.ajax({
+                url: '/Home/DeleteVenta',
+                type: 'POST',
+                data: { id: id },
+                success: function () {
+                    // Si la operación es exitosa, actualizar la tabla sin recargar la página
+                    $('#row-' + id).remove();
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // Si la operación falla, mostrar un mensaje de error
+                    alert('Error al eliminar venta.');
+                }
+            });
+        }
+    }
+
+    function prepareEditRow(id) {
+        // Get sale data using id from selected row
+        $.ajax({
+            url: '/Home/GetVenta',
+            type: 'GET',
+            data: { id: id },
+            // if successful, function in controller returns a json data object
+            // Then fill this data to the edit form, to be edited
+            success: function (data, status) {
+                document.getElementById("idVenta").value = data.id_Venta;
+                document.getElementById("Total").value = data.Total;
+                document.getElementById("Fecha").value = data.Fecha;
+                document.getElementById("Hora").value = data.Hora;
+                document.getElementById("idEmpleado").value = data.id_Empleados;
+            },
+            error: function () {
+                alert('Error al preparar datos de venta para editarse.');
+            }
+        });
+    }
+
+    function editRow() {
+        $.ajax({
+            url: '/Home/SaveEditedVenta',
+            type: 'POST',
+            async: true,
+            data: {
+                idVenta: document.getElementById("idVenta").value,
+                Total: document.getElementById("Total").value,
+                Fecha: document.getElementById("Fecha").value,
+                Hora: document.getElementById("Hora").value,
+                idEmpleado: document.getElementById("idEmpleado").value
+            },
+            success: function () {
+                alert('Edicion exitosa');
+            },
+            error: function () {
+                alert('Error al editar venta');
+            }
+        });
+
+        limpiarFormulario();
+    }
+
+    function limpiarFormulario() {
+        document.getElementById("idVenta").value = "";
+        document.getElementById("Total").value = "";
+        document.getElementById("Fecha").value = "";
+        document.getElementById("Hora").value = "";
+        document.getElementById("idEmpleado").value = "";
+    }
+</script>
