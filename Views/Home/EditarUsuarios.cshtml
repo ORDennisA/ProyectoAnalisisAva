@@ -104,21 +104,22 @@
 
     function editRow() {
         $.ajax({
-            url: '/Home/SaveEditedVenta',
+            url: '/Home/SaveEditedUsuarios',
             type: 'POST',
             async: true,
             data: {
-                idVenta: document.getElementById("idVenta").value,
-                Total: document.getElementById("Total").value,
-                Fecha: document.getElementById("Fecha").value,
-                Hora: document.getElementById("Hora").value,
-                idEmpleado: document.getElementById("idEmpleado").value
+                id_Usuarios: document.getElementById("id_Usuarios").value,
+                Nombres: document.getElementById("Nombres").value,
+                Apellidos: document.getElementById("Apellidos").value,
+                DNI: document.getElementById("DNI").value,
+                Domicilio: document.getElementById("Domicilio").value,
+                FechaNacimiento: document.getElementById("FechaNac").value
             },
             success: function () {
                 alert('Edicion exitosa');
             },
             error: function () {
-                alert('Error al editar venta');
+                alert('Error al editar usuario');
             }
         });
 
@@ -126,10 +127,11 @@
     }
 
     function limpiarFormulario() {
-        document.getElementById("idVenta").value = "";
-        document.getElementById("Total").value = "";
-        document.getElementById("Fecha").value = "";
-        document.getElementById("Hora").value = "";
-        document.getElementById("idEmpleado").value = "";
+        document.getElementById("id_Usuarios").value = "";
+        document.getElementById("Nombres").value = "";
+        document.getElementById("Apellidos").value = "";
+        document.getElementById("DNI").value = "";
+        document.getElementById("Domicilio").value = "";
+        document.getElementById("FechaNac").value = "";
     }
 </script>

@@ -539,5 +539,23 @@ namespace MV_P1.Controllers
             };
             return Json(userJson, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult SaveEditedUsuarios(int id_Usuarios, string Nombres, string Apellidos, string DNI, string Domicilio, DateTime FechaNacimiento)
+        {
+            if (id_Usuarios != null)
+            {
+                tbl_Usuarios user = db.tbl_Usuarios.Find(id_Usuarios);
+
+                user.id_Usuarios = id_Usuarios;
+                user.Nombres = Nombres;
+                user.Apellidos = Apellidos;
+                user.DNI = DNI;
+                user.Domicilio = Domicilio;
+                user.Fecha_de_nacimiento = FechaNacimiento;
+
+                db.SaveChanges();
+            }
+            return Json("");
+        }
     }
 }
