@@ -1,0 +1,40 @@
+﻿<script>
+   var UrlGuardarLibro= '@Url.Action("guardarPrestamo", "Home")';
+</script>
+
+<script src="~/Scripts/js_Prestamo.js"></script>
+<div class="row">
+    <div class="col-md-3">
+        <Label>Fecha_de_Salida</Label>
+        <input type="datetime" id="FechaSal" name="FechaSal" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>Fecha_maxima_de_devolucio</Label>
+        <input type="datetime" id="FechaMaxDev" name="FechaMaxDev" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>Fecha_de_devolucion</Label>
+        <input type="datetime" id="FechaDev" name="FechaDev" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>id_Prestamos_Libros</Label>
+        <input type="number" id="Gene" name="Gene" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>id_Usuarios</Label>
+        <input type="number" id="idUsuarios" name="idUsuarios" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>id_Tipos_de_prestamos</Label>
+        <input type="text" id="idTiposdeprestamos" name="idTiposdeprestamos" class="form-control" />
+    </div>
+    
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <a href="javascript:guardarPrestamo()" class="btn btn-success">Guardar</a>
+    </div>
+</div>
+
+
