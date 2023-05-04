@@ -180,10 +180,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\animate.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\animate.css" />
+    <Content Include="Content\personales.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -207,7 +210,13 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\elixz196-001-site1 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\elixz196-001-site1 - FTP1.pubxml" />
+    <None Include="Properties\PublishProfiles\elixz196-001-site1 - FTP2.pubxml" />
+    <None Include="Properties\PublishProfiles\elixz196-001-site1 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\elixz196-001-site1 - Web Deploy1.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\js_Prestamos.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -2304,6 +2313,8 @@
     <Content Include="Views\Home\listaVentas.cshtml" />
     <Content Include="Views\Home\FormularioUsuarios.cshtml" />
     <Content Include="Views\Home\listaUsuarios.cshtml" />
+    <Content Include="Views\Home\listaPrestamo.cshtml" />
+    <Content Include="Views\Home\FormularioPrestamo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
