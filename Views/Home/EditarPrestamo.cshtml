@@ -35,23 +35,23 @@
             </div>
             <div class="col-md-3">
                 <Label>FechaDeSalida</Label>
-                <input type="datetime" id="FechaSal" name="FechaSal" class="form-control" />
+                <input type="date" id="FechaSal" name="FechaSal" class="form-control" />
             </div>
             <div class="col-md-3">
                 <Label>FechaMaximaDeDevolucion</Label>
-                <input type="datetime" id="FechaMaxDev" name="FechaMaxDev" class="form-control" />
+                <input type="date" id="FechaMaxDev" name="FechaMaxDev" class="form-control" />
             </div>
             <div class="col-md-3">
                 <Label>FechaDeDevolucion</Label>
-                <input type="datetime" id="FechaDev" name="FechaDev" class="form-control" />
+                <input type="date" id="FechaDev" name="FechaDev" class="form-control" />
             </div>
             <div class="col-md-3">
                 <Label>id_Usuarios</Label>
-                <input type="text" id="idUsuarios" name="idUsuarios" class="form-control" />
+                <input type="text" id="idUsuario" name="idUsuario" class="form-control" />
             </div>
             <div class="col-md-3">
                 <Label>id_Tipo_de_prestamos</Label>
-                <input type="date" id="idTiposdeprestamos" name="idTiposdeprestamos" class="form-control" />
+                <input type="date" id="idTipoPrestamo" name="idTipoPrestamo" class="form-control" />
             </div>
             <input type="button" onclick="editRow()" value="Guardar cambios">
         </form>
@@ -60,7 +60,7 @@
 <script>
     function deleteRow(id) {
         // Realizar petición AJAX al controlador de Home para eliminar el usuario con el ID proporcionado
-        if (confirm('¿Estás seguro de que deseas eliminar este prestamp?')) {
+        if (confirm('¿Estás seguro de que deseas eliminar este prestamo?')) {
             $.ajax({
                 url: '/Home/DeletePrestamo',
                 type: 'POST',
@@ -86,14 +86,14 @@
             // Then fill this data to the edit form, to be edited
             success: function (data, status) {
                 document.getElementById("id_Prestamo").value = data.id_Prestamo;
-                document.getElementById("FechaDeSalida").value = data.FechaDeSalida;
-                document.getElementById("FechaMaximaDeDevolucion").value = data.FechaMaximaDeDevolucion;
-                document.getElementById("FechaDeDevolucion").value = data.FechaDeDevolucion;
-                document.getElementById("id_Usuarios").value = data.id_Usuarios;
-                document.getElementById("id_TipoDePrestamos").value = data.id_Tipo_de_prestamos;
+                document.getElementById("FechaSal").value = data.FechaSal;
+                document.getElementById("FechaMaxDev").value = data.FechaMaxDev;
+                document.getElementById("FechaDev").value = data.FechaDev;
+                document.getElementById("idUsuario").value = data.idUsuario;
+                document.getElementById("idTipoPrestamo").value = data.idTipoPrestamo;
             },
             error: function () {
-                alert('Error al preparar datos de usuario para editarse.');
+                alert('Error al preparar datos de prestamo para editarse.');
             }
         });
     }
@@ -104,26 +104,28 @@
             type: 'POST',
             async: true,
             data: {
-                FechaDeSalida: document.getElementById("FechaDeSalida").value,
-                FechaMaximaDeDevolucion: document.getElementById("FechaMaximaDeDevolucion").value,
-                FechaDeDevolcuion: document.getElementById("FechaDeDevolucion").value,
-                idUsuarios: document.getElementById("id_Usuarios").value,
-                idTipoDePrestamos: document.getElementById("id_TipoDePrestamos").value
+                id_Prestamo: document.getElementById("id_Prestamo").value = data.id_Prestamo,
+                FechaSal: document.getElementById("FechaSal").value = data.FechaSal,
+                FechaMaxDev: document.getElementById("FechaMaxDev").value = data.FechaMaxDev,
+                FechaDev: document.getElementById("FechaDev").value = data.FechaDev,
+                idUsuario: document.getElementById("idUsuario").value = data.idUsuario,
+                idTipoPrestamo: document.getElementById("idTipoPrestamo").value = data.idTipoPrestamo,
             },
             success: function () {
                 alert('Edicion exitosa');
             },
             error: function () {
-                alert('Error al editar venta');
+                alert('Error al editar prestamo');
             }
         });
         limpiarFormulario();
     }
     function limpiarFormulario() {
-        document.getElementById("FechaDeSalida").value = "";
-        document.getElementById("FechaMaximaDeDevolucion").value = "";
-        document.getElementById("FechaDeDevolucion").value = "";
-        document.getElementById("idUsuarios").value = "";
-        document.getElementById("idTipoDePrestamos").value = "";
+        document.getElementById("id_Prestamo").value = "";
+        document.getElementById("FechaSal").value = "";
+        document.getElementById("FechaMaxDev").value = "";
+        document.getElementById("FechaDev").value = "";
+        document.getElementById("idUsuario").value = "";
+        document.getElementById("idTipoPrestamo").value = "";
     }
 </script>

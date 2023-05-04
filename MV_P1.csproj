@@ -2304,6 +2304,7 @@
     <Content Include="Views\Home\listaVentas.cshtml" />
     <Content Include="Views\Home\FormularioUsuarios.cshtml" />
     <Content Include="Views\Home\listaUsuarios.cshtml" />
+    <Content Include="Views\Home\listaPrestamo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

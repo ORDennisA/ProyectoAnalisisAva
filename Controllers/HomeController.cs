@@ -574,14 +574,20 @@ namespace MV_P1.Controllers
             return View(lst);
         }
 
-        public JsonResult guardarPrestamo(DateTime FechaSalida, DateTime FechaMaxDev, DateTime FechaDev, int idUsuarios, int idTipoDePrestamos)
+        public ActionResult EditarPrestamo()
+        {
+            var lst = db.tbl_Prestamos.ToList();
+            return View(lst);
+        }
+
+        public JsonResult guardarPrestamo(DateTime FechaSal, DateTime FechaMaxDev, DateTime FechaDev, int idUsuario, int idTipoPrestamo)
         {
             tbl_Prestamos d = new tbl_Prestamos();
-            d.Fecha_de_Salida = FechaSalida;
+            d.Fecha_de_Salida = FechaSal;
             d.Fecha_maxima_de_devolucion = FechaMaxDev;
             d.Fecha_de_devolucion = FechaDev;
-            d.id_Usuarios = idUsuarios;
-            d.id_Tipos_de_prestamos = idTipoDePrestamos;
+            d.id_Usuarios = idUsuario;
+            d.id_Tipos_de_prestamos = idTipoPrestamo;
             db.tbl_Prestamos.Add(d);
             db.SaveChanges();
             return Json("");
@@ -601,40 +607,40 @@ namespace MV_P1.Controllers
 
         public ActionResult GetPrestamo(int id)
         {
-            // Busca el libro correspondiente en tu modelo de datos
-            tbl_Prestamos libro = db.tbl_Prestamos.Find(id);
+            // Busca el prestamo correspondiente en tu modelo de datos
+            tbl_Prestamos prestamo = db.tbl_Prestamos.Find(id);
 
-            // Si el libro no se encuentra, devuelve un error
-            if (libro == null)
+            // Si el prestamo no se encuentra, devuelve un error
+            if (prestamo == null)
             {
                 return HttpNotFound();
             }
 
             // Crea un objeto anónimo con los datos del libro y devuelve una respuesta JSON
-            var libroJSON = new
+            var prestamoJson = new
             {
-                idPrestamo = libro.id_Prestamo,
-                FechaSalida = libro.Fecha_de_Salida,
-                FechaMaxDev = libro.Fecha_maxima_de_devolucion,
-                FechaDev = libro.Fecha_de_devolucion,
-                idTipoDePrestamos = libro.id_Tipos_de_prestamos,
-                idUsuarios = libro.id_Usuarios
+                id_Prestamo = prestamo.id_Prestamo,
+                FechaSal = prestamo.Fecha_de_Salida,
+                FechaMaxDev = prestamo.Fecha_maxima_de_devolucion,
+                FechaDev = prestamo.Fecha_de_devolucion,
+                idUsuario = prestamo.id_Usuarios,
+                idTipoPrestamo = prestamo.id_Tipos_de_prestamos,
             };
-            return Json(libroJSON, JsonRequestBehavior.AllowGet);
+            return Json(prestamoJson, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult SaveEditedPrestamo(int idPrestamos, DateTime FechaSalida, DateTime FechaMaxDev, DateTime FechaDev, int idUsuarios, int idTipoDePrestamos)
+        public JsonResult SaveEditedPrestamo(int id_Prestamo, DateTime FechaSal, DateTime FechaMaxDev, DateTime FechaDev, int idUsuario, int idTipoPrestamo)
         {
-            if (idPrestamos != null)
+            if (id_Prestamo != null)
             {
-                tbl_Prestamos prestamos = db.tbl_Prestamos.Find(idPrestamos);
+                tbl_Prestamos prestamos = db.tbl_Prestamos.Find(id_Prestamo);
 
-                prestamos.id_Prestamo = idPrestamos;
-                prestamos.Fecha_de_Salida = FechaSalida;
+                prestamos.id_Prestamo = id_Prestamo;
+                prestamos.Fecha_de_Salida = FechaSal;
                 prestamos.Fecha_maxima_de_devolucion = FechaMaxDev;
                 prestamos.Fecha_de_devolucion = FechaDev;
-                prestamos.id_Usuarios = idUsuarios;
-                prestamos.id_Tipos_de_prestamos = idTipoDePrestamos;
+                prestamos.id_Usuarios = idUsuario;
+                prestamos.id_Tipos_de_prestamos = idTipoPrestamo;
 
                 db.SaveChanges();
             }

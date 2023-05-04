@@ -1,0 +1,33 @@
+﻿
+<li class="nav-item">
+    <a href="@Url.Action("FormularioPrestamo","Home")" class="btn btn-primary">Agregar prestamos</a>
+</li>
+
+<li class="nav-item">
+    <a href="@Url.Action("EditarPrestamo","Home")" class="btn btn-danger">Borrar/Editar</a>
+</li>
+
+<div class="col-sm-8"><h2>Prestamos </h2></div>
+﻿<table class="table table-condensed">
+    <tr>
+        <th>Id_Prestamo</th>
+        <th>FechaDeSalida</th>
+        <th>FechaMaximaDeDevolucion</th>
+        <th>FechaDeDevolucion</th>
+        <th>Id_Usuarios</th>
+        <th>Id_Tipo_de_Prestamo</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr id="row-@item.id_Prestamo">
+            <td> @item.id_Prestamo</td>
+            <td> @item.FechaDeSalida</td>
+            <td> @item.FechaMaximaDeDevoluacion</td>
+            <td> @item.FechaDeDevolucion</td>
+            <td> @item.id_Usuarios</td>
+            <td> @item.id_Tipo_de_prestamos</td>
+        </tr>
+    }
+
+</table>

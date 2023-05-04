@@ -5,11 +5,11 @@
         url: UrlGuardarPrestamo,
         async: true,
         data: {
-            FechaDeSalida: document.getElementById("FechaSalida").value,
-            FechaMaximaDeDevolucion: document.getElementById("FechaMaxDev").value,
-            FechaDeDevolucion: document.getElementById("FechaDev").value,
-            id_Usuario: document.getElementById("idUsuario").value,
-            id_TipoDePrestamo: document.getElementById("idTipoPrestamo").value
+            FechaSal: document.getElementById("FechaSal").value,
+            FechaMaxDev: document.getElementById("FechaMaxDev").value,
+            FechaDev: document.getElementById("FechaDev").value,
+            idUsuario: document.getElementById("idUsuario").value,
+            idTipoPrestamo: document.getElementById("idTipoPrestamo").value
         },
         success: function (data) {
             alert("Registro exitoso");
@@ -18,4 +18,14 @@
             alert("error");
         }
     });
+
+    limpiarFormulario();
+}
+
+function limpiarFormulario() {
+    document.getElementById("FechaSal").value = "";
+    document.getElementById("FechaMaxDev").value = "";
+    document.getElementById("FechaDev").value = "";
+    document.getElementById("idUsuario").value = "";
+    document.getElementById("idTipoPrestamo").value = "";
 }
