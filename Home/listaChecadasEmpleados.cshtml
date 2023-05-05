@@ -1,0 +1,29 @@
+﻿<div class="container">
+
+    <div class="col-sm-8"><h2 class="display-4 animate__animated animate__slow animate__fadeInLeft"><i class="bi bi-check2-square"></i> Checadas empleados </h2></div>
+
+    <div class="table-responsive animate__animated animate__backInDown animate__slow">
+        <table class="table table-condensed">
+            <tr>
+                <th class="h6 animate__delay-2s animate__animated animate__fadeIn"><i class="bi bi-clipboard-check"></i> ID de Checadas</th>
+                <th class="h6 animate__delay-2ss animate__animated animate__fadeIn"><i class="bi bi-calendar-date"></i> Fecha</th>
+                <th class="h6 animate__delay-3s animate__animated animate__fadeIn"><i class="bi bi-box-arrow-right"></i> Entrada</th>
+                <th class="h6 animate__delay-3ss animate__animated animate__fadeIn"><i class="bi bi-box-arrow-left"></i> Salida</th>
+                <th class="h6 animate__delay-4s animate__animated animate__fadeIn"><i class="bi bi-fingerprint"></i> ID de Empleados</th>
+
+            </tr>
+            @foreach (var item in Model)
+            {
+<tr>
+    <td> @item.id_Checadas_empleados</td>
+    <td> @item.Fecha</td>
+    <td> @item.Entrada</td>
+    <td> @item.Salida</td>
+    <td> @item.id_Empleados</td>
+</tr>}
+        </table>
+    </div>
+    <div class=" animate__animated animate__flash animate__delay-4ss ">
+        <a href="@Url.Action("FormularioChecadasEmpleados","Home")" class="animar-boton btn btn-primary float-right animate__animated animate__slow animate__fadeInBottomRight"><span class="texto-boton">Agregar checadas empleados</span></a>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+﻿<script>
+   var UrlGuardarLibros = '@Url.Action("guardarLibros", "Home")';
+</script>
+
+<script src="~/Scripts/js_Libros.js"></script>
+<br />
+<div class="container animate__animated animate__slow animate__fadeInRight">
+
+    <div class="col-sm-8"><h2 class="display-4 animate__animated animate__slow animate__fadeInLeft"><i class="bi bi-book-fill"></i> Añadir Libros </h2></div>
+
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label h6"><i class="bi bi-person-check"></i> Nombre </label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="Nomb" name="Nomb" placeholder="Nombre">
+        </div>
+    </div>
+    <div class="form-group row">
+
+        <label class="col-sm-2 col-form-label"><i class="bi bi-bank"></i> Editorial</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="Edit" name="Edit" placeholder="Editorial">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label"><i class="bi bi-bookmark-dash"></i> Autor</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="Aut" name="Aut" placeholder="Autor">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label"><i class="bi bi-bookmark-plus"></i> Género</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="Gene" name="Gene" placeholder="Género">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label"><i class="bi bi-globe-americas"></i> Pais de Origen</label>
+        <div class="col-sm-10">
+            <input class="form-control" type="text" id="PaisO" name="PaisO" placeholder="Pais de Origen" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label"><i class="bi bi-card-list"></i> No de Paginas</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="NoPag" name="NoPag" placeholder="No de Paginas">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label"><i class="bi bi-clock-fill"></i> Fecha de Edicion</label>
+        <div class="col-sm-10">
+            <input type="date" class="form-control" id="FechaEdi" name="FechaEdi" placeholder="Fecha de Edicion">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label"><i class="bi bi-currency-exchange"></i> Precio</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="Prec" name="Prec" placeholder="Precio">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label"><i class="bi bi-card-heading"></i> Temática</label>
+        <div class="col-sm-10">
+            <select id="idTL" name="idTL" class="form-control">
+                <option value="Pendiente">SELECCIONAR</option>
+                @foreach (var item in Model)
+                {
+                <option value="@item.id_TipoLibro">@item.Tematica</option>
+}
+
+            </select>
+        </div>
+    </div>
+
+
+
+    <br />
+    <div class="">
+        <a href="javascript:guardarLibros()" class="animar-boton btn btn-primary float-right animate__animated animate__slow animate__fadeInBottomRight">Guardar</a>
+    </div>
+</div>
+<!-- 
+    <script>
+        function myFunction() {
+            document.getElementById("idTipoLi").innerHTML =
+                (idTipoLi.selectedIndex.value + '</b>')
+        }
+    </script>
+-->
+

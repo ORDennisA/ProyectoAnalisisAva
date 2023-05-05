@@ -1,0 +1,55 @@
+﻿
+    <script>
+
+    var UrlGuardarUsuarios = "@Url.Action("guardarUsuarios", "Home")"
+
+    </script>
+
+    <script src="~/Scripts/js_Usuarios.js"></script>
+    <br />
+
+    <div class="container animate__animated animate__slow animate__fadeInRight">
+
+        <div class="col-sm-8"><h2 class="display-4 animate__animated animate__slow animate__fadeInLeft"><i class="bi bi-people"></i> Añadir Usuarios </h2></div>
+
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label h6"><i class="bi bi-card-list"></i> Nombres</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="Nombres" name="Nombres" placeholder="Nombres">
+            </div>
+        </div>
+        <div class="form-group row">
+
+            <label class="col-sm-2 col-form-label"><i class="bi bi-card-text"></i> Apellidos</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="Apellidos" name="Apellidos" placeholder="Apellidos">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"><i class="bi bi-person-vcard-fill"></i> DNI</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="DNI" name="DNI" placeholder="DNI">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"><i class="bi bi-pin-map"></i> Domicilio</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="Domicilio" name="Domicilio" placeholder="Domicilio">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"><i class="bi bi-calendar-date"></i> Fecha de nacimiento</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="date" id="FechaNac" name="FechaNac" placeholder="Fecha de nacimiento" />
+            </div>
+        </div>
+
+
+
+
+        <br />
+        <div class="">
+            <a href="javascript:guardarUsuarios()" class="animar-boton btn btn-primary float-right animate__animated animate__slow animate__fadeInBottomRight">Guardar</a>
+        </div>
+    </div>

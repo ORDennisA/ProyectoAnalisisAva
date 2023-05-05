@@ -1,0 +1,67 @@
+﻿
+    <script>
+
+    var urlGuardarPrestamos = "@Url.Action("guardarPrestamo", "Home")"
+
+    </script>
+
+    <script src="~/Scripts/js_Prestamos.js"></script>
+    <br />
+
+    <div class="container animate__animated animate__slow animate__fadeInRight">
+
+        <div class="col-sm-8"><h2 class="display-4 animate__animated animate__slow animate__fadeInLeft"><i class="bi bi-house-add"></i> Formulario de Prestamos </h2></div>
+
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label h6"><i class="bi bi-house-up"></i> Fecha de salida</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" id="fechasalida" name="fechasalida" placeholder="Nombres">
+            </div>
+        </div>
+        <div class="form-group row">
+
+            <label class="col-sm-2 col-form-label"><i class="bi bi-alarm"></i> Fecha máxima de devolución</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" id="fechamaxdev" name="fechamaxdev" placeholder="Apellidos">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"><i class="bi bi-house-down"></i> Fecha de devolución</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" id="fechadedevolucion" name="fechadedevolucion" placeholder="DNI">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"><i class="bi bi-fingerprint"></i> Usuario </label>
+            <div class="col-sm-10">
+                <select id="idusuario" name="idusuario" class="form-control">
+                    <option value="Pendiente">SELECCIONAR</option>
+                    @foreach (var usuarios in ViewBag.Usuarios)
+                    {
+                <option value="@usuarios.id_Usuarios">@usuarios.id_Usuarios. @usuarios.Nombres</option>}
+
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"><i class="bi bi-postcard"></i> Tipo de prestamo </label>
+            <div class="col-sm-10">
+                <select id="idtipop" name="idtipop" class="form-control">
+                    <option value="Pendiente">SELECCIONAR</option>
+                    @foreach (var prestamos in ViewBag.Prestamos)
+                    {
+                        <option value="@prestamos.id_Tipos_de_prestamos">@prestamos.Descripcion</option>
+}
+                </select>
+            </div>
+        </div>
+
+
+
+
+        <br />
+        <div class="">
+            <a href="javascript:guardarPrestamo()" class="animar-boton btn btn-primary float-right animate__animated animate__slow animate__fadeInBottomRight">Guardar</a>
+        </div>
+    </div>

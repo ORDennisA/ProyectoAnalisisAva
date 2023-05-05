@@ -1,0 +1,51 @@
+﻿<script>
+    var UrlGuardarChecadas= '@Url.Action("guardarChecadas", "Home")';
+</script>
+
+<script src="~/Scripts/js_ChecadasEmp.js"></script>
+
+<br />
+<div class="container animate__animated animate__slow animate__fadeInRight">
+    <div class="col-sm-8"><h2 class="display-4 animate__animated animate__slow animate__fadeInLeft"><i class="bi bi-check2-square"></i> Añadir Checadas empleados </h2></div>
+
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label h6"><i class="bi bi-calendar-date"></i> Fecha</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="fecha" name="fecha" placeholder="Fecha">
+        </div>
+    </div>
+    <div class="form-group row">
+
+        <label for="inputEmail3" class="col-sm-2 col-form-label"><i class="bi bi-box-arrow-right"></i> Entrada</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="entrada" name="entrada" placeholder="Entrada">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-2 col-form-label"><i class="bi bi-box-arrow-left"></i> Salida empleados</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="salida" name="salida" placeholder="Salida">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label"><i class="bi bi-fingerprint"></i> Empleado</label>
+        <div class="col-sm-10">
+            <select id="idEM" name="idEM" class="form-control">
+                <option value="Pendiente">Seleccionar</option>
+
+                @foreach (var item in Model)
+                {
+    <option value="@item.id_Empleados">@item.Nombres</option>
+}
+            </select>
+        </div>
+    </div>
+
+
+    <br />
+    <div class="animate__animated">
+        <a href="javascript:guardarChecadas()" class="animar-boton btn btn-primary float-right animate__animated animate__slow animate__fadeInBottomRight">Guardar</a>
+    </div>
+
+</div>

@@ -1,0 +1,38 @@
+﻿
+
+
+<div class="container">
+
+    <div class="col-sm-8"><h2 class="display-4 animate__animated animate__slow animate__fadeInLeft"><i class="bi bi-people"></i> Usuarios </h2></div>
+
+    <div class="table-responsive animate__animated animate__backInDown animate__slow">
+        <table class="table table-condensed">
+            <tr>
+                <th class="h6 animate__delay-2s animate__animated animate__fadeIn"> Id de Usuario</th>
+                <th class="h6 animate__delay-2ss animate__animated animate__fadeIn"> Nombres</th>
+                <th class="h6 animate__delay-3s animate__animated animate__fadeIn"> Apellidos</th>
+                <th class="h6 animate__delay-3ss animate__animated animate__fadeIn"> DNI</th>
+                <th class="h6 animate__delay-4s animate__animated animate__fadeIn"> Domicilio</th>
+                <th class="h6 animate__delay-4ss animate__animated animate__fadeIn"> Fecha de nacimiento</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+        <tr>
+            <td> @item.id_Usuarios</td>
+            <td> @item.Nombres</td>
+            <td> @item.Apellidos</td>
+            <td> @item.DNI</td>
+            <td> @item.Domicilio</td>
+            <td> @item.Fecha_de_nacimiento</td>
+        </tr>
+}
+        </table>
+    </div>
+
+
+    <div class=" animate__animated animate__flash animate__delay-7s ">
+        <a href="@Url.Action("FormularioUsuarios","Home")" class="animar-boton btn btn-primary float-right animate__animated animate__slow animate__fadeInBottomRight"><span class="texto-boton">Agregar Usuarios</span></a>
+    </div>
+
+</div>

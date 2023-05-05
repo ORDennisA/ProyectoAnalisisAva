@@ -1,0 +1,34 @@
+﻿<div class="container">
+
+    <div class="col-sm-8"><h2 class="display-4 animate__animated animate__slow animate__fadeInLeft"><i class="bi bi-house-add"></i> Prestamos </h2></div>
+
+    <div class="table-responsive animate__animated animate__backInDown animate__slow">
+        <table class="table table-condensed">
+            <tr>
+                <th class="h6 animate__delay-2s animate__animated animate__fadeIn"><i class="bi bi-credit-card-2-front"></i> ID de prestamo</th>
+                <th class="h6 animate__delay-2ss animate__animated animate__fadeIn"><i class="bi bi-house-up"></i> Fecha de salida</th>
+                <th class="h6 animate__delay-3s animate__animated animate__fadeIn"><i class="bi bi-alarm"></i> Fecha máxima de devolución</th>
+                <th class="h6 animate__delay-3ss animate__animated animate__fadeIn"><i class="bi bi-house-down"></i> Fecha de devolución</th>
+                <th class="h6 animate__delay-4s animate__animated animate__fadeIn"><i class="bi bi-fingerprint"></i> Usuarios</th>
+                <th class="h6 animate__delay-4ss animate__animated animate__fadeIn"><i class="bi bi-postcard"></i> Tipo de prestamos</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+        <tr>
+            <td> @item.IdPrestamo</td>
+            <td> @item.FechaDeSalida</td>
+            <td> @item.FechaMaximaDeDevolucion</td>
+            <td> @item.FechaDeDevolucion</td>
+            <td> @item.Nombres</td>
+            <td> @item.Descripcion</td>
+        </tr>
+}
+        </table>
+    </div>
+    <div class=" animate__animated animate__flash animate__delay-7s ">
+        <a href="@Url.Action("FormularioPrestamo","Home")" class="m-1 animar-boton btn btn-primary float-right animate__animated animate__slow animate__fadeInBottomRight"><span class="texto-boton">Agregar prestamo</span></a>
+        <a href="@Url.Action("EditarPrestamo","Home")" class="m-1 animar-boton btn btn-danger float-right animate__animated animate__slow animate__fadeInBottomRight">Borrar/Editar</a>
+    </div>
+
+
+</div>

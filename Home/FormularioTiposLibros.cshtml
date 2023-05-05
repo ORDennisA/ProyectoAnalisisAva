@@ -1,0 +1,35 @@
+﻿<script>
+
+    var UrlGuardarTipoLibros = "@Url.Action("guardarTipoLibros", "Home")"
+
+</script>
+
+<script src="~/Scripts/js_TipoLibros.js"></script>
+<br />
+
+<div class="container animate__animated animate__slow animate__fadeInRight">
+
+    <div class="col-sm-8"><h2 class="display-4 animate__animated animate__slow animate__fadeInLeft"><i class="bi bi-journal-bookmark-fill"></i> Añadir Tipos de libros </h2></div>
+
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label h6"><i class="bi bi-bookshelf"></i> Estante</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="Esta" name="Esta" placeholder="Estante">
+        </div>
+    </div>
+    <div class="form-group row">
+
+        <label class="col-sm-2 col-form-label"><i class="bi bi-bookmarks-fill"></i> Temática</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="Tema" name="Tema" placeholder="Temática">
+        </div>
+    </div>
+
+
+
+    <br />
+    <div class="">
+        <a href="javascript:guardarTipoLibros()" class="animar-boton btn btn-primary float-right animate__animated animate__slow animate__fadeInBottomRight">Guardar</a>
+    </div>
+</div>
