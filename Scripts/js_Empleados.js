@@ -16,18 +16,7 @@
             alert("Registro exitoso");
         },
         error: function (xhr, status, error) {
-            alert(error);
+            alert("error");
         }
     });
-
-    limpiarFormulario();
-}
-
-function limpiarFormulario() {
-    document.getElementById("nom").value = "";
-    document.getElementById("apell").value = "";
-    document.getElementById("dni").value = "";
-    document.getElementById("pre").value = "";
-    document.getElementById("can").value = "";
-    document.getElementById("ant").value = "";
 }

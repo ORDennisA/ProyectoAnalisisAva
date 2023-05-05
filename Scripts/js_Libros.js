@@ -2,7 +2,7 @@
 
     $.ajax({
         type: "POST",
-        url: UrlGuardarLibros,
+        url: UrlGuardarLibro,
         async: true,
         data: {
             Nombre: document.getElementById("Nomb").value,
@@ -13,27 +13,13 @@
             NoPaginas: document.getElementById("NoPag").value,
             FechaEdicion: document.getElementById("FechaEdi").value,
             Precio: document.getElementById("Prec").value,
-            id_TipoLibro: document.getElementById("idTL").value
+            id_TipoLibro: document.getElementById("idTipoLi").value
         },
         success: function (data) {
             alert("Registro exitoso");
         },
         error: function (xhr, status, error) {
-            alert(error);
+            alert("error");
         }
     });
-
-    limpiarFormulario();
-}
-
-function limpiarFormulario() {
-    document.getElementById("Nomb").value = "";
-    document.getElementById("Edit").value = "";
-    document.getElementById("Aut").value = "";
-    document.getElementById("Gene").value = "";
-    document.getElementById("PaisO").value = "";
-    document.getElementById("NoPag").value = "";
-    document.getElementById("FechaEdi").value = "";
-    document.getElementById("Prec").value = "";
-    document.getElementById("idTL").value = "";
 }

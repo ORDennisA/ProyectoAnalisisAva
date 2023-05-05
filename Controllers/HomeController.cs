@@ -32,8 +32,8 @@ namespace MV_P1.Controllers
             return View();
         }
 
-
-        // LIBROS
+        //---------------------------------------------------------CODIGO DE LIBROS------------------------------------------------------/
+        // ------------------------------------------------------------------------------------------------------------------------------/
 
         public ActionResult listaLibros()
         {
@@ -43,11 +43,7 @@ namespace MV_P1.Controllers
         public ActionResult FormularioLibros()
         {
             ViewBag.TipoLibros = db.tbl_Tipos_Libros.ToList();
-            return View();
-        }
-        public ActionResult EditarLibros()
-        {
-            var lst = db.tbl_Libros.ToList();
+            var lst = db.tbl_Tipos_Libros.ToList();
             return View(lst);
         }
 
@@ -69,17 +65,10 @@ namespace MV_P1.Controllers
             db.SaveChanges();
             return Json("");
         }
-
-        public ActionResult DeleteLibro(int id)
+        public ActionResult EditarLibros()
         {
-            var libro = db.tbl_Libros.Find(id);
-            if (libro == null)
-            {
-                return HttpNotFound();
-            }
-            db.tbl_Libros.Remove(libro);
-            db.SaveChanges();
-            return Json("");
+            var lst = db.tbl_Libros.ToList();
+            return View(lst);
         }
 
         public ActionResult GetLibro(int id)
@@ -132,19 +121,40 @@ namespace MV_P1.Controllers
             }
             return Json("");
         }
+        public ActionResult DeleteLibro(int id)
+        {
+            var libro = db.tbl_Libros.Find(id);
+            if (libro == null)
+            {
+                return HttpNotFound();
+            }
+            db.tbl_Libros.Remove(libro);
+            db.SaveChanges();
+            return Json("");
+        }
+
+        //--------------------------------------------------------CODIGO DE CHECADAS DE EMPLEADOS-------------------------------------------------------/
+        //----------------------------------------------------------------------------------------------------------------------------------------------/
 
 
-        // CHECADAS EMPLEADOS
+
+
+        //LISTA DE CHECADAS EMPLEADOS
 
         public ActionResult listaChecadasEmpleados()
         {
             var lst = db.tbl_Checadas_Empleados.ToList();
             return View(lst);
         }
+
+        //FORMULARIO DE CHECADAS DE EMPLEADOS
         public ActionResult FormularioChecadasEmpleados()
         {
-            return View();
+            var lst = db.tbl_Empleados.ToList();
+            return View(lst);
         }
+
+        //LINEA PARA GUARDAR CHECADAS
         public JsonResult guardarChecadas(int id_Checadas_empleados, DateTime Fecha, TimeSpan Entrada, TimeSpan Salida, int id_Empleados)
         {
             tbl_Checadas_Empleados b = new tbl_Checadas_Empleados();
@@ -159,22 +169,48 @@ namespace MV_P1.Controllers
         }
 
 
-        // EMPLEADOS
+        //--------------------------------------------------------CODIGO DE EMPLEADOS------------------------------------------------------/
+        // ------------------------------------------------------------------------------------------------------------------------------/
 
-         public ActionResult listaEmpleados()
+        //LINEA DE CODIGO DE LISTA DE EMPLEADOS
+        public ActionResult listaEmpleados()
         {
             var lst = db.tbl_Empleados.ToList();
             return View(lst);
         }
+
+        //LINEA DE CODIGO DE FORMULARIO DE EMPLEADOS
         public ActionResult FormularioEmpleados()
         {
             return View();
         }
+
+        //LINEA DE CODIGO DE GUARDAR EMPLEADO
+        public JsonResult guardarEmpleado(string NombreEmpleado, string ApellidosEmpleado, string DNIempleado,
+            string DomicilioEmpleado, DateTime FechaDeNacimientoEmpleado, DateTime AntiguedadEmpleado)
+        {
+            tbl_Empleados a = new tbl_Empleados();
+            a.Nombres = NombreEmpleado;
+            a.Apellidos = ApellidosEmpleado;
+            a.DNI = DNIempleado;
+            a.Domicilio = DomicilioEmpleado;
+            a.Fecha_de_nacimiento = FechaDeNacimientoEmpleado;
+            a.Antiguedad = AntiguedadEmpleado;
+            db.tbl_Empleados.Add(a);
+            db.SaveChanges();
+
+            return Json("");
+
+        }
+
+        //LINEA DE CODIGO DE EDITAR EMPLEADO
         public ActionResult EditarEmpleado()
         {
             var lst = db.tbl_Empleados.ToList();
             return View(lst);
         }
+
+        //LINEA DE CODIGO DE LISTA DE EMPLEADO EN FORMULARIO DE EDITAR
         public ActionResult GetEmpleado(int id)
         {
             // Busca el empleado correspondiente en tu modelo de datos
@@ -200,6 +236,7 @@ namespace MV_P1.Controllers
             return Json(empleadoJson, JsonRequestBehavior.AllowGet);
         }
 
+        //LINEA DE CODIGO DE SALVAR EMPLEADO MODIFICADO EN FORMULARIO DE EDITAR EMPLEADO
         public JsonResult SaveEditedEmpleado(int id, string NombreEmpleado, string ApellidosEmpleado, string DNIempleado,
             string DomicilioEmpleado, DateTime FechaDeNacimientoEmpleado, DateTime AntiguedadEmpleado)
         {
@@ -219,6 +256,7 @@ namespace MV_P1.Controllers
             return Json("");
         }
 
+        //LINEA DE CODIGO PARA BORRAR EMPLEADO
         public ActionResult DeleteEmpleado(int id)
         {
             var empleado = db.tbl_Empleados.Find(id);
@@ -231,39 +269,27 @@ namespace MV_P1.Controllers
             return Json("");
         }
 
-        public JsonResult guardarEmpleado(string NombreEmpleado, string ApellidosEmpleado, string DNIempleado,
-            string DomicilioEmpleado, DateTime FechaDeNacimientoEmpleado, DateTime AntiguedadEmpleado)
-        {
-            tbl_Empleados a = new tbl_Empleados();
-            a.Nombres = NombreEmpleado;
-            a.Apellidos = ApellidosEmpleado;
-            a.DNI = DNIempleado;
-            a.Domicilio = DomicilioEmpleado;
-            a.Fecha_de_nacimiento = FechaDeNacimientoEmpleado;
-            a.Antiguedad = AntiguedadEmpleado;
-            db.tbl_Empleados.Add(a);
-            db.SaveChanges();
-            return Json("");
-        }
+        
 
 
-        // TIPOS LIBROS
+        //--------------------------------------------------------CODIGO DE TIPOS DE LIBROS------------------------------------------------------/
+        // --------------------------------------------------------------------------------------------------------------------------------------/
 
+        //LINEA DE CODIGO PARA LA LISTA DE TIPOS DE LIBROS
         public ActionResult listaTiposLibros()
         {
             var lst = db.tbl_Tipos_Libros.ToList();
             return View(lst);
         }
+
+        //LINEA DE CODIGO PARA EL FORMULARIO DE TIPOS DE LIBROS
         public ActionResult FormularioTiposLibros()
         {
             return View();
         }
-        public ActionResult EditarTiposLibros()
-        {
-            var lst = db.tbl_Tipos_Libros.ToList();
-            return View(lst);
-        }
-        public JsonResult guardarTipoLibros(/* int IdTiposLibros, */ string EstanteLibros, string TematicaLibros)
+
+        //LINEA DE CODIGO PARA GUARDAR TIPOS DE LIBROS
+        public JsonResult guardarTipoLibros(string EstanteLibros, string TematicaLibros)
         {
             tbl_Tipos_Libros d = new tbl_Tipos_Libros();
             // d.id_TipoLibro = IdTiposLibros;
@@ -274,18 +300,14 @@ namespace MV_P1.Controllers
             return Json("");
         }
 
-        public ActionResult DeleteTipoLibro(int id)
+        //LINEA DE CODIGO PARA EDITAR LOS TIPOS DE LIBROS
+        public ActionResult EditarTiposLibros()
         {
-            var tipo = db.tbl_Tipos_Libros.Find(id);
-            if (tipo == null)
-            {
-                return HttpNotFound();
-            }
-            db.tbl_Tipos_Libros.Remove(tipo);
-            db.SaveChanges();
-            return Json("");
+            var lst = db.tbl_Tipos_Libros.ToList();
+            return View(lst);
         }
 
+        //LINEA DE CODIGO PARA OBTENER LA LISTA DE TIPOS DE LIBROS EN FORMULARIO EDITAR TIPOS DE LIBROS
         public ActionResult GetTipoLibro(int id)
         {
             // Busca el empleado correspondiente en tu modelo de datos
@@ -307,6 +329,7 @@ namespace MV_P1.Controllers
             return Json(TipoLibroJson, JsonRequestBehavior.AllowGet);
         }
 
+        //LINEA DE CODIGO PARA SALVAR TIPO DE LIBRO MODIFICADO EN FORMULARIO EDITAR TIPO DE LIBRO
         public JsonResult SaveEditedTipoLibro(int IdTiposLibros, string EstanteLibros, string TematicaLibros)
         {
             if (IdTiposLibros != null)
@@ -322,20 +345,37 @@ namespace MV_P1.Controllers
             return Json("");
         }
 
-        // VENTAS
-
-        public ActionResult FormularioVentas() 
+        //LINEA DE CODIGO PARA BORRAR TIPO DE LIBRO
+        public ActionResult DeleteTipoLibro(int id)
         {
-            return View();
-        }
+            var tipo = db.tbl_Tipos_Libros.Find(id);
+            if (tipo == null)
+            {
+                return HttpNotFound();
+            }
+            db.tbl_Tipos_Libros.Remove(tipo);
+            db.SaveChanges();
+            return Json("");
+        } 
 
+        //--------------------------------------------------------CODIGO DE VENTAS------------------------------------------------------/
+        // ------------------------------------------------------------------------------------------------------------------------------/
+        
+        //LINEA DE CODIGO PARA ABRIR EL FORMULARIO DE LISTA DE VENTAS
         public ActionResult listaVentas()
         {
             var lst = db.tbl_Ventas.ToList();
             return View(lst);
         }
 
-        
+        //LINEA DE CODIGO PARA ABRIR EL FORMULARIO DE VENTAS
+        public ActionResult FormularioVentas()
+        {
+            var lst = db.tbl_Empleados.ToList();
+            return View(lst);
+        }
+
+        //LINEA DE CODIGO PARA SALVAR LOS CAMPOS EN FORMULARIO DE VENTAS
         public JsonResult guardarVentas(int Total, DateTime Fecha, TimeSpan Hora, int idEmpleado, int idVentaLibro) 
         {
             tbl_Ventas d = new tbl_Ventas();
@@ -350,28 +390,159 @@ namespace MV_P1.Controllers
         }
 
 
-        // USUARIOS
+        //--------------------------------------------------------CODIGO DE USUARIOS------------------------------------------------------/
+        //--------------------------------------------------------------------------------------------------------------------------------/
 
-        public ActionResult FormularioUsuarios()
-        {
-            return View();
-        }
-
+        //LINEA DE CODIGO PARA MOSTRAR EL FORM DE LA LISTA DE USUARIOS
         public ActionResult listaUsuarios()
         {
             var lst = db.tbl_Usuarios.ToList();
             return View(lst);
         }
 
-        public JsonResult guardarUsuarios(string Nombres, string Apellidos, string DNI, string Domicilio, DateTime Fecha_de_nacimento)
+        //LINEA DE CODIGO PARA MOSTRAR EL FORMULARIO DE USUARIOS
+        public ActionResult FormularioUsuarios()
+        {
+            return View();
+        }
+
+        //LINEA DE CODIGO PARA GUARDAR USUARIOS EN EL FORMULARIO DE USUARIOS
+        public JsonResult guardarUsuarios(string Nombres, string Apellidos, string DNI, string Domicilio, string FechaNacimiento)
         {
             tbl_Usuarios d = new tbl_Usuarios();
             d.Nombres = Nombres;
             d.Apellidos = Apellidos;
             d.DNI = DNI;
             d.Domicilio = Domicilio;
-            d.Fecha_de_nacimiento = Fecha_de_nacimento;
+            d.Fecha_de_nacimiento = FechaNacimiento;
             db.tbl_Usuarios.Add(d);
+            db.SaveChanges();
+            return Json("");
+        }
+
+        //--------------------------------------------------------CODIGO DE PRESTAMOS------------------------------------------------------/
+        //---------------------------------------------------------------------------------------------------------------------------------/
+
+        //LINEA DE CODIGO PARA GUARDAD CORRECTAMENTE EL INNER JOIN EN UNA LISTA PARA ENVIARLO A LA LISTA DE PRESTAMOS
+        public class PrestamoViewModel
+        {
+            public int IdPrestamo { get; set; }
+            public DateTime? FechaDeSalida { get; set; }
+            public DateTime? FechaMaximaDeDevolucion { get; set; }
+            public DateTime? FechaDeDevolucion { get; set; }
+            public string Nombres { get; set; }
+            public string Descripcion { get; set; }
+        }
+
+        //LISTA DE PRESTAMOS CODIGO
+        public ActionResult listaPrestamo() //LINEA DE CODIGO PARA REALIZAR UN INNER JOIN EN LAS TABLAS USUARIO Y TIPOS DE PRESTAMOS
+        {
+
+            var context = new ProyectoBibliotecaEntities();
+
+            var query = from p in context.tbl_Prestamos
+                        join u in context.tbl_Usuarios on p.id_Usuarios equals u.id_Usuarios
+                        join d in context.tbl_Tipos_de_prestamos on p.id_Tipos_de_prestamos equals d.id_Tipos_de_prestamos
+                        select new PrestamoViewModel
+                        {
+                            IdPrestamo = p.id_Prestamo,
+                            FechaDeSalida = p.Fecha_de_Salida,
+                            FechaMaximaDeDevolucion = p.Fecha_maxima_de_devolucion,
+                            FechaDeDevolucion = p.Fecha_de_devolucion,
+                            Nombres = u.Nombres,
+                            Descripcion = d.Descripcion
+                        };
+
+            var lst = query.ToList();
+            return View(lst);
+        }
+
+        //FORMULARIO DE PRESTAMOS CODIGO
+        public ActionResult FormularioPrestamo()
+        {
+            ViewBag.Prestamos = db.tbl_Tipos_de_prestamos.ToList(); //SE ENVIAN LOS VIEBAGS AL FORMULARIO DE PRESTAMOS PARA PODER METER LOS ID DE PRESTAMOS Y USUARIOS EN UN COMBOBOX
+            ViewBag.Usuarios = db.tbl_Usuarios.ToList();
+            return View();
+        }
+        
+        //GUARDAR PRESTAMOS CODIGO
+        public JsonResult guardarPrestamo(DateTime FECHADESALIDA, DateTime FECHAMAXDEV, DateTime FECHADEV, int IDUSUER, int IDTP)
+        {
+            tbl_Prestamos d = new tbl_Prestamos();
+            d.Fecha_de_Salida = FECHADESALIDA;
+            d.Fecha_maxima_de_devolucion = FECHAMAXDEV;
+            d.Fecha_de_devolucion = FECHADEV;
+            d.id_Usuarios = IDUSUER;
+            d.id_Tipos_de_prestamos = IDTP;
+            db.tbl_Prestamos.Add(d);
+            db.SaveChanges();
+            return Json("");
+        }
+
+        //EDITAR PRESTAMOS CODIGOS
+        public ActionResult EditarPrestamo()
+        {
+            ViewBag.Prestamos = db.tbl_Tipos_de_prestamos.ToList();
+            ViewBag.Usuarios = db.tbl_Usuarios.ToList();
+            var lst = db.tbl_Prestamos.ToList();
+            return View(lst);
+        }
+
+
+        //LINEA DE CODIGO PARA OBTENER LA LISTA DE PRESTAMOS EN EL FORMULARIO DE EDITAR
+        public ActionResult GetPrestamo(int id)
+        {
+            // Busca el empleado correspondiente en tu modelo de datos
+            tbl_Prestamos prestamo = db.tbl_Prestamos.Find(id);
+
+            // Si el empleado no se encuentra, devuelve un error
+            if (prestamo == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Crea un objeto anónimo con los datos del empleado y devuelve una respuesta JSON
+            var prestamoJson = new
+            {
+                id_Prestamo = prestamo.id_Prestamo,
+                Fecha_de_Salida = prestamo.Fecha_de_Salida,
+                Fecha_maxima_de_devolucion = prestamo.Fecha_maxima_de_devolucion,
+                Fecha_de_devolucion = prestamo.Fecha_de_devolucion,
+                id_Usuarios = prestamo.id_Usuarios,
+                id_Tipos_de_prestamos = prestamo.id_Tipos_de_prestamos
+            };
+            return Json(prestamoJson, JsonRequestBehavior.AllowGet);
+        }
+
+        //LINEA DE CODIGO PARA SALVAL LOS CAMPOS EDITADOS EN EL FORMULARIO DE PRESTAMOS
+        public JsonResult SaveEditedPrestamo(int id, DateTime FECHASAL, DateTime FECHAMAXDEV, DateTime FECHADEV,
+            int IDUSER, int IDTIPOPRES)
+        {
+            if (id != null)
+            {
+                tbl_Prestamos emp = db.tbl_Prestamos.Find(id);
+
+                emp.Fecha_de_Salida = FECHASAL;
+                emp.Fecha_maxima_de_devolucion = FECHAMAXDEV;
+                emp.Fecha_de_devolucion = FECHADEV;
+                emp.id_Usuarios = IDUSER;
+                emp.id_Tipos_de_prestamos = IDTIPOPRES;
+                
+
+                db.SaveChanges();
+            }
+            return Json("");
+        }
+
+        //LINEA DE CODIGO PARA BORRAR UN PRESTAMO SELECCIONADO
+        public ActionResult DeletePrestamo(int id)
+        {
+            var tipo = db.tbl_Prestamos.Find(id);
+            if (tipo == null)
+            {
+                return HttpNotFound();
+            }
+            db.tbl_Prestamos.Remove(tipo);
             db.SaveChanges();
             return Json("");
         }
