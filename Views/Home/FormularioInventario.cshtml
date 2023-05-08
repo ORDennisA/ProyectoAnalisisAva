@@ -1,0 +1,31 @@
+﻿<script>
+    var UrlInventario = '@Url.Action("guardarInventario", "Home")';
+</script>
+
+<script src="~/Scripts/js_Inventario.js"></script>
+<div class="row">
+    <div class="col-md-3">
+        <Label>Cantidad de libros</Label>
+        <input type="text" id="CantLib" name="CantLib" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>Fecha de adquisicion</Label>
+        <input type="text" id="FechAd" name="FechAd" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>id_TipoLibro</Label>
+        <select id="idLib" name="idLib" class="form-control">
+            <option value="Pendiente">- - SELECCIONAR - -</option>
+            @foreach (var libros in ViewBag.Libros)
+            {
+                <option value="@libros.id_Libro">@libros.Nombre</option>
+            }
+        </select>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <a href="javascript:guardarInventario()" class="btn btn-success">Guardar</a>
+    </div>
+</div>

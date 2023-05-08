@@ -1,0 +1,112 @@
+﻿<table class="table table-condensed">
+    <tr>
+        <th>id_Inventario</th>
+        <th>Cantidad_de_Libro</th>
+        <th>Fecha_Adquisicion</th>
+        <th>id_Libro</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr id="row-@item.id_Inventario">
+            <td> @item.id_Inventario</td>
+            <td> @item.Cantidad_de_Libro</td>
+            <td> @item.Fecha_Adquisicion</td>
+            <td> @item.id_Libro</td>
+            <td>
+                <button type="button" class="btn btn-primary" onclick="prepareEditRow(@item.id_Inventario)">Editar</button>
+                <button type="button" class="btn btn-danger" onclick="deleteRow(@item.id_Inventario)">Eliminar</button>
+            </td>
+        </tr>
+    }
+
+</table>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div id="editInventarioModal" class="row">
+    <div class="modal-content">
+        <form>
+            <div class="col-md-3">
+                <Label>id_Inventario</Label>
+                <input type="text" id="idInv" name="idInv" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Cantidad de libros</Label>
+                <input type="text" id="CantLib" name="CantLib" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Fecha de adquisicion</Label>
+                <input type="text" id="FechAd" name="FechAd" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <Label>Id Libro</Label>
+                <input type="text" id="idLib" name="idLib" class="form-control" />
+            </div>
+            <input type="button" onclick="editRow()" value="Guardar cambios">
+        </form>
+    </div>
+</div>
+<script>
+    function deleteRow(id) {
+        // Realizar petición AJAX al controlador de Home para eliminar el empleado con el ID proporcionado
+        if (confirm('¿Estás seguro de que deseas eliminar este tipo de libro?')) {
+            $.ajax({
+                url: '/Home/DeleteInventario',
+                type: 'POST',
+                data: { id: id },
+                success: function () {
+                    // Si la operación es exitosa, actualizar la tabla sin recargar la página
+                    $('#row-' + id).remove();
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // Si la operación falla, mostrar un mensaje de error
+                    alert('Error al eliminar tipo de libro.');
+                }
+            });
+        }
+    }
+    function prepareEditRow(id) {
+        // Get book type data using id from selected row
+        $.ajax({
+            url: '/Home/GetInventario',
+            type: 'GET',
+            data: { id: id },
+            // if successful, function in controller returns a json data object
+            // Then fill this data to the edit form, to be edited
+            success: function (data, status) {
+                document.getElementById("idInv").value = data.id_Inventario;
+                document.getElementById("CantLib").value = data.Cantidad_de_Libro;
+                document.getElementById("FechAd").value = data.Fecha_Adquisicion;
+                document.getElementById("idLib").value = data.id_Libro;
+            },
+            error: function () {
+                alert('Error al preparar datos de tipo de libro para editarse.');
+            }
+        });
+    }
+    function editRow() {
+        $.ajax({
+            url: '/Home/SaveEditedInventario',
+            type: 'POST',
+            async: true,
+            data: {
+                id_Inventario: document.getElementById("idInv").value,
+                Cantidad_de_Libro: document.getElementById("CantLib").value,
+                Fecha_Adquisicion: document.getElementById("FechAd").value,
+                id_Libro: document.getElementById("idLib").value
+            },
+            success: function () {
+                alert('Edicion exitosa');
+            },
+            error: function () {
+                alert('Error al editar tipo de libro');
+            }
+        });
+        limpiarFormulario();
+    }
+    function limpiarFormulario() {
+        document.getElementById("idInv").value = "";
+        document.getElementById("CantLib").value = "";
+        document.getElementById("FechAd").value = "";
+        document.getElementById("idLib").value = "";
+    }
+</script>
