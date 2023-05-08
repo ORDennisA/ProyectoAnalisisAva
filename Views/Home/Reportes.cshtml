@@ -1,0 +1,38 @@
+﻿<!-- Load up scripts first -->
+<script>
+    var UrlReportes = '@Url.Action("getReporte","Home")';
+</script>
+<script src="~/Scripts/js_Reportes.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!--Report options-->
+<div>
+    <h1>Reportes</h1>
+    <p>Seleccione el tipo de reporte, y el intervalo de fechas a mostrar.</p>
+</div>
+<div id="reportOptions" class="row">
+    <div class="col-md-3">
+        <Label>Tipo de reporte</Label>
+        <select id="tipoReporte" name="tipoReporte" class="form-control">
+            <option value="pendiente">- - SELECCIONAR - -</option>
+            <option value="ventas">Ventas</option>
+            <option value="prestamos">Prestamos</option>
+        </select>
+    </div>
+    <div class="col-md-3">
+        <Label>Fecha inicio</Label>
+        <input type="date" id="fechaInicio" name="fechaInicio" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <Label>Fecha final</Label>
+        <input type="date" id="fechaFinal" name="fechaFinal" class="form-control" />
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <a href="javascript:getReporte()" class="btn btn-success">Generar reporte</a>
+    </div>
+</div>
+
+<!--Report query-->

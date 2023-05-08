@@ -646,5 +646,29 @@ namespace MV_P1.Controllers
             }
             return Json("");
         }
+
+
+        // REPORTES
+
+        public ActionResult Reportes()
+        {
+            return View();
+        }
+
+        public ActionResult getReporte(string tipoReporte, DateTime fechaInicio, DateTime fechaFinal)
+        {
+            switch (tipoReporte)
+            {
+                case "ventas":
+                    var reporteVentas = from v in db.tbl_Ventas
+                                        where v.Fecha >= fechaInicio && v.Fecha <= fechaFinal
+                                        select v;
+                    break;
+
+                case "prestamos":
+                    break;
+            }
+            return Json("");
+        }
     }
 }

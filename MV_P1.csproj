@@ -217,6 +217,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js_Reportes.js" />
     <Content Include="Scripts\js_ChecadasEmp.js" />
     <Content Include="Scripts\js_Empleados.js" />
     <Content Include="Scripts\js_Libros.js" />
