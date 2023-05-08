@@ -496,5 +496,81 @@ namespace MV_P1.Controllers
 
             return Json("");
         }
+                //INVENTARIO---------------------------------------------------------------------------------------------------------------
+        public ActionResult listaInventario()
+        {
+            var lst = db.tbl_Inventario.ToList();
+            return View(lst);
+        }
+        public ActionResult FormularioInventario()
+        {
+            ViewBag.libros = db.tbl_Libros.ToList();
+            return View();
+        }
+        public ActionResult EditarInventario()
+        {
+            var lst = db.tbl_Inventario.ToList();
+            return View(lst);
+        }
+        
+        public JsonResult guardarInventario(int Cantidad_de_Libro, string Fecha_Adquisicion, int id_Libro)
+        {
+            tbl_Inventario e = new tbl_Inventario();
+            e.Cantidad_de_Libro = Cantidad_de_Libro;
+            e.Fecha_Adquisicion = Fecha_Adquisicion;
+            e.id_Libro = id_Libro;
+            db.tbl_Inventario.Add(e);
+            db.SaveChanges();
+            return Json("");
+        }
+        
+        public ActionResult DeleteInventario(int id)
+        {
+            var checada = db.tbl_Inventario.Find(id);
+            if (checada == null)
+            {
+                return HttpNotFound();
+            }
+            db.tbl_Inventario.Remove(checada);
+            db.SaveChanges();
+            return Json("");
+        }
+
+        public ActionResult GetInventario(int id)
+        {
+            // Busca el empleado correspondiente en tu modelo de datos
+            tbl_Inventario checada = db.tbl_Inventario.Find(id);
+
+            // Si el empleado no se encuentra, devuelve un error
+            if (checada == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Crea un objeto anónimo con los datos del empleado y devuelve una respuesta JSON
+            var checadaJson = new
+            {
+                id_Inventario = checada.id_Inventario,
+                Cantidad_de_Libro = checada.Cantidad_de_Libro,
+                Fecha_Adquisicion = checada.Fecha_Adquisicion,
+                id_Libro = checada.id_Libro
+            };
+            return Json(checadaJson, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult SaveEditedInventario(int id_Inventario, int Cantidad_de_Libro, string Fecha_Adquisicion, int id_Libro)
+        {
+            if (id_Inventario != null)
+            {
+                tbl_Inventario checada = db.tbl_Inventario.Find(id_Inventario);
+
+                checada.id_Inventario = id_Inventario;
+                checada.Cantidad_de_Libro = Cantidad_de_Libro;
+                checada.Fecha_Adquisicion = Fecha_Adquisicion;
+                checada.id_Libro = id_Libro;
+
+                db.SaveChanges();
+            }
+            return Json("");
+        }
     }
 }
