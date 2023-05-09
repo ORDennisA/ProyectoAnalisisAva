@@ -655,15 +655,24 @@ namespace MV_P1.Controllers
             return View();
         }
 
-        public ActionResult getReporte(string tipoReporte, DateTime fechaInicio, DateTime fechaFinal)
+        public JsonResult getReporte(string tipoReporte, DateTime fechaInicio, DateTime fechaFinal)
         {
             switch (tipoReporte)
             {
                 case "ventas":
                     var reporteVentas = from v in db.tbl_Ventas
                                         where v.Fecha >= fechaInicio && v.Fecha <= fechaFinal
-                                        select v;
-                    break;
+                                        select new
+                                        {
+                                            // Select only the columns that you need to avoid circular reference errors during the creation of this json object
+                                            id_Venta = v.id_Venta.ToString(),
+                                            Total = v.Total,
+                                            Fecha = v.Fecha,
+                                            Hora = v.Hora,
+                                            id_Empleado = v.id_Empleados.ToString(),
+                                        };
+
+                    return Json(reporteVentas, JsonRequestBehavior.AllowGet);
 
                 case "prestamos":
                     break;

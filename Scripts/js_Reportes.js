@@ -1,7 +1,7 @@
 ﻿function getReporte() {
 
     $.ajax({
-        type: "POST",
+        type: "GET",
         url: UrlReportes,
         async: true,
         data: {
@@ -9,8 +9,7 @@
             fechaInicio: document.getElementById("fechaInicio").value,
             fechaFinal: document.getElementById("fechaFinal").value,
         },
-        success: function (data) {
-            alert("Reporte generado exitosamente.");
+        success: function (data, status) {
         },
         error: function (xhr, status, error) {
             alert(error);
