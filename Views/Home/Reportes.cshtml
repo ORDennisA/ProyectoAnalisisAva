@@ -1,10 +1,4 @@
-﻿<!-- Load up scripts first -->
-<script>
-    var UrlReportes = '@Url.Action("getReporte","Home")';
-</script>
-<script src="~/Scripts/js_Reportes.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+﻿
 <!--Report options-->
 <div>
     <h1>Reportes</h1>
@@ -34,18 +28,43 @@
         <a href="javascript:getReporte()" class="btn btn-success">Generar reporte</a>
     </div>
 </div>
+<br/>
 
 <!--Report query-->
 
 
 <!--Ventas report (testing)-->
-<div class="col-sm-8"><h2>Ventas</h2></div>
-<table id="reporteVentas" class="table table-condensed">
-    <tr>
-        <th>id_Venta</th>
-        <th>Total</th>
-        <th>Fecha</th>
-        <th>Hora</th>
-        <th>id_Empleado</th>
-    </tr>
-</table>
+<div id="reporteVentas" class="col-sm-8">
+    <h2>Ventas</h2>
+    <table id="tableVentas" class="table table-condensed">
+        <tr>
+            <th>id_Venta</th>
+            <th>Total</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>id_Empleado</th>
+        </tr>
+    </table>
+</div>
+
+<!--Prestamos report (testing)-->
+<div id="reportePrestamos" class="col-sm-8">
+    <h2>Prestamos</h2>
+    <table id="tablePrestamos" class="table table-condensed">
+        <tr>
+            <th>Id_Prestamo</th>
+            <th>FechaDeSalida</th>
+            <th>FechaMaximaDeDevolucion</th>
+            <th>FechaDeDevolucion</th>
+            <th>Id_Usuarios</th>
+            <th>Id_Tipo_de_Prestamo</th>
+        </tr>
+    </table>
+</div>
+
+<!-- Load up scripts after the rest of the page-->
+<script>
+    var UrlReportes = '@Url.Action("getReporte","Home")';
+</script>
+<script src="~/Scripts/js_Reportes.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
