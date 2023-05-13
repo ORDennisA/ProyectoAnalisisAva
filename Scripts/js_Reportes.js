@@ -20,6 +20,32 @@ function getReporte() {
             fechaFinal: document.getElementById("fechaFinal").value,
         },
         success: function (data, status) {
+            // locals
+            var dateTemp = '';
+
+            // Create rows for report
+            var rows = [];
+
+            for (var i = 0; i < data.length; i++) {
+                rows.push($('<tr>'));
+            }
+
+            // Parse received data object and store each row
+            for (var i = 0; i < rows.length; i++) {
+                dateTemp = jsonToJSDate(data[i].Fecha);
+                console.log(dateTemp);
+
+                rows[i].append($('<td>').html(data[i].id_Venta));
+                rows[i].append($('<td>').html(data[i].Total));
+                rows[i].append($('<td>').html(data[i].Fecha));
+                rows[i].append($('<td>').html(data[i].Hora));
+                rows[i].append($('<td>').html(data[i].id_Empleado));
+            }
+
+            // Append rows to report view
+            for (var i = 0; i < rows.length; i++) {
+                $('#tableVentas').append(rows[i]);
+            }
         },
         error: function (xhr, status, error) {
             alert(error);
@@ -43,7 +69,6 @@ function toggleReport() {
     // Show reports as selected by user
     tipoReporte.addEventListener("change", () => {
         toggle = document.getElementById("tipoReporte").value;         
-        console.log(toggle);
 
         if (toggle == "ventas") {
             tableVentas.style.display = "block";
@@ -58,6 +83,11 @@ function toggleReport() {
             tablePrestamos.style.display = "none";
         }
     });
+}
+
+function jsonToJSDate(date) {
+    var convertedDate = new Date(parseInt(date.substr(6)));
+    return convertedDate.toISOString();
 }
 
 // Initialize event listener(s)
