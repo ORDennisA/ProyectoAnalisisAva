@@ -20,42 +20,7 @@ function getReporte() {
             fechaFinal: document.getElementById("fechaFinal").value,
         },
         success: function (data, status) {
-            // helper local variables
-            var dateTemp = '';
-            var timeTemp = '';
-
-            // Create rows for report
-            var rows = [];
-
-            for (var i = 0; i < data.length; i++) {
-                // Fill rows array with same number of rows in received data
-                rows.push($('<tr>'));
-            }
-
-            // Parse received data object and store each row
-            for (var i = 0; i < rows.length; i++) {
-                // first normalize date and time data to simple strings, makes it easier to display
-                dateTemp = jsonToJSDate(data[i].Fecha);
-                timeTemp = jsonToStringTime(data[i].Hora);
-
-                rows[i].append($('<td>').html(data[i].id_Venta));
-                rows[i].append($('<td>').html(data[i].Total));
-                rows[i].append($('<td>').html(dateTemp));
-                rows[i].append($('<td>').html(timeTemp));
-                rows[i].append($('<td>').html(data[i].id_Empleado));
-            }
-
-            // Append rows to report view, depending on toggle state
-            if (toggle == 'ventas') {
-                for (var i = 0; i < rows.length; i++) {
-                    $('#tableVentas').append(rows[i]);
-                }
-            }
-            else if (toggle == 'prestamos') {
-                for (var i = 0; i < rows.length; i++) {
-                    $('#tablePrestamos').append(rows[i]);
-                }
-            }
+            generateVentasReport(data);
         },
         error: function (xhr, status, error) {
             alert(error);
@@ -70,6 +35,17 @@ function limpiarFormulario() {
     document.getElementById("fechaInicio").value = "";
     document.getElementById("fechaFinal").value = "";
 } 
+
+function clearTable(table) {
+    // Save the header row
+    var firstRow = table.rows[0];
+
+    // Delete the entire table body
+    table.innerHTML = "";
+
+    // Put the header back
+    table.append(firstRow);
+}
 
 function toggleReport() {
     // Both reports hidden first
@@ -105,6 +81,45 @@ function jsonToStringTime(time) {
     var mm = String(time.Minutes).padStart(2, '0');
 
     return hh + ':' + mm;
+}
+
+function generateVentasReport(data) {
+    // helper local variables
+    var dateTemp = '';
+    var timeTemp = '';
+
+    // Clear the table if a previous report was generated
+    clearTable(document.getElementById('tableVentas'));
+
+    // Create rows for report
+    var rows = [];
+
+    for (var i = 0; i < data.length; i++) {
+        // Fill rows array with same number of rows in received data
+        rows.push($('<tr>'));
+    }
+
+    // Parse received data object and store each row
+    for (var i = 0; i < rows.length; i++) {
+        // first normalize date and time data to simple strings, makes it easier to display
+        dateTemp = jsonToJSDate(data[i].Fecha);
+        timeTemp = jsonToStringTime(data[i].Hora);
+
+        rows[i].append($('<td>').html(data[i].id_Venta));
+        rows[i].append($('<td>').html(data[i].Total));
+        rows[i].append($('<td>').html(dateTemp));
+        rows[i].append($('<td>').html(timeTemp));
+        rows[i].append($('<td>').html(data[i].id_Empleado));
+    }
+
+    // Append rows to report view
+    for (var i = 0; i < rows.length; i++) {
+        $('#tableVentas').append(rows[i]);
+    }
+}
+
+function generatePrestamosReport(data) {
+
 }
 
 // Initialize event listener(s)
