@@ -20,14 +20,19 @@ function getReporte() {
             fechaFinal: document.getElementById("fechaFinal").value,
         },
         success: function (data, status) {
-            generateVentasReport(data);
+            if (toggle == 'ventas') {
+                generateVentasReport(data);
+            }
+            else if (toggle == 'prestamos') {
+                generatePrestamosReport(data);
+            }
         },
         error: function (xhr, status, error) {
             alert(error);
         }
     });
 
-    limpiarFormulario();
+    // limpiarFormulario();
 }
 
 function limpiarFormulario() {
@@ -119,7 +124,31 @@ function generateVentasReport(data) {
 }
 
 function generatePrestamosReport(data) {
+    // Clear the table if a previous report was generated
+    clearTable(document.getElementById('tablePrestamos'));
 
+    // Create rows for report
+    var rows = [];
+
+    for (var i = 0; i < data.length; i++) {
+        // Fill rows array with same number of rows in received data
+        rows.push($('<tr>'));
+    }
+
+    // Parse received data object and store each row
+    for (var i = 0; i < rows.length; i++) {
+        rows[i].append($('<td>').html(data[i].id_Prestamo));
+        rows[i].append($('<td>').html(jsonToJSDate(data[i].FechaDeSalida)));
+        rows[i].append($('<td>').html(jsonToJSDate(data[i].FechaMaximaDeDevolucion)));
+        rows[i].append($('<td>').html(jsonToJSDate(data[i].FechaDeDevolucion)));
+        rows[i].append($('<td>').html(data[i].id_Usuarios));
+        rows[i].append($('<td>').html(data[i].id_tipo_de_prestamo));
+    }
+
+    // Append rows to report view
+    for (var i = 0; i < rows.length; i++) {
+        $('#tablePrestamos').append(rows[i]);
+    }
 }
 
 // Initialize event listener(s)

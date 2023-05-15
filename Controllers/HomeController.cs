@@ -675,7 +675,18 @@ namespace MV_P1.Controllers
                     return Json(reporteVentas, JsonRequestBehavior.AllowGet);
 
                 case "prestamos":
-                    break;
+                    var reportePrestamos = from p in db.tbl_Prestamos
+                                           where p.Fecha_de_Salida >= fechaInicio && p.Fecha_de_Salida <= fechaFinal
+                                           select new
+                                           {
+                                                id_Prestamo = p.id_Prestamo.ToString(),
+                                                FechaDeSalida = p.Fecha_de_Salida,
+                                                FechaMaximaDeDevolucion = p.Fecha_maxima_de_devolucion,
+                                                FechaDeDevolucion = p.Fecha_de_devolucion,
+                                                id_Usuarios = p.id_Usuarios.ToString(),
+                                                id_tipo_de_prestamo = p.id_Tipos_de_prestamos.ToString(),
+                                           };
+                    return Json(reportePrestamos, JsonRequestBehavior.AllowGet);
             }
             return Json("");
         }
