@@ -20,31 +20,41 @@ function getReporte() {
             fechaFinal: document.getElementById("fechaFinal").value,
         },
         success: function (data, status) {
-            // locals
+            // helper local variables
             var dateTemp = '';
+            var timeTemp = '';
 
             // Create rows for report
             var rows = [];
 
             for (var i = 0; i < data.length; i++) {
+                // Fill rows array with same number of rows in received data
                 rows.push($('<tr>'));
             }
 
             // Parse received data object and store each row
             for (var i = 0; i < rows.length; i++) {
+                // first normalize date and time data to simple strings, makes it easier to display
                 dateTemp = jsonToJSDate(data[i].Fecha);
-                console.log(dateTemp);
+                timeTemp = jsonToStringTime(data[i].Hora);
 
                 rows[i].append($('<td>').html(data[i].id_Venta));
                 rows[i].append($('<td>').html(data[i].Total));
-                rows[i].append($('<td>').html(data[i].Fecha));
-                rows[i].append($('<td>').html(data[i].Hora));
+                rows[i].append($('<td>').html(dateTemp));
+                rows[i].append($('<td>').html(timeTemp));
                 rows[i].append($('<td>').html(data[i].id_Empleado));
             }
 
-            // Append rows to report view
-            for (var i = 0; i < rows.length; i++) {
-                $('#tableVentas').append(rows[i]);
+            // Append rows to report view, depending on toggle state
+            if (toggle == 'ventas') {
+                for (var i = 0; i < rows.length; i++) {
+                    $('#tableVentas').append(rows[i]);
+                }
+            }
+            else if (toggle == 'prestamos') {
+                for (var i = 0; i < rows.length; i++) {
+                    $('#tablePrestamos').append(rows[i]);
+                }
             }
         },
         error: function (xhr, status, error) {
@@ -87,7 +97,14 @@ function toggleReport() {
 
 function jsonToJSDate(date) {
     var convertedDate = new Date(parseInt(date.substr(6)));
-    return convertedDate.toISOString();
+    return convertedDate.toISOString().slice(0,10);
+}
+
+function jsonToStringTime(time) {
+    var hh = String(time.Hours).padStart(2, '0');
+    var mm = String(time.Minutes).padStart(2, '0');
+
+    return hh + ':' + mm;
 }
 
 // Initialize event listener(s)
